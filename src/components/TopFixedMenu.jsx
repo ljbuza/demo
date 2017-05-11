@@ -59,10 +59,9 @@ export default class TopFixedMenu extends Component {
               <Dropdown.Item as={Link} to="/alerts" text="Alerts" />
             </Dropdown.Menu>
           </Dropdown>
-        </Menu.Item>
-        <Menu.Item>
           <Input
             icon
+            size="small"
             placeholder="Search..."
             label={<Dropdown defaultValue="All" options={searchOptions} />}
           />
