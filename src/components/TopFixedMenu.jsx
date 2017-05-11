@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { Menu, Dropdown, Image } from "semantic-ui-react";
+import { Menu, Dropdown, Image, Input, Icon } from "semantic-ui-react";
 
+const searchOptions = [
+  { key: "All", text: "All", value: "All" },
+  { key: "Name", text: "Name", value: "Name" },
+  { key: "Address", text: "Address", value: "Address" },
+  { key: "Order", text: "Order", value: "Order" }
+];
 // export const TopFixedMenu = () => (
 export default class TopFixedMenu extends Component {
   constructor() {
@@ -40,33 +46,28 @@ export default class TopFixedMenu extends Component {
             href="/dashboard"
           />
         </Menu.Item>
-        <Dropdown item text="Sections">
-          <Dropdown.Menu>
-            <Dropdown.Item as={Link} to="/network-cmts" text="Network" />
-            <Dropdown.Item as={Link} to="/equip-cmts" text="Equipment" />
-            <Dropdown.Item as={Link} to="/subscriber" text="Subscribers" />
-            <Dropdown.Item as={Link} to="/orders" text="Orders" />
-            <Dropdown.Item as={Link} to="/alerts" text="Alerts" />
-          </Dropdown.Menu>
-        </Dropdown>
-        <div className="item" id="dropDown-item">
+        <Menu.Item>
+          <Dropdown item text="Sections">
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/dashboard" text="Dashboard" />
+              <Dropdown.Divider />
+              <Dropdown.Header>Data Browser</Dropdown.Header>
+              <Dropdown.Item as={Link} to="/network-cmts" text="Network" />
+              <Dropdown.Item as={Link} to="/equip-cmts" text="Equipment" />
+              <Dropdown.Item as={Link} to="/subscriber" text="Subscribers" />
+              <Dropdown.Item as={Link} to="/orders" text="Orders" />
+              <Dropdown.Item as={Link} to="/alerts" text="Alerts" />
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Item>
+        <Menu.Item>
+          <Input
+            icon
+            placeholder="Search..."
+            label={<Dropdown defaultValue="All" options={searchOptions} />}
+          />
+        </Menu.Item>
 
-          <div className="ui icon labeled input">
-            <div className="ui dropdown label">
-              <div className="text">All</div>
-              <i className="dropdown icon" />
-              <div className="menu">
-                <div className="item">Name</div>
-                <div className="item">Address</div>
-                <div className="item">Order</div>
-                <div className="item">All</div>
-              </div>
-            </div>
-            <input type="text" placeholder="Search..." id="searchtext" />
-            <i id="iconsearch" className="search icon" onClick="" />
-          </div>
-
-        </div>
         <div className="right item">
           <div className="ui right pointing label">
             Logged in as mabworthy

@@ -15,6 +15,10 @@ body {
     background-color: lightsteelblue;
 }
 
+#top-menu-label {
+    background-color: #e8e8e8;
+}
+
 #root {
          /*background-color: lightsteelblue;*/
     background-color: #FAFAFA;
