@@ -27,6 +27,8 @@ export default class SecondaryMenu extends Component {
       return <OrderSecMenu />;
     } else if (section === 'Alert Information') {
       return <AlertsSecMenu />;
+    } else if (section === 'Dashboard') {
+      return <AlertsSecMenu />;
     }
   }
 }

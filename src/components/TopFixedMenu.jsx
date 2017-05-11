@@ -37,7 +37,7 @@ export default class TopFixedMenu extends Component {
             width="25px"
             src="img/BxE Logo.png"
             as={Link}
-            href="/equip-cmts"
+            href="/dashboard"
           />
         </Menu.Item>
         <Dropdown item text="Sections">

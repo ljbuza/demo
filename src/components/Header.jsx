@@ -10,7 +10,7 @@ export default class Header extends Component {
             <Grid.Row columns={1}>
               <Grid.Column>
                 <h2 className="ui header">
-                  Data Browser
+                  {this.props.title}
                   <div className="sub header">{this.props.subheader}</div>
                 </h2>
               </Grid.Column>
