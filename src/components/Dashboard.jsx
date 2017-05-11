@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Menu, Icon } from 'semantic-ui-react';
+import { Table, Menu, Card, Icon } from 'semantic-ui-react';
 
 export default class Dashboard extends Component {
   componentDidMount() {
@@ -20,11 +20,11 @@ export default class Dashboard extends Component {
               <div className="six wide column">
                 <div className="ui fluid card">
                   <div className="content">
-                    <div className="ui header">Top Users</div>
+                    <div className="ui header small">Top Users</div>
                   </div>
                   <div className="content">
 
-                    <table className="ui striped compact table">
+                    <table className="ui striped compact small table">
                       <thead>
                         <tr>
                           <th>Subscriber</th>
@@ -48,46 +48,53 @@ export default class Dashboard extends Component {
                     </table>
                   </div>
                 </div>
-                <div className="ui fluid card">
-                  <div className="content">
-                    <div className="ui header">Top CMTS Usage</div>
-                  </div>
-                  <div className="content">
-
-                    <table className="ui striped compact table">
-                      <thead>
-                        <tr>
-                          <th>CMTS</th>
-                          <th>Usage</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="Filters/filter_cmts.html">CMTS1</a></td>
-                          <td>80%</td>
-                        </tr>
-                        <tr>
-                          <td><a href="Filters/filter_cmts.html">CMTS2</a></td>
-                          <td>75%</td>
-                        </tr>
-                        <tr>
-                          <td><a href="Filters/filter_cmts.html">CMTS3</a></td>
-                          <td>70%</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                <Card fluid>
+                  <Card.Content>
+                    <div className="ui header small">Top CMTS Usage</div>
+                  </Card.Content>
+                  <Card.Content
+                    description={
+                      <table className="ui striped compact small table">
+                        <thead>
+                          <tr>
+                            <th>CMTS</th>
+                            <th>Usage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="Filters/filter_cmts.html">CMTS1</a>
+                            </td>
+                            <td>80%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="Filters/filter_cmts.html">CMTS2</a>
+                            </td>
+                            <td>75%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="Filters/filter_cmts.html">CMTS3</a>
+                            </td>
+                            <td>70%</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    }
+                  />
+                </Card>
 
               </div>
 
               <div className="ten wide column">
                 <div className="ui fluid card">
                   <div className="content">
-                    <div className="ui header">Pending Orders</div>
+                    <div className="ui header small">Pending Orders</div>
                   </div>
                   <div className="content">
-                    <table className="ui striped compact table">
+                    <table className="ui striped compact small table">
                       <thead>
                         <tr>
                           <th>BxE Order</th>
@@ -118,10 +125,10 @@ export default class Dashboard extends Component {
                 </div>
                 <div className="ui fluid card">
                   <div className="content">
-                    <div className="ui header">Completed Orders</div>
+                    <div className="ui header small">Completed Orders</div>
                   </div>
                   <div className="content">
-                    <table className="ui striped compact table">
+                    <table className="ui striped compact small table">
                       <thead>
                         <tr className="bottom aligned">
                           <th>BxE Order</th>

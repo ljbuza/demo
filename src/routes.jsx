@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Network from './components/Network';
 import NetworkCmts from './components/NetworkCmts';
@@ -18,7 +18,7 @@ import Dashboard from './components/Dashboard';
 
 export default (
   <Route path="/" component={App}>
-    {/* <IndexRoute component={Home} />*/}
+    <IndexRoute component={Dashboard} />
     <Route path="/network" component={Network} />
     <Route
       path="/network-cmts"
