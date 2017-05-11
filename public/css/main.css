@@ -1,0 +1,717 @@
+body {
+         /*background-color: lightsteelblue;*/
+    background-color: #FAFAFA;
+}
+
+#root {
+         /*background-color: lightsteelblue;*/
+    background-color: #FAFAFA;
+}
+
+th span {
+    float: right;
+}
+#header{
+    background-color: #FAFAFA;
+    margin-top: 60px;
+    min-height: 100px;
+}
+
+/*0C9FD0 tds alt blue */
+/*EDEDF2*/
+#main_body {
+    margin-top: 15px;
+    background-color: #FAFAFA;
+}
+.head.grid {
+     background-color: #FAFAFA;
+     /* padding-bottom: 20px;*/
+ }
+
+.headn.grid {
+  margin-left: 10px;
+  padding-bottom: 20px;
+  ;
+}
+.menuBarTop{
+    width: 52%;
+}
+.menuBarTopRight{
+    width: 21%;
+}
+.head1.column {
+  margin-top: 40px;
+  margin-left: 10px;
+  /*background-color: #F2F6F1;*/
+  padding-bottom: 20px;
+  border: 1px solid black
+}
+/*=======
+>>>>>>> 70248c4f33ad3bea1ca33420e5289bf5c9f00826
+*//*ECECEC*//*
+*//*63B1C9*/
+.ui.card>.content:nth-child(1) {
+  background-color: #E8E8E8;
+}
+/*6F7E95*/
+/*F2F7FA*/
+.ui.card>.content>.header,
+.ui.cards>.card>.content>.header {
+  color: black;
+}
+td.right.aligned {
+  font-weight: bold;
+}
+.ui.very.basic.table tr td {
+  border-top: none;
+}
+/*<<<<<<< HEAD*/
+.checkbox_div{
+    margin: 10px 0 10px 10px!important;
+    float: left;
+    width: 160px;
+}
+.multislct_div{
+    list-style: none;
+
+}
+.display_lable_container{
+    margin: 15px 0 0 111px;
+}
+
+.scrolls-menu div.item{
+    pointer-events: none;
+    /*background-color: #EAEAEA;*/
+}
+/*
+=======
+>>>>>>> 70248c4f33ad3bea1ca33420e5289bf5c9f00826
+*//*<<<<filter file>>>>*/
+.left_insider_content{
+     margin: 0 16px 0 30px;
+     width: 13%;
+     float: left;
+ }
+/*.cmtsItem {
+    margin-bottom: 10px !important;
+    color: #000000!important;
+}*/
+.right_insider_content {
+    border-top: none;
+    width: 82%;
+    float: left;
+}
+.ui.card>.content:nth-child(1) {
+    /*background-color: #E8E8E8;*/
+}
+.menu_bar{
+    /*color: #fff!important;*/
+}
+.ui.top.fixed.inverted.menu {
+    height: 48px!important;
+}
+.ui.icon.labeled.input {
+  /*  margin-top: 0px!important;*/
+}
+.select_filter{
+    color: rgba(0,0,0,.95);
+    max-width: 100%;
+    float: left;
+    height: 40px;
+}
+.disable{
+    opacity: 0.3;
+    pointer-events: none;
+}
+.pagination .item{
+    margin-bottom: 0px!important;
+}
+
+.effects{
+    opacity: 0.5;
+
+}
+.effects:hover{
+    opacity: 1;
+}
+.scrollDiv{
+    overflow-x: scroll;
+    height: 180px;
+}
+.scrollDiv table tr th:first-child{
+    position: absolute;
+    left: 14px;
+    background: #fff;
+    border: 1px solid #ccc !important;
+    width: 100px;
+    margin-top: 0px;
+    padding: 8px;
+ }
+
+ .scrollDiv table tr td:nth-child(2){
+    position: absolute;
+    left: 114px;
+    background: #fff;
+    border: 1px solid #e3e5e6!important;
+    width: 84PX;
+    height: 13%;
+    margin-top: 0px;
+    padding: 8px!important;
+     border-left: none!important;
+ }
+
+.scrollDiv table  {
+    margin-left: 96px !important;
+    border-left: 0px;
+    border-bottom: 0px;
+    height: 115px;
+}
+/*
+#cmtsdrpDwn:hover + #cmtsDrpMenu{
+    display: block;
+}*/
+.scrollDivOne{
+    overflow-x: scroll;
+    height: 132px;
+}
+.scrollDivOne table tr th:first-child{
+    position: absolute;
+    left: 14px;
+    background: #fff;
+    border: 1px solid #ccc !important;
+    width: 100px;
+    margin-top: 0px;
+    padding: 9px;
+}
+
+.scrollDivOne table tr td:nth-child(2){
+    position: absolute;
+    left: 114px;
+    background: #fff;
+    border: 1px solid #e3e5e6!important;
+    width: 100PX;
+    height: 25%;
+    margin-top: 0px;
+    padding: 6px!important;
+    border-left: none!important;
+}
+
+.scrollDivOne table  {
+    margin-left: 199px !important;
+    border-left: 0px;
+    border-bottom: 0px;
+    height: 115px;
+}
+.scrollDivTwo{
+    overflow-x: scroll;
+    height: 294px;
+}
+.scrollDivTwo table tr th:first-child{
+    position: absolute;
+    left: 14px;
+    background: #fff;
+    border: 1px solid #ccc !important;
+    width: 135px;
+    margin-top: 0px;
+    padding: 8px;
+}
+
+.scrollDivTwo table tr td:nth-child(2){
+    position: absolute;
+    left: 149px;
+    background: #fff;
+    border: 1px solid #e3e5e6!important;
+    width: 96PX;
+    height: 11%;
+    margin-top: 0px;
+    padding: 6px!important;
+    border-left: none!important;
+}
+
+.scrollDivTwo table  {
+    margin-left: 226px !important;
+    border-left: 0px;
+    border-bottom: 0px;
+    height: 115px;
+}
+.scrollDivThree{
+    overflow-x: scroll;
+    height: 155px;
+}
+.scrollDivThree table tr th:first-child{
+    position: absolute;
+    left: 14px;
+    background: #fff;
+    border: 1px solid #ccc !important;
+    width: 135px;
+    margin-top: 0px;
+    padding: 8px;
+}
+
+.scrollDivThree table tr td:nth-child(2){
+    position: absolute;
+    left: 150px;
+    background: #fff;
+    border: 1px solid #e3e5e6!important;
+    width: 84PX;
+    height: 20%;
+    margin-top: 0px;
+    padding: 6px!important;
+    border-left: none!important;
+}
+
+.scrollDivThree table  {
+    margin-left: 218px !important;
+    border-left: 0px;
+    border-bottom: 0px;
+    height: 115px;
+}
+
+/* CSS for the Model popup */
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 300px;
+    position: relative;
+    margin: 10% auto;
+    padding: 1px 0px 1px 0px;
+    border-radius: 10px;
+    /*background: #fff;*/
+    height: 300px;
+    /*background-color: #F9FAFB*/
+    
+}
+.close {
+    background: #606061;
+    /*color: #FFFFFF;*/
+    line-height: 25px;
+    position: absolute;
+    right: -1%;
+    text-align: center;
+    top:-12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+    background: #00d9ff;
+}
+.container_middle{
+    margin: 15px;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    /*background-color: #fefefe;*/
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+    border-radius: 15px;/* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*.scroll_div_child{
+    margin-left: 40% !important;
+}*/
+@media screen and (max-width: 1200px) and (min-width: 767px) {
+
+    .left_insider_content{
+        margin: 0 0 0 15px;
+        width: 14%;
+        float: left;
+    }
+    .right_insider_content {
+        border-top: none;
+        width: 74%;
+        float: left;
+        margin-left: 13px !important;
+    }
+    .menuBarTop{
+        width: 53%;
+    }
+    .menuBarTopRight{
+        width: 37%;
+    }
+    .container_middle{
+        margin: 15px;
+    }
+    .scrollDivOne table {
+        margin-left: 164px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivOne table tr td:nth-child(2) {
+        position: absolute;
+        left: 114px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 66PX;
+        height: 25%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table tr td:nth-child(2) {
+        position: absolute;
+        left: 150px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 64PX;
+        height: 20%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table {
+        margin-left: 196px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivTwo table tr td:nth-child(2) {
+        position: absolute;
+        left: 149px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 70PX;
+        height: 11%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivTwo table {
+        margin-left: 203px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .rwd-table {
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+    .rwd-table-cpe {
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 10px !important;
+    }
+    .rwd-table-order-results{
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+    .rwd-table-order{
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 11px !important;
+    }
+    .rwd-table-order-results{
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 11px !important;
+    }
+    .rwd-table-cable{
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 10px !important;
+    }
+    .rwd-table-host{
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 9px !important;
+    }
+
+
+  }
+
+@media screen and (max-width: 766px) and (min-width: 480px) {
+
+    .left_insider_content{
+        margin: 0 0 0 30px;
+        width: 13%;
+        float: left;
+    }
+    .right_insider_content {
+        border-top: none;
+        width: 70%;
+        float: left;
+        margin-left: 30px !important;
+    }
+    .menuBarTop{
+        width: 37%;
+    }
+    .menuBarTopRight{
+        width: 34%;
+    }
+    #searchtext{
+        width: 35%!important;
+    }
+    td.right.aligned {
+        float: left;
+    }
+    .rwd-table {
+        max-width: 745px;
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+    .scrollDivOne table {
+        margin-left: 164px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivOne table tr td:nth-child(2) {
+        position: absolute;
+        left: 114px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 66PX;
+        height: 25%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table tr td:nth-child(2) {
+        position: absolute;
+        left: 150px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 64PX;
+        height: 20%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table {
+        margin-left: 196px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivTwo table tr td:nth-child(2) {
+        position: absolute;
+        left: 149px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 70PX;
+        height: 11%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivTwo table {
+        margin-left: 203px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+
+}
+
+@media screen and (max-width: 479px) and (min-width: 120px) {
+
+    .left_insider_content{
+        margin: 0 0 0 30px;
+        width: 13%;
+        float: left;
+    }
+    .bxe_menu_bar{
+        width: 12%;
+    }
+    .dropdown_icon_responsive{
+        margin: 0px !important;
+    }
+    .search_bar_child{
+        margin-left: -11px!important;
+    }
+    .image_bxe{
+        width: 100%!important;
+    }
+    .menuBarTop{
+        width: 32%;
+    }
+    .menuBarTopRight{
+        width: 38%;
+    }
+    .menu_bar_image{
+        width: 11%;
+    }
+    .menu_bar_drpdwn{
+        width: 11%;
+    }
+    #searchtext{
+        width: 35%!important;
+    }
+    td.right.aligned {
+        float: left;
+    }
+    .rwd-table {
+        max-width: 745px;
+        width: 100%;
+        font-size: 13px;
+    }
+    .scrollDivOne table {
+        margin-left: 164px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivOne table tr td:nth-child(2) {
+        position: absolute;
+        left: 114px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 66PX;
+        height: 25%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table tr td:nth-child(2) {
+        position: absolute;
+        left: 150px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 64PX;
+        height: 20%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivThree table {
+        margin-left: 196px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+    .scrollDivTwo table tr td:nth-child(2) {
+        position: absolute;
+        left: 149px;
+        background: #fff;
+        border: 1px solid #e3e5e6!important;
+        width: 70PX;
+        height: 11%;
+        margin-top: 0px;
+        padding: 6px!important;
+        border-left: none!important;
+    }
+    .scrollDivTwo table {
+        margin-left: 203px !important;
+        border-left: 0px;
+        border-bottom: 0px;
+        height: 115px;
+    }
+}
+@media screen and (max-width: 2652px) and (min-width: 1023px) {
+
+    .menuBarTop{
+        width: 64%;
+    }
+    .menuBarTopRight{
+        width: 23%;
+    }
+    .rwd-table-order-results {
+        max-width: 1098px;
+        width: 100% !important;
+        font-size: 14px !important;
+    }
+    .rwd-table-cable {
+        max-width: 1098px;
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+    .rwd-table-host {
+        max-width: 1098px;
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+
+}
+
+
+/**
+ * Display the tick inside the checkbox
+ */
+.bcg-checkbox label:after {
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 6px;
+    left: 7px;
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/**
+ * Create the hover event of the tick*/
+.bcg-checkbox label:hover::after {
+    opacity: 0.5;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.bcg-checkbox input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
