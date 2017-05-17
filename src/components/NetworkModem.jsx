@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Menu, Icon } from 'semantic-ui-react';
-import PickerFilterModal from './PickerFilterModal';
-import SelectFilterModal from './SelectFilterModal';
 
 export default class NetworkModem extends Component {
   render() {
@@ -9,8 +7,8 @@ export default class NetworkModem extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>Fiber Node<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Fiber Node</Table.HeaderCell>
             <Table.HeaderCell>MAC Domain</Table.HeaderCell>
             <Table.HeaderCell>CMTS</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>

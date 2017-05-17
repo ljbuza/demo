@@ -17,7 +17,7 @@ export default class SecondaryMenu extends Component {
     // const { activeItem } = this.state;
     const section = this.props.section;
 
-    if (section === 'Network Information') {
+    if (section === '/databrowser/') {
       return <NetworkSecMenu />;
     } else if (section === 'Equipment Information') {
       return <EquipSecMenu />;
@@ -30,5 +30,6 @@ export default class SecondaryMenu extends Component {
     } else if (section === 'Dashboard') {
       return <AlertsSecMenu />;
     }
+    return '';
   }
 }

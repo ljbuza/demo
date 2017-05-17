@@ -49,7 +49,7 @@ export default class NetworkCmts extends Component {
               onClick={this.handleSort("name")}
             >
               Name
-              <SelectFilterModal options={this.getOptions("name")} />
+              {/*<SelectFilterModal options={this.getOptions("name")} />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "ip" && direction}
@@ -62,42 +62,42 @@ export default class NetworkCmts extends Component {
               onClick={this.handleSort("model")}
             >
               Model
-              <SelectFilterModal options={this.getOptions("model")} />
+              {/*<SelectFilterModal options={this.getOptions("model")} />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "software" && direction}
               onClick={this.handleSort("software")}
             >
               Software Version
-              <SelectFilterModal options={this.getOptions("software")} />
+              {/*<SelectFilterModal options={this.getOptions("software")} />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "cpu" && direction}
               onClick={this.handleSort("cpu")}
             >
               CPU
-              <PickerFilterModal />
+              {/*<PickerFilterModal />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "memory" && direction}
               onClick={this.handleSort("memory")}
             >
               Memory
-              <PickerFilterModal />
+              {/*<PickerFilterModal />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "temp" && direction}
               onClick={this.handleSort("temp")}
             >
               Temp
-              <PickerFilterModal />
+              {/*<PickerFilterModal />*/}
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "uptime" && direction}
               onClick={this.handleSort("uptime")}
             >
               Uptime
-              <PickerFilterModal />
+              {/*<PickerFilterModal />*/}
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>

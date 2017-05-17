@@ -9,8 +9,8 @@ export default class NetworkFiber extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>MAC Domain<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>MAC Domain</Table.HeaderCell>
             <Table.HeaderCell>CMTS</Table.HeaderCell>
             <Table.HeaderCell>Alias</Table.HeaderCell>
             <Table.HeaderCell>Modems Online</Table.HeaderCell>

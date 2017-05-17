@@ -16,19 +16,18 @@ export default class Picker extends Component {
   render() {
     const { value } = this.state;
     return (
-      <Form>
+      <div>
         <Form.Group>
-          <Form.Field
-            control={Radio}
+          <Form.Radio
             label="Value:"
             value="value"
             checked={value === "value"}
             onChange={this.handleChange}
           />
-          <Form.Field size="small" control={Select} compact options={options} />
-          <Form.Field size="small" control={Input} />
+          <Form.Select size="small" compact options={options} />
+          <Form.Input size="small" />
         </Form.Group>
-        <Form.Group>
+        <Form.Group inline>
           <Form.Field
             control={Radio}
             label="Value Between:"
@@ -37,16 +36,9 @@ export default class Picker extends Component {
             onChange={this.handleChange}
           />
           <Form.Field size="small" control={Input} placeholder="" />
-          <Form.Field
-            inline
-            size="small"
-            control={Input}
-            label="And"
-            placeholder=""
-          />
+          <Form.Field size="small" control={Input} label="And" placeholder="" />
         </Form.Group>
-        {/*<Form.Field control={Button}>Submit</Form.Field>*/}
-      </Form>
+      </div>
     );
   }
 }

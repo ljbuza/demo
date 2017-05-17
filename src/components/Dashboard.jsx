@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
-import { Table, Menu, Card, Icon } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
+import Header from './Header';
+import tableData from '../data/DashboardData.js';
+import DataTable from './DataTable';
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: tableData.tableData,
+    };
+  }
+
+  // this should be done in css, ideally
   componentDidMount() {
     document.body.classList.add('tds-blue');
     document.body.id = '';
@@ -12,152 +23,55 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    const { data } = this.state;
     return (
-      <div id="dashboard" className="ui grid">
-        <div className="row">
-          <div className="column">
-            <div id="dash-container" className="ui grid container">
-              <div className="six wide column">
-                <div className="ui fluid card">
-                  <div className="content">
-                    <div className="ui header small">Top Users</div>
-                  </div>
-                  <div className="content">
+      <div>
+        <Header title="Dashboard" subtitle="May 16, 2017" />
+        <div id="dashboard" className="ui grid">
+          <div className="row">
+            <div className="column">
+              <div id="dash-container" className="ui grid container">
+                <div className="six wide column">
 
-                    <table className="ui striped compact small table">
-                      <thead>
-                        <tr>
-                          <th>Subscriber</th>
-                          <th>Usage</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="index_sm_jon.html">Jon Wallace</a></td>
-                          <td>20gb</td>
-                        </tr>
-                        <tr>
-                          <td><a href="index_sm.html">Noal Miles</a></td>
-                          <td>15gb</td>
-                        </tr>
-                        <tr>
-                          <td><a href="index_sm_demo.html">Spike Souza</a></td>
-                          <td>10gb</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <Card fluid>
-                  <Card.Content>
-                    <div className="ui header small">Top CMTS Usage</div>
-                  </Card.Content>
-                  <Card.Content
-                    description={
-                      <table className="ui striped compact small table">
-                        <thead>
-                          <tr>
-                            <th>CMTS</th>
-                            <th>Usage</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a href="Filters/filter_cmts.html">CMTS1</a>
-                            </td>
-                            <td>80%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="Filters/filter_cmts.html">CMTS2</a>
-                            </td>
-                            <td>75%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="Filters/filter_cmts.html">CMTS3</a>
-                            </td>
-                            <td>70%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    }
-                  />
-                </Card>
+                  <Card fluid>
+                    <Card.Content>
+                      <div className="ui header small">Top Users</div>
+                    </Card.Content>
+                    <Card.Content
+                      description={<DataTable data={data.topUsers} />}
+                    />
+                  </Card>
 
-              </div>
-
-              <div className="ten wide column">
-                <div className="ui fluid card">
-                  <div className="content">
-                    <div className="ui header small">Pending Orders</div>
-                  </div>
-                  <div className="content">
-                    <table className="ui striped compact small table">
-                      <thead>
-                        <tr>
-                          <th>BxE Order</th>
-                          <th>External Order</th>
-                          <th>Subscriber</th>
-                          <th>Created</th>
-                          <th>Last Updated</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="Filters/filter_order.html">1234</a></td>
-                          <td>696686</td>
-                          <td>John Addams</td>
-                          <td>Jun 1, 2016 09:57 AM CST</td>
-                          <td>Jun 6, 2016 11:24 AM CST</td>
-                        </tr>
-                        <tr>
-                          <td><a href="Filters/filter_order.html">3456</a></td>
-                          <td>696686</td>
-                          <td>Henry Knox</td>
-                          <td>Jun 1, 2016 09:57 AM CST</td>
-                          <td>Jun 6, 2016 11:24 AM CST</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div className="ui fluid card">
-                  <div className="content">
-                    <div className="ui header small">Completed Orders</div>
-                  </div>
-                  <div className="content">
-                    <table className="ui striped compact small table">
-                      <thead>
-                        <tr className="bottom aligned">
-                          <th>BxE Order</th>
-                          <th>External Order</th>
-                          <th>Subscriber</th>
-                          <th>Created</th>
-                          <th>Last Updated</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="Filters/filter_order.html">1234</a></td>
-                          <td>696686</td>
-                          <td>Nathaniel Hawthorne</td>
-                          <td>Jun 1, 2016 09:57 AM CST</td>
-                          <td>Jun 6, 2016 11:24 AM CST</td>
-                        </tr>
-                        <tr>
-                          <td><a href="Filters/filter_order.html">3456</a></td>
-                          <td>696686</td>
-                          <td>Herman Melville</td>
-                          <td>Jun 1, 2016 09:57 AM CST</td>
-                          <td>Jun 6, 2016 11:24 AM CST</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  <Card fluid>
+                    <Card.Content>
+                      <div className="ui header small">Top CMTS Usage</div>
+                    </Card.Content>
+                    <Card.Content
+                      description={<DataTable data={data.topCmtsUsage} />}
+                    />
+                  </Card>
                 </div>
 
+                <div className="ten wide column">
+
+                  <Card fluid>
+                    <Card.Content>
+                      <div className="ui header small">Pending Orders</div>
+                    </Card.Content>
+                    <Card.Content
+                      description={<DataTable data={data.pendingOrders} />}
+                    />
+                  </Card>
+                  <Card fluid>
+                    <Card.Content>
+                      <div className="ui header small">Completed Orders</div>
+                    </Card.Content>
+                    <Card.Content
+                      description={<DataTable data={data.completedOrders} />}
+                    />
+                  </Card>
+
+                </div>
               </div>
             </div>
           </div>

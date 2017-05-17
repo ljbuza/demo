@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Menu, Dropdown, Image, Input, Icon } from "semantic-ui-react";
 
 const searchOptions = [
@@ -8,6 +8,7 @@ const searchOptions = [
   { key: "Address", text: "Address", value: "Address" },
   { key: "Order", text: "Order", value: "Order" }
 ];
+
 // export const TopFixedMenu = () => (
 export default class TopFixedMenu extends Component {
   constructor() {
@@ -15,7 +16,8 @@ export default class TopFixedMenu extends Component {
     this.state = {
       isLoading: false,
       results: [],
-      value: ""
+      value: "",
+      searchOptions: searchOptions
     };
     // this.handleSearchChange = this.handleSearchChange.bind(this);
   }
@@ -43,7 +45,7 @@ export default class TopFixedMenu extends Component {
             width="25px"
             src="img/BxE Logo.png"
             as={Link}
-            href="/dashboard"
+            to="/dashboard"
           />
         </Menu.Item>
         <Menu.Item>
@@ -52,18 +54,32 @@ export default class TopFixedMenu extends Component {
               <Dropdown.Item as={Link} to="/dashboard" text="Dashboard" />
               <Dropdown.Divider />
               <Dropdown.Header>Data Browser</Dropdown.Header>
-              <Dropdown.Item as={Link} to="/network-cmts" text="Network" />
-              <Dropdown.Item as={Link} to="/equip-cmts" text="Equipment" />
-              <Dropdown.Item as={Link} to="/subscriber" text="Subscribers" />
-              <Dropdown.Item as={Link} to="/orders" text="Orders" />
-              <Dropdown.Item as={Link} to="/alerts" text="Alerts" />
+              <Dropdown.Item
+                as={Link}
+                to="/databrowser/network-cmts"
+                text="Network"
+              />
+              <Dropdown.Item
+                as={Link}
+                to="/databrowser/equip-cmts"
+                text="Equipment"
+              />
+              <Dropdown.Item
+                as={Link}
+                to="/databrowser/subscriber"
+                text="Subscribers"
+              />
+              <Dropdown.Item as={Link} to="/databrowser/orders" text="Orders" />
+              <Dropdown.Item as={Link} to="/databrowser/alerts" text="Alerts" />
             </Dropdown.Menu>
           </Dropdown>
           <Input
             icon
             size="small"
             placeholder="Search..."
-            label={<Dropdown defaultValue="All" options={searchOptions} />}
+            label={
+              <Dropdown defaultValue="All" options={this.state.searchOptions} />
+            }
           />
         </Menu.Item>
 

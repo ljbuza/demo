@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, browserHistory } from "react-router";
+import { Link, browserHistory } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 export default class AlertsSecMenu extends Component {

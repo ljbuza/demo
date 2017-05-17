@@ -11,7 +11,7 @@ export default class Header extends Component {
               <Grid.Column>
                 <h2 className="ui header">
                   {this.props.title}
-                  <div className="sub header">{this.props.subheader}</div>
+                  <div className="sub header">{this.props.subtitle}</div>
                 </h2>
               </Grid.Column>
             </Grid.Row>

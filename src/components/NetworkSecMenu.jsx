@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 export default class NetworkSecMenu extends Component {
@@ -7,7 +7,7 @@ export default class NetworkSecMenu extends Component {
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
-    // browserHistory.push({ pathname: "/network-cmts" });
+    // browserHistory.push({ pathname: "/databrowser/network-mac" });
   };
 
   render() {
@@ -19,43 +19,42 @@ export default class NetworkSecMenu extends Component {
           <Menu.Item
             name="CMTS"
             as={Link}
-            to="/network-cmts"
+            to="/databrowser/network-cmts"
             active={activeItem === "CMTS"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name="MAC domain"
             as={Link}
-            to="/network-mac"
+            to="/databrowser/network-mac"
             active={activeItem === "MAC domain"}
             onClick={this.handleItemClick}
           />
-          {/*<div className="ui circular tiny label"  id="tab_cmts">2</div>*/}
           <Menu.Item
             name="fiber node"
             as={Link}
-            to="/network-fiber"
+            to="/databrowser/network-fiber"
             active={activeItem === "fiber node"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name="CMTS interface"
             as={Link}
-            to="/network-cface"
+            to="/databrowser/network-cface"
             active={activeItem === "CMTS interface"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name="modem"
             as={Link}
-            to="/network-modem"
+            to="/databrowser/network-modem"
             active={activeItem === "modem"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name="modem interface"
             as={Link}
-            to="/network-mface"
+            to="/databrowser/network-mface"
             active={activeItem === "modem interface"}
             onClick={this.handleItemClick}
           />

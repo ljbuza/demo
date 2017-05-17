@@ -44,8 +44,8 @@ export default class NetworkMac extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>CMTS<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>CMTS</Table.HeaderCell>
             <Table.HeaderCell>Alias</Table.HeaderCell>
             <Table.HeaderCell>Fiber Nodes</Table.HeaderCell>
             <Table.HeaderCell>Modems Online</Table.HeaderCell>

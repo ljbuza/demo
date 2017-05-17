@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Menu, Icon } from 'semantic-ui-react';
-import PickerFilterModal from './PickerFilterModal';
-import SelectFilterModal from './SelectFilterModal';
 
 export default class NetworkCface extends Component {
   render() {
@@ -9,8 +7,8 @@ export default class NetworkCface extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>US/DS<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>Name<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>US/DS</Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell>CMTS</Table.HeaderCell>
             <Table.HeaderCell>SNR</Table.HeaderCell>
             <Table.HeaderCell>Micro-Reflections</Table.HeaderCell>
