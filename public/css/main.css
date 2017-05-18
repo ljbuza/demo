@@ -1,5 +1,5 @@
 .tds-blue {
-    background-color: lightsteelblue;
+    background-color: #f2f5f6;
 }
 
 #body {
@@ -12,7 +12,8 @@ body {
 }
 
 #dashboard {
-    background-color: lightsteelblue;
+    background-color: #f2f5f6;
+    /*background-color: #eaf2f8;*/
 }
 
 #top-menu-label {
