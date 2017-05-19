@@ -6,6 +6,10 @@
     background-color: #FAFAFA;
 }
 
+.scrolling {
+ overflow-x: scroll;
+}
+
 body {
          /*background-color: lightsteelblue;*/
     background-color: #FAFAFA;

@@ -4,36 +4,33 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Alerts from './components/Alerts';
 import Dashboard from './components/Dashboard';
 import DataBrowser from './components/DataBrowser';
+import Foo from './components/Foo';
 
 import TopFixedMenu from './components/TopFixedMenu';
 import SubscriberOverview from './components/SubscriberOverview';
-import Header from './components/Header';
 import '../public/css/main.css';
 import '../node_modules/semantic-ui-css/semantic.min.css';
 
 const routes = [
   {
-    path: '/databrowser',
+    path: '/databrowser/',
+    exact: false,
     main: () => <div><DataBrowser /></div>,
   },
   {
     path: '/dashboard',
-    main: () => <div><Dashboard /></div>,
-  },
-  {
-    path: '/subscriber/:id',
-    main: () => <div><SubscriberOverview /></div>,
+    exact: true,
+    main: () => <Dashboard />,
   },
 ];
 
-const App = appProps => (
+const App = () => (
   <Router>
     <div className="App">
       <TopFixedMenu />
       <div>
-        {routes.map((route, index) => (
-          <Route key={index} path={route.path} component={route.main} />
-        ))}
+        <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/databrowser" component={DataBrowser} />
       </div>
     </div>
   </Router>

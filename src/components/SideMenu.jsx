@@ -490,9 +490,6 @@ export default class SideMenu extends Component {
                   </Form>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
                   <Button
                     positive
                     size="small"

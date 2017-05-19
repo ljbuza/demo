@@ -49,7 +49,7 @@ export default class TopFixedMenu extends Component {
           />
         </Menu.Item>
         <Menu.Item>
-          <Dropdown item text="Sections">
+          <Dropdown item icon="sidebar" simple>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/dashboard" text="Dashboard" />
               <Dropdown.Divider />

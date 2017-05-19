@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Menu, Icon } from 'semantic-ui-react';
-import PickerFilterModal from './PickerFilterModal';
-import SelectFilterModal from './SelectFilterModal';
 
 export default class Order extends Component {
   render() {
@@ -9,8 +7,8 @@ export default class Order extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>BxE Order<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>BSS Order<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>BxE Order</Table.HeaderCell>
+            <Table.HeaderCell>BSS Order</Table.HeaderCell>
             <Table.HeaderCell>Order Status</Table.HeaderCell>
             <Table.HeaderCell>Provisioned?</Table.HeaderCell>
             <Table.HeaderCell>Modified</Table.HeaderCell>

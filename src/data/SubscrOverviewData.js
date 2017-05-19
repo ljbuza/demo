@@ -4,16 +4,16 @@ export default {
       {
         'BxE Order': '123',
         'External Order': '63945',
-        status: 'Pending',
-        created: 'Jun 1, 2016 09:57 AM',
-        updated: 'Jun 2, 2016 09:57 AM',
+        Status: 'Pending',
+        Created: 'Jun 1, 2016 09:57 AM',
+        Updated: 'Jun 2, 2016 09:57 AM',
       },
       {
         'BxE Order': '321',
         'External Order': '58234',
-        status: 'Complete',
-        created: 'May 22, 2016 09:57 AM',
-        updated: 'Jun 1, 2016 09:57 AM',
+        Status: 'Complete',
+        Created: 'May 22, 2016 09:57 AM',
+        Updated: 'Jun 1, 2016 09:57 AM',
       },
     ],
     equipment: [

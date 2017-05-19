@@ -13,14 +13,14 @@ export default class Dashboard extends Component {
   }
 
   // this should be done in css, ideally
-  componentDidMount() {
-    document.body.classList.add('tds-blue');
-    document.body.id = '';
-  }
-  componentWillUnmount() {
-    document.body.classList.remove('tds-blue');
-    document.body.id = 'body';
-  }
+  // componentDidMount() {
+  //   document.body.classList.add('tds-blue');
+  //   document.body.id = '';
+  // }
+  // componentWillUnmount() {
+  //   document.body.classList.remove('tds-blue');
+  //   document.body.id = 'body';
+  // }
 
   render() {
     const { data } = this.state;

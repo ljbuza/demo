@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Menu, Icon } from 'semantic-ui-react';
-import PickerFilterModal from './PickerFilterModal';
-import SelectFilterModal from './SelectFilterModal';
 
 export default class EquipModem extends Component {
   render() {
@@ -9,8 +7,8 @@ export default class EquipModem extends Component {
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name<SelectFilterModal /></Table.HeaderCell>
-            <Table.HeaderCell>MAC<PickerFilterModal /></Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>MAC</Table.HeaderCell>
             <Table.HeaderCell>Model</Table.HeaderCell>
             <Table.HeaderCell>Vendor</Table.HeaderCell>
             <Table.HeaderCell>Software Version</Table.HeaderCell>

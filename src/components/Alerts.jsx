@@ -1,8 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Table, Menu, Icon } from "semantic-ui-react";
-import PickerFilterModal from "./PickerFilterModal";
-import SelectFilterModal from "./SelectFilterModal";
 
 const tableData = [
   {
@@ -81,32 +79,31 @@ export default class Alerts extends Component {
               onClick={this.handleSort("status")}
               className="two wide"
             >
-              Status<SelectFilterModal options={status_options} />
+              Status
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "equipment" && direction}
               onClick={this.handleSort("equipment")}
             >
               Equipment
-              <SelectFilterModal options={this.getOptions("equipment")} />
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "last_updated" && direction}
               onClick={this.handleSort("last_updated")}
             >
-              Last Updated<PickerFilterModal />
+              Last Updated
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "field" && direction}
               onClick={this.handleSort("field")}
             >
-              Field<SelectFilterModal options={this.getOptions("field")} />
+              Field
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "value" && direction}
               onClick={this.handleSort("value")}
             >
-              Value<SelectFilterModal />
+              Value
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
