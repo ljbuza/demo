@@ -25,7 +25,9 @@ import OrderSecMenu from './OrderSecMenu';
 import Alerts from './Alerts';
 import AlertsSecMenu from './AlertsSecMenu';
 import Map from './Map';
+import MapNetwork from './MapNetwork';
 import MapSecMenu from './MapSecMenu';
+import SideMenuMap from './SideMenuMap';
 
 import '../../public/css/main.css';
 import '../../node_modules/semantic-ui-css/semantic.min.css';
@@ -159,14 +161,19 @@ const routes = [
   {
     path: '/databrowser/map',
     exact: true,
-    header: () => (
-      <Header title="Data Browser" subtitle="Map Information" />
-    ),
-    sidemenu: () => <SideMenuSubscr />,
+    header: () => <Header title="Data Browser" subtitle="Map Information" />,
+    sidemenu: () => <SideMenuMap />,
     secondarymenu: () => <MapSecMenu />,
     main: () => <div><Map /></div>,
   },
-
+  {
+    path: '/databrowser/map-network',
+    exact: true,
+    header: () => <Header title="Data Browser" subtitle="Map Information" />,
+    sidemenu: () => <SideMenuMap />,
+    secondarymenu: () => <MapSecMenu />,
+    main: () => <div><MapNetwork /></div>,
+  },
 ];
 
 const DataBrowser = ({ match }) => (
@@ -261,6 +268,11 @@ const DataBrowser = ({ match }) => (
                 <Route exact path="/databrowser/orders" component={Order} />
                 <Route exact path="/databrowser/alerts" component={Alerts} />
                 <Route exact path="/databrowser/map" component={Map} />
+                <Route
+                  exact
+                  path="/databrowser/map-network"
+                  component={MapNetwork}
+                />
               </div>
             </div>
           </div>
