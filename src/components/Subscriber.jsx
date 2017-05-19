@@ -17,7 +17,7 @@ const Subscriber = ({ match }) => (
     </Table.Header>
     <Table.Body>
       <Table.Row>
-        <Table.Cell><Link to={`${match.url}2`}>Noal</Link></Table.Cell>
+        <Table.Cell><Link to={`${match.url}/2`}>Noal</Link></Table.Cell>
         <Table.Cell>Miles</Table.Cell>
         <Table.Cell>123A321</Table.Cell>
         <Table.Cell>123 Main St.</Table.Cell>

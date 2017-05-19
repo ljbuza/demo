@@ -342,14 +342,20 @@ const CardGroups = () => (
 const panels = [
   {
     key: "1",
+    title: "Alerts",
+    content: <Alerts />
+  },
+  {
+    key: "2",
     title: "CMTS-01",
     content: <CardGroups />
   },
   {
-    key: "2",
+    key: "3",
     title: "CMTS-02",
     content: <CardGroups />
-  }
+  },
+
 ];
 
 export default class SubscriberOverview extends Component {
