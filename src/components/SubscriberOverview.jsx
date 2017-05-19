@@ -8,6 +8,7 @@ import {
   Divider,
   Menu,
   Segment,
+  Header,
   Grid
 } from "semantic-ui-react";
 import DataTable from "./DataTable";
@@ -354,8 +355,7 @@ const panels = [
     key: "3",
     title: "CMTS-02",
     content: <CardGroups />
-  },
-
+  }
 ];
 
 export default class SubscriberOverview extends Component {
@@ -379,8 +379,14 @@ export default class SubscriberOverview extends Component {
       <div>
         {/* <h1>Hello {this.props.match.params.userid}</h1>*/}
         <Accordion panels={panels} fluid styled open exclusive={false} />
-        <DataTable data={tableData.tableData.orders} />
-        <DataTable data={tableData.tableData.equipment} />
+        <Header as="h5" attached="top">Orders</Header>
+        <Segment attached="bottom">
+          <DataTable data={tableData.tableData.orders} />
+        </Segment>
+        <Header as="h5" attached="top">Equipment</Header>
+        <Segment attached="bottom">
+          <DataTable data={tableData.tableData.equipment} />
+        </Segment>
       </div>
     );
   }
