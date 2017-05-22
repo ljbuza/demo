@@ -242,6 +242,7 @@ const CardGroups = () => (
               </Card.Meta>
               <Card.Description>
                 <table className="ui compact very basic table">
+                  <tbody>
                   <tr>
                     <td className="right aligned">Port:</td>
                     <td>C/U2/7.0</td>
@@ -258,6 +259,7 @@ const CardGroups = () => (
                     <td className="right aligned">Online Percent</td>
                     <td>100%</td>
                   </tr>
+                  </tbody>
                 </table>
               </Card.Description>
               <Divider />

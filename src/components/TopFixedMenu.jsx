@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Dropdown, Image, Input, Icon } from "semantic-ui-react";
+import { Menu, Dropdown, Image, Input } from "semantic-ui-react";
 
 const searchOptions = [
   { key: "All", text: "All", value: "All" },
