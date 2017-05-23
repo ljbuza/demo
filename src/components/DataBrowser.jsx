@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import SideMenu from './SideMenu';
@@ -6,8 +6,6 @@ import SideMenuEquip from './SideMenuEquip';
 import SideMenuSubscr from './SideMenuSubscr';
 import SideMenuOrders from './SideMenuOrders';
 import SideMenuAlerts from './SideMenuAlerts';
-import NetworkSecMenu from './NetworkSecMenu';
-import EquipSecMenu from './EquipSecMenu';
 import NetworkCmts from './NetworkCmts';
 import NetworkMac from './NetworkMac';
 import NetworkFiber from './NetworkFiber';
@@ -18,19 +16,13 @@ import EquipCmts from './EquipCmts';
 import EquipModem from './EquipModem';
 import EquipMta from './EquipMta';
 import Subscriber from './Subscriber';
-import SubSecMenu from './SubSecMenu';
 import SubscriberOverview from './SubscriberOverview';
 import Order from './Order';
-import OrderSecMenu from './OrderSecMenu';
 import Alerts from './Alerts';
-import AlertsSecMenu from './AlertsSecMenu';
 import Map from './Map';
 import MapNetwork from './MapNetwork';
-import MapSecMenu from './MapSecMenu';
+import SecondaryMenu from './SecondaryMenu';
 import SideMenuMap from './SideMenuMap';
-
-import '../../public/css/main.css';
-import '../../node_modules/semantic-ui-css/semantic.min.css';
 
 const routes = [
   {
@@ -39,7 +31,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     sidemenu: () => <SideMenu />,
     main: () => <div><NetworkCmts /></div>,
   },
@@ -49,7 +41,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkCmts /></div>,
   },
   {
@@ -58,7 +50,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkMac /></div>,
   },
   {
@@ -67,7 +59,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkFiber /></div>,
   },
   {
@@ -76,7 +68,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkCface /></div>,
   },
   {
@@ -85,7 +77,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkModem /></div>,
   },
   {
@@ -94,7 +86,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu />,
-    secondarymenu: () => <NetworkSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     main: () => <div><NetworkMface /></div>,
   },
   {
@@ -103,7 +95,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip />,
-    secondarymenu: () => <EquipSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
     main: () => <div><EquipCmts /></div>,
   },
   {
@@ -112,7 +104,7 @@ const routes = [
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip />,
-    secondarymenu: () => <EquipSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
     main: () => <div><EquipCmts /></div>,
   },
   {
@@ -121,21 +113,21 @@ const routes = [
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip />,
-    secondarymenu: () => <EquipSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
     main: () => <div><EquipCmts /></div>,
   },
   {
-    path: '/databrowser/subscriber',
+    path: '/databrowser/subscribers',
     exact: true,
     header: () => (
       <Header title="Data Browser" subtitle="Subscriber Information" />
     ),
     sidemenu: () => <SideMenuSubscr />,
-    secondarymenu: () => <SubSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="subscriberMenu" />,
     main: () => <div><Subscriber /></div>,
   },
   {
-    path: '/databrowser/subscriber/:userid',
+    path: '/databrowser/subscribers/:userid',
     header: () => (
       <Header title="Noal Miles" subtitle="123 Main St, Anytown, WI" />
     ),
@@ -147,7 +139,7 @@ const routes = [
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Order Information" />,
     sidemenu: () => <SideMenuOrders />,
-    secondarymenu: () => <OrderSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="orderMenu" />,
     main: () => <div><Order /></div>,
   },
   {
@@ -155,7 +147,7 @@ const routes = [
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
     sidemenu: () => <SideMenuAlerts />,
-    secondarymenu: () => <AlertsSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="alertsMenu" />,
     main: () => <div><Order /></div>,
   },
   {
@@ -163,7 +155,7 @@ const routes = [
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
-    secondarymenu: () => <MapSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="mapMenu" />,
     main: () => <div><Map /></div>,
   },
   {
@@ -171,114 +163,140 @@ const routes = [
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
-    secondarymenu: () => <MapSecMenu />,
+    secondarymenu: () => <SecondaryMenu section="mapMenu" />,
     main: () => <div><MapNetwork /></div>,
   },
 ];
 
-const DataBrowser = ({ match }) => (
-  <div>
-    <div>
-      {routes.map((route, index) => (
-        <Route
-          key={index}
-          exact={route.exact}
-          path={route.path}
-          component={route.header}
-        />
-      ))}
-      <div className="ui container" id="main_body">
-        <Route
-          path="/databrowser/subscriber/:userid"
-          component={SubscriberOverview}
-        />
+export default class DataBrowser extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      match: props.match,
+      foo: 'bar',
+      // data: tableData.tableData,
+    };
+  }
 
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={route.exact}
-            component={route.secondarymenu}
-          />
-        ))}
-        <div className="ui two column grid">
-          <div className="stretched row">
-            <div className="three wide column">
+  render() {
+    const { match, foo } = this.state;
+    return (
+      // const DataBrowser = ({ match }) => (
+      (
+        <div>
+          <div>
+            {/* const extraProps = {title: 'Foo Bar Baz'};*/}
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                exact={route.exact}
+                path={route.path}
+                component={route.header}
+                // render={props => <Header {...props} titles={route.header} />
+              />
+            ))}
+            <div className="ui container" id="main_body">
+              <Route
+                path="/databrowser/subscribers/:userid"
+                component={SubscriberOverview}
+              />
+
               {routes.map((route, index) => (
                 <Route
                   key={index}
                   path={route.path}
                   exact={route.exact}
-                  component={route.sidemenu}
+                  component={route.secondarymenu}
                 />
               ))}
-            </div>
-            <div className="thirteen wide column">
-              <div className="ui vertical basic segment">
-                <Route
-                  exact
-                  path="/databrowser/network-cmts"
-                  component={NetworkCmts}
-                />
-                <Route
-                  exact
-                  path="/databrowser/network-mac"
-                  component={NetworkMac}
-                />
-                <Route
-                  exact
-                  path="/databrowser/network-fiber"
-                  component={NetworkFiber}
-                />
-                <Route
-                  exact
-                  path="/databrowser/network-cface"
-                  component={NetworkCface}
-                />
-                <Route
-                  exact
-                  path="/databrowser/network-modem"
-                  component={NetworkModem}
-                />
-                <Route
-                  exact
-                  path="/databrowser/network-mface"
-                  component={NetworkMface}
-                />
-                <Route
-                  exact
-                  path="/databrowser/equip-cmts"
-                  component={EquipCmts}
-                />
-                <Route
-                  exact
-                  path="/databrowser/equip-modem"
-                  component={EquipModem}
-                />
-                <Route
-                  exact
-                  path="/databrowser/equip-mta"
-                  component={EquipMta}
-                />
-                <Route
-                  exact
-                  path="/databrowser/subscriber"
-                  component={Subscriber}
-                />
-                <Route exact path="/databrowser/orders" component={Order} />
-                <Route exact path="/databrowser/alerts" component={Alerts} />
-                <Route exact path="/databrowser/map" component={Map} />
-                <Route
-                  exact
-                  path="/databrowser/map-network"
-                  component={MapNetwork}
-                />
+              <div className="ui two column grid">
+                <div className="stretched row">
+                  <div className="three wide column">
+                    {routes.map((route, index) => (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.sidemenu}
+                      />
+                    ))}
+                  </div>
+                  <div className="thirteen wide column">
+                    <div className="ui vertical basic segment">
+                      <Route
+                        exact
+                        path="/databrowser/network-cmts"
+                        component={NetworkCmts}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/network-mac"
+                        component={NetworkMac}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/network-fiber"
+                        component={NetworkFiber}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/network-cface"
+                        component={NetworkCface}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/network-modem"
+                        component={NetworkModem}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/network-mface"
+                        component={NetworkMface}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/equip-cmts"
+                        component={EquipCmts}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/equip-modem"
+                        component={EquipModem}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/equip-mta"
+                        component={EquipMta}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/subscribers"
+                        component={Subscriber}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/orders"
+                        component={Order}
+                      />
+                      <Route
+                        exact
+                        path="/databrowser/alerts"
+                        component={Alerts}
+                      />
+                      <Route exact path="/databrowser/map" component={Map} />
+                      <Route
+                        exact
+                        path="/databrowser/map-network"
+                        component={MapNetwork}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-);
-export default DataBrowser;
+      )
+    );
+  }
+}

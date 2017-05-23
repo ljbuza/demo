@@ -28,8 +28,8 @@ export default class SideMenu extends Component {
               <Modal
                 dimmer="blurring"
                 trigger={
-                  <Menu.Item name="subscriber">
-                    <Label color="blue">3</Label>Subscriber
+                  <Menu.Item name="subscribers">
+                    <Label color="blue">3</Label>Subscribers
                   </Menu.Item>
                 }
               >

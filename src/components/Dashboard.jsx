@@ -26,7 +26,15 @@ export default class Dashboard extends Component {
     const { data } = this.state;
     return (
       <div>
-        <Header title="Dashboard" subtitle="May 16, 2017" />
+        <Header
+          title="Dashboard"
+          subtitle={new Date().toLocaleString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+          })}
+        />
         <div id="dashboard" className="ui grid">
           <div className="row">
             <div className="column">
