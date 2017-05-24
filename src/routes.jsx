@@ -1,27 +1,14 @@
 import React from 'react';
 import { Route, IndexRedirect, browserHistory } from 'react-router-dom';
 import App from './App';
-import Network from './components/Network';
-import NetworkCmts from './components/NetworkCmts';
-import NetworkMac from './components/NetworkMac';
-import NetworkFiber from './components/NetworkFiber';
-import NetworkCface from './components/NetworkCface';
-import NetworkModem from './components/NetworkModem';
-import NetworkMface from './components/NetworkMface';
-import EquipCmts from './components/EquipCmts';
-import EquipModem from './components/EquipModem';
-import EquipMta from './components/EquipMta';
 import Subscriber from './components/Subscriber';
 import SubscriberOverview from './components/SubscriberOverview';
-import Order from './components/Order';
-import Alerts from './components/Alerts';
 import Dashboard from './components/Dashboard';
 import DataBrowser from './DataBrowser';
 
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/Dashboard" />
-    <Route path="/network" component={Network} />
     <Route path="/data-browser" component={DataBrowser}>
       <Route
         path="/network-cmts"

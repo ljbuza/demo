@@ -6,19 +6,9 @@ import SideMenuEquip from './SideMenuEquip';
 import SideMenuSubscr from './SideMenuSubscr';
 import SideMenuOrders from './SideMenuOrders';
 import SideMenuAlerts from './SideMenuAlerts';
-import NetworkCmts from './NetworkCmts';
-import NetworkMac from './NetworkMac';
-import NetworkFiber from './NetworkFiber';
-import NetworkCface from './NetworkCface';
-import NetworkModem from './NetworkModem';
-import NetworkMface from './NetworkMface';
-import EquipCmts from './EquipCmts';
-import EquipModem from './EquipModem';
-import EquipMta from './EquipMta';
+import DbTable from './DbTable';
 import Subscriber from './Subscriber';
 import SubscriberOverview from './SubscriberOverview';
-import Order from './Order';
-import Alerts from './Alerts';
 import Map from './Map';
 import MapNetwork from './MapNetwork';
 import SecondaryMenu from './SecondaryMenu';
@@ -33,7 +23,7 @@ const routes = [
     ),
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     sidemenu: () => <SideMenu />,
-    main: () => <div><NetworkCmts /></div>,
+    // main: () => <div><DbTable view="networkCmts" /></div>,
   },
   {
     path: '/databrowser/network-cmts',
@@ -42,7 +32,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkCmts /></div>,
+    // main: () => <div><DbTable view="networkCmts" /></div>,
   },
   {
     path: '/databrowser/network-mac',
@@ -51,7 +41,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkMac /></div>,
+    // main: () => <div><NetworkMac /></div>,
   },
   {
     path: '/databrowser/network-fiber',
@@ -60,7 +50,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkFiber /></div>,
+    // main: () => <div><NetworkFiber /></div>,
   },
   {
     path: '/databrowser/network-cface',
@@ -69,7 +59,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkCface /></div>,
+    // main: () => <div><NetworkCface /></div>,
   },
   {
     path: '/databrowser/network-modem',
@@ -78,7 +68,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkModem /></div>,
+    // main: () => <div><NetworkModem /></div>,
   },
   {
     path: '/databrowser/network-mface',
@@ -87,7 +77,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    main: () => <div><NetworkMface /></div>,
+    // main: () => <div><NetworkMface /></div>,
   },
   {
     path: '/databrowser/equip-cmts',
@@ -96,7 +86,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
-    main: () => <div><EquipCmts /></div>,
+    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: '/databrowser/equip-modem',
@@ -105,7 +95,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
-    main: () => <div><EquipCmts /></div>,
+    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: '/databrowser/equip-mta',
@@ -114,7 +104,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
-    main: () => <div><EquipCmts /></div>,
+    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: '/databrowser/subscribers',
@@ -124,7 +114,7 @@ const routes = [
     ),
     sidemenu: () => <SideMenuSubscr />,
     secondarymenu: () => <SecondaryMenu section="subscriberMenu" />,
-    main: () => <div><Subscriber /></div>,
+    // main: () => <div><Subscriber /></div>,
   },
   {
     path: '/databrowser/subscribers/:userid',
@@ -140,7 +130,7 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Order Information" />,
     sidemenu: () => <SideMenuOrders />,
     secondarymenu: () => <SecondaryMenu section="orderMenu" />,
-    main: () => <div><Order /></div>,
+    // main: () => <div><Order /></div>,
   },
   {
     path: '/databrowser/alerts',
@@ -148,7 +138,7 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
     sidemenu: () => <SideMenuAlerts />,
     secondarymenu: () => <SecondaryMenu section="alertsMenu" />,
-    main: () => <div><Order /></div>,
+    // main: () => <div><Order /></div>,
   },
   {
     path: '/databrowser/map',
@@ -156,7 +146,7 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
     secondarymenu: () => <SecondaryMenu section="mapMenu" />,
-    main: () => <div><Map /></div>,
+    // main: () => <div><Map /></div>,
   },
   {
     path: '/databrowser/map-network',
@@ -164,7 +154,7 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
     secondarymenu: () => <SecondaryMenu section="mapMenu" />,
-    main: () => <div><MapNetwork /></div>,
+    // main: () => <div><MapNetwork /></div>,
   },
 ];
 
@@ -226,47 +216,47 @@ export default class DataBrowser extends Component {
                       <Route
                         exact
                         path="/databrowser/network-cmts"
-                        component={NetworkCmts}
+                        render={props => <DbTable view="networkCmts" />}
                       />
                       <Route
                         exact
                         path="/databrowser/network-mac"
-                        component={NetworkMac}
+                        render={props => <DbTable view="networkMac" />}
                       />
                       <Route
                         exact
                         path="/databrowser/network-fiber"
-                        component={NetworkFiber}
+                        render={props => <DbTable view="networkFiber" />}
                       />
                       <Route
                         exact
                         path="/databrowser/network-cface"
-                        component={NetworkCface}
+                        render={props => <DbTable view="networkCface" />}
                       />
                       <Route
                         exact
                         path="/databrowser/network-modem"
-                        component={NetworkModem}
+                        render={props => <DbTable view="networkModem" />}
                       />
                       <Route
                         exact
                         path="/databrowser/network-mface"
-                        component={NetworkMface}
+                        render={props => <DbTable view="networkMface" />}
                       />
                       <Route
                         exact
                         path="/databrowser/equip-cmts"
-                        component={EquipCmts}
+                        render={props => <DbTable view="equipCmts" />}
                       />
                       <Route
                         exact
                         path="/databrowser/equip-modem"
-                        component={EquipModem}
+                        render={props => <DbTable view="equipModem" />}
                       />
                       <Route
                         exact
                         path="/databrowser/equip-mta"
-                        component={EquipMta}
+                        render={props => <DbTable view="equipMta" />}
                       />
                       <Route
                         exact
@@ -276,12 +266,12 @@ export default class DataBrowser extends Component {
                       <Route
                         exact
                         path="/databrowser/orders"
-                        component={Order}
+                        render={props => <DbTable view="orders" />}
                       />
                       <Route
                         exact
                         path="/databrowser/alerts"
-                        component={Alerts}
+                        render={props => <DbTable view="alerts" />}
                       />
                       <Route exact path="/databrowser/map" component={Map} />
                       <Route
