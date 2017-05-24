@@ -72,6 +72,8 @@ export default class TopFixedMenu extends Component {
               <Dropdown.Item as={Link} to="/databrowser/orders" text="Orders" />
               <Dropdown.Item as={Link} to="/databrowser/alerts" text="Alerts" />
               <Dropdown.Item as={Link} to="/databrowser/map" text="Maps" />
+              <Dropdown.Divider />
+              <Dropdown.Item as={Link} to="/docsismaintenance" text="Docsis Maintenance" />
             </Dropdown.Menu>
           </Dropdown>
           <Input
