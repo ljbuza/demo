@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Dropdown} from 'semantic-ui-react';
+import {Container, Dropdown, Grid, Button} from 'semantic-ui-react';
 import TemplateMapPicker from './TemplateMapPicker';
 import GenericDocPicker from './GenericDocPicker';
 
@@ -30,17 +30,30 @@ export default class DocsisSelector extends Component {
 	showSelector(evnt, data){
 		this.setState({activeItem: data.value})
 	}
+	addDoc(evnt, data){
+		console.log('clicked add', evnt, data);
+	}
 	render(){
 		return (
-		<div>
-			<Dropdown 
-				placeholder="Select Document Type" 
-				fluid
-				tabIndex="0"
-				selection
-				options={this.state.choices}
-				onChange={this.showSelector}
-			/>
+		<Container>
+			<Grid>
+			<Grid.Row>
+				<Grid.Column width="fifteen">
+					<Dropdown 
+						placeholder="Select Document Type" 
+						fluid
+						tabIndex="0"
+						selection
+						options={this.state.choices}
+						onChange={this.showSelector}
+					/>
+				</Grid.Column>
+				<Grid.Column width="1">
+					<Button circular icon="plus" onClick={this.addDoc} />
+				</Grid.Column>
+			</Grid.Row>
+			</Grid>
+
 			<Switch location={{pathname: this.state.activeItem}}>
 				<Route exact path="template-map">
 					<TemplateMapPicker setdoc={this.props.setdoc} />
@@ -54,7 +67,7 @@ export default class DocsisSelector extends Component {
 				</Route>
 				<Route></Route>
 			</Switch>
-		</div>
+		</Container>
 		)
 	}
 }
