@@ -13,6 +13,7 @@ import Map from './Map';
 import MapNetwork from './MapNetwork';
 import SecondaryMenu from './SecondaryMenu';
 import SideMenuMap from './SideMenuMap';
+import tableData from '../data/databrowserData.json';
 
 const routes = [
   {
@@ -162,14 +163,16 @@ export default class DataBrowser extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: tableData,
       match: props.match,
       foo: 'bar',
+      filters: [],
       // data: tableData.tableData,
     };
   }
 
   render() {
-    const { match, foo } = this.state;
+    const { match, foo, data } = this.state;
     return (
       // const DataBrowser = ({ match }) => (
       (
