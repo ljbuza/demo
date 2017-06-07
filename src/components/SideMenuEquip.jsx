@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import {
   Form,
   Modal,
-  Input,
   Menu,
   Label,
   Button,
-  Dropdown,
 } from 'semantic-ui-react';
 import Picker from './Picker';
 

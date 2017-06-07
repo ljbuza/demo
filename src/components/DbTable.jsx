@@ -1,16 +1,16 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Table, Menu, Icon } from "semantic-ui-react";
-// import tableData from "../data/networkData.js";
 import tableData from "../data/databrowserData.json";
 
 export default class DbTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: tableData[props.view],
+      // data: tableData[props.view],
+      data: props.data,
       column: null,
-      direction: "ascending"
+      direction: null
     };
   }
 
@@ -54,6 +54,26 @@ export default class DbTable extends Component {
 
   render() {
     const { column, data, direction } = this.state;
+    const rowNames = Object.keys(data[0]);
+    const filteredRows = [...data];
+    if (this.props.filters) {
+      rowNames.forEach((rowname) => {
+        rowname = rowname.replace(' ', '-');
+        if (this.props.filters[`${this.props.view}-${rowname}`]) {
+          let colfilters = this.props.filters[`${this.props.view}-${rowname}`];
+          if (colfilters.length > 0) {
+            data.forEach((row) => {
+              if (!colfilters.includes(row[rowname.replace('-', ' ')].toLowerCase())) {
+                if (filteredRows.indexOf(row) > -1) {
+                  filteredRows.splice(filteredRows.indexOf(row), 1)
+                }
+              }
+            })
+          }
+        }
+      })
+    }
+
     return (
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
@@ -70,7 +90,7 @@ export default class DbTable extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data.map((rows, index) => (
+          {filteredRows.map((rows, index) => (
             <Table.Row key={index}>
               {Object.values(rows).map((cell, index) => (
                 <Table.Cell key={index}>{cell}</Table.Cell>

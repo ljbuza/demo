@@ -12,33 +12,33 @@
     },
     {
       "Name": "CMTS-2",
-      "ip": "12.32.54.568",
-      "model": "Alcatel",
-      "software": "2.0",
-      "cpu": "70%",
-      "memory": "70%",
-      "temp": "60",
-      "uptime": "18 hours"
+      "IP Address": "12.32.54.568",
+      "Model": "Alcatel",
+      "Software Version": "2.1",
+      "CPU": "70%",
+      "Memory": "70%",
+      "Temp": "60",
+      "Uptime": "18 hours"
     },
     {
       "Name": "CMTS-3",
-      "ip": "120.72.4.568",
-      "model": "Alcatel",
-      "software": "2.0",
-      "cpu": "70%",
-      "memory": "70%",
-      "temp": "60",
-      "uptime": "143 hours"
+      "IP Address": "120.72.4.568",
+      "Model": "Alcatel",
+      "Software Version": "2.1",
+      "CPU": "70%",
+      "Memory": "70%",
+      "Temp": "60",
+      "Uptime": "143 hours"
     },
     {
       "Name": "CMTS-4",
-      "ip": "12.32.54.8",
-      "model": "Alcatel",
-      "software": "2.0",
-      "cpu": "70%",
-      "memory": "70%",
-      "temp": "60",
-      "uptime": "27 hours"
+      "IP Address": "12.32.54.8",
+      "Model": "Alcatel",
+      "Software Version": "2.0",
+      "CPU": "70%",
+      "Memory": "70%",
+      "Temp": "60",
+      "Uptime": "27 hours"
     }
   ],
   "networkCface": [

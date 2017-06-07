@@ -46,7 +46,6 @@ export default class SideMenu extends Component {
   // };
 
   handleSubmit = evt => {
-    11;
     evt.preventDefault();
     // const { usds, name, modem } = this.state;
     this.setState({
@@ -87,6 +86,19 @@ export default class SideMenu extends Component {
       submittedModem
     } = this.state;
 
+    let cmtsLabel = <div />;
+    if (Object.keys(this.props.filters).length) {
+      let labelCount = 0;
+      Object.keys(this.props.filters).map(key => {
+        if (key.startsWith("networkcmts") && this.props.filters[key].length) {
+          labelCount = labelCount + 1;
+        }
+      });
+      if (labelCount) {
+        cmtsLabel = <Label color="blue">{labelCount}</Label>;
+      }
+    }
+
     return (
       <div className="ui basic segment">
         <Menu compact text vertical>
@@ -97,7 +109,7 @@ export default class SideMenu extends Component {
                 dimmer="blurring"
                 trigger={
                   <Menu.Item name="cmts">
-                    <Label color="blue">1</Label>CMTS
+                    {cmtsLabel}CMTS
                   </Menu.Item>
                 }
               >
@@ -105,11 +117,11 @@ export default class SideMenu extends Component {
                 <Modal.Content>
                   <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
                     <Form.Select
-                      name="cmts-name"
+                      name="networkcmts-Name"
                       label="CMTS Name"
                       multiple
-                      value={cmtsName}
-                      onChange={this.handleChange}
+                      value={this.props.filters["networkcmts-Name"]}
+                      onChange={this.props.handleChange}
                       options={[
                         { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
                         { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
@@ -119,11 +131,11 @@ export default class SideMenu extends Component {
                       placeholder="CMTS Name"
                     />
                     <Form.Select
-                      name="cmts-model"
+                      name="networkcmts-Model"
                       label="Model"
+                      value={this.props.filters["networkcmts-Model"]}
                       multiple
-                      value={cmtsModel}
-                      onChange={this.handleChange}
+                      onChange={this.props.handleChange}
                       options={[
                         { key: "alcatel", text: "Alcatel", value: "alcatel" },
                         { key: "arris", text: "Arris", value: "arris" }
@@ -131,11 +143,11 @@ export default class SideMenu extends Component {
                       placeholder="Model"
                     />
                     <Form.Select
-                      name="cmts-sw-version"
+                      name="networkcmts-Software-Version"
                       label="Software Version"
                       multiple
-                      value={cmtsSwVersion}
-                      onChange={this.handleChange}
+                      value={this.props.filters["networkcmts-Software-Version"]}
+                      onChange={this.props.handleChange}
                       options={[
                         { key: "1.0", text: "1.0", value: "1.0" },
                         { key: "2.0", text: "2.0", value: "2.0" }
@@ -181,7 +193,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       name="md-name"
                       label="MD Name"
-                      multiple
                       value={mdName}
                       onChange={this.handleChange}
                       options={[
@@ -195,7 +206,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       name="md-cmts-name"
                       label="CMTS Name"
-                      multiple
                       value={mdCmtsName}
                       onChange={this.handleChange}
                       options={[
@@ -209,7 +219,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Alias"
                       name="md-alias"
-                      multiple
                       value={mdAlias}
                       onChange={this.handleChange}
                       options={[
@@ -259,7 +268,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Fiber Node"
                       name="fiber-node"
-                      multiple
                       value={fiberNode}
                       onChange={this.handleChange}
                       options={[
@@ -273,7 +281,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="MD Name"
                       name="fiber-md-name"
-                      multiple
                       value={fiberMdName}
                       onChange={this.handleChange}
                       options={[
@@ -287,7 +294,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="CMTS Name"
                       name="fiber-cmts-name"
-                      multiple
                       value={fiberCmtsName}
                       onChange={this.handleChange}
                       options={[
@@ -301,7 +307,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Alias"
                       name="fiber-alias"
-                      multiple
                       value={fiberAlias}
                       onChange={this.handleChange}
                       options={[
@@ -349,7 +354,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="US/DS"
                       name="cmts-int-usds"
-                      multiple
                       value={cmtsIntUsds}
                       onChange={this.handleChange}
                       options={[
@@ -369,7 +373,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Name"
                       name="cmts-int-name"
-                      multiple
                       value={cmtsIntName}
                       onChange={this.handleChange}
                       options={[
@@ -399,7 +402,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="CMTS Name"
                       name="cmts-int-cmts"
-                      multiple
                       value={cmtsIntCmts}
                       onChange={this.handleChange}
                       options={[
@@ -447,7 +449,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Modem"
                       name="modem-name"
-                      multiple
                       value={modemName}
                       onChange={this.handleChange}
                       options={[
@@ -463,7 +464,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Fiber Node"
                       name="modem-fiber"
-                      multiple
                       value={modemFiber}
                       onChange={this.handleChange}
                       options={[
@@ -477,7 +477,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="MD Name"
                       name="modem-md"
-                      multiple
                       value={modemMd}
                       onChange={this.handleChange}
                       options={[
@@ -491,7 +490,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="CMTS Name"
                       name="modem-cmts"
-                      multiple
                       value={modemCmts}
                       onChange={this.handleChange}
                       options={[
@@ -505,7 +503,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="Status"
                       name="modem-status"
-                      multiple
                       value={modemValue}
                       onChange={this.handleChange}
                       options={[
@@ -549,7 +546,6 @@ export default class SideMenu extends Component {
                     <Form.Select
                       label="US/DS"
                       name="mi-usds"
-                      multiple
                       value={miUsds}
                       onChange={this.handleChange}
                       options={[

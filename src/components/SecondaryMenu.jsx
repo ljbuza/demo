@@ -9,7 +9,7 @@ export default class SecondaryMenu extends Component {
       <div>
         <Menu pointing secondary>
           {MenuItems[this.props.section].map(({ name, to }, index) => (
-            <Menu.Item name={name} as={NavLink} to={to} />
+            <Menu.Item key={index} name={name} as={NavLink} to={to} />
           ))}
         </Menu>
       </div>

@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Form,
-  Modal,
   Input,
   Menu,
-  Label,
-  Button,
   Checkbox,
-  Dropdown,
 } from 'semantic-ui-react';
 
 export default class SideMenu extends Component {

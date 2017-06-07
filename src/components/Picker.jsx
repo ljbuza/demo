@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Radio, Input, Select } from "semantic-ui-react";
+import { Form, Radio, Input } from "semantic-ui-react";
 
 const options = [
   { key: "gt", value: ">", text: ">" },
