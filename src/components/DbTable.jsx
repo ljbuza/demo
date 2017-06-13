@@ -1,37 +1,75 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { Table, Menu, Icon } from "semantic-ui-react";
-import tableData from "../data/databrowserData.json";
+import { Checkbox, Table, Form, Menu, Icon, Popup } from "semantic-ui-react";
+import Pagination from "./Pagination";
+
+const ColumnSelect = props => {
+  return (
+    <Popup trigger={<Icon name="setting" />} position="bottom right" on="click">
+      <Form>
+        {props.rowNames.map((name, index) => (
+          <Form.Field>
+            <Checkbox
+              slider
+              key={name}
+              defaultChecked={
+                props.usedColumns.indexOf(name) > -1 ? true : false
+              }
+              label={name}
+              onChange={props.handleColumnChoice}
+            />
+          </Form.Field>
+        ))}
+      </Form>
+    </Popup>
+  );
+};
 
 export default class DbTable extends Component {
   constructor(props) {
     super(props);
+    this.handleColumnChoice = this.handleColumnChoice.bind(this);
+    this.handleSort = this.handleSort.bind(this);
     this.state = {
       // data: tableData[props.view],
       data: props.data,
-      column: null,
+      sortColumn: null,
+      columns: Object.keys(props.data[0]),
+      usedColumns: props.usedColumns,
       direction: null
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // loadJson(this.props.view).then(data => this.setState({ data }));
+    this.setState({
+      usedColumns: [...Object.keys(this.props.data[0])]
+    });
   }
-  // getOptions = field => {
-  //   return Object.assign(
-  //     this.state.data.map(d => ({
-  //       key: d[field],
-  //       text: d[field],
-  //       value: d[field]
-  //     }))
-  //   );
-  // };
+
+  handleColumnChoice = evt => {
+    const { data, sortColumn, columns, usedColumns, direction } = this.state;
+    const columnChosen = evt.target.innerHTML;
+    if (usedColumns.indexOf(columnChosen) !== -1) {
+      this.setState({
+        usedColumns: usedColumns.filter(e => e !== columnChosen)
+      });
+    } else {
+      const chosenIndex = columns.indexOf(columnChosen);
+      usedColumns.splice(chosenIndex, 0, columnChosen);
+      this.setState({
+        usedColumns: usedColumns
+      });
+    }
+  };
+
+  handlePageChange = () => console.log("changed page");
 
   handleSort = clickedColumn => () => {
-    const { column, data, direction } = this.state;
-    if (column !== clickedColumn.cellname) {
+    const { data, sortColumn, columns, usedColumns, direction } = this.state;
+    if (sortColumn !== clickedColumn.cellname) {
       this.setState({
-        column: clickedColumn.cellname,
+        sortColumn: clickedColumn.cellname,
         data: _.sortBy(data, [clickedColumn.cellname]),
         direction: "ascending"
       });
@@ -43,54 +81,68 @@ export default class DbTable extends Component {
     });
   };
 
-  // tableRows = () => {
-  //   this.state.data.map((rows, index) => {
-  //     let row = Object.values(rows).map(cell => (
-  //       <Table.Cell>{cell}</Table.Cell>
-  //     ));
-  //     return <Table.Row key={index}>{row}</Table.Row>;
-  //   });
-  // };
+  filterData = (data, usedColumns, filters) => {
+    let filteredData = [...data];
+    let pulls = [];
+    filteredData.map((row, index) => {
+      filteredData[index] = _.pick(row, usedColumns);
+    });
+    usedColumns.forEach(usedCol => {
+      const colname = usedCol.replace(" ", "-");
+      if (filters[`${this.props.view}-${colname}`]) {
+        let colfilters = filters[`${this.props.view}-${colname}`];
+        if (colfilters.length > 0) {
+          filteredData.forEach(row => {
+            if (
+              !colfilters.includes(row[colname.replace("-", " ")].toLowerCase())
+            ) {
+              if (filteredData.indexOf(row) > -1) {
+                pulls.push(filteredData.indexOf(row));
+              }
+            }
+          });
+        }
+      }
+    });
+    _.pullAt(filteredData, pulls);
+    return filteredData;
+  };
 
   render() {
-    const { column, data, direction } = this.state;
-    const rowNames = Object.keys(data[0]);
-    const filteredRows = [...data];
-    if (this.props.filters) {
-      rowNames.forEach((rowname) => {
-        rowname = rowname.replace(' ', '-');
-        if (this.props.filters[`${this.props.view}-${rowname}`]) {
-          let colfilters = this.props.filters[`${this.props.view}-${rowname}`];
-          if (colfilters.length > 0) {
-            data.forEach((row) => {
-              if (!colfilters.includes(row[rowname.replace('-', ' ')].toLowerCase())) {
-                if (filteredRows.indexOf(row) > -1) {
-                  filteredRows.splice(filteredRows.indexOf(row), 1)
-                }
-              }
-            })
-          }
-        }
-      })
-    }
-
+    const { data, sortColumn, columns, usedColumns, direction } = this.state;
+    // const rowNames = Object.keys(data[0]);
+    const filteredData = this.filterData(data, usedColumns, this.props.filters);
     return (
       <Table striped selectable sortable size="small" compact>
         <Table.Header>
           <Table.Row>
-            {Object.keys(data[0]).map((cellname, index) => (
+            {Object.keys(filteredData[0]).map((cellname, index) => (
               <Table.HeaderCell
                 key={index}
-                sorted={column === { cellname } && direction}
+                sorted={sortColumn === { cellname } && direction}
                 onClick={this.handleSort({ cellname })}
               >
                 {cellname}
+                {index + 1 === Object.keys(filteredData[0]).length
+                  ? <ColumnSelect
+                      rowNames={columns}
+                      usedColumns={usedColumns}
+                      handleColumnChoice={this.handleColumnChoice}
+                    />
+                  : ""}
               </Table.HeaderCell>
             ))}
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {filteredRows.map((rows, index) => (
+          {/*<Table.Cell>
+              <Input
+                style={{ width: "60px" }}
+                size="mini"
+                placeholder="filter..."
+              />
+            </Table.Cell>*/}
+          {filteredData.map((rows, index) => (
             <Table.Row key={index}>
               {Object.values(rows).map((cell, index) => (
                 <Table.Cell key={index}>{cell}</Table.Cell>
@@ -101,14 +153,20 @@ export default class DbTable extends Component {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="10">
+              {/*<Pagination
+              items={filteredData}
+              onChangePage={this.handlePageChange}
+            />*/}
               <Menu size="mini" floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="left chevron" />
                 </Menu.Item>
-                <Menu.Item as="a">1</Menu.Item>
-                <Menu.Item as="a">2</Menu.Item>
-                <Menu.Item as="a">3</Menu.Item>
-                <Menu.Item as="a">4</Menu.Item>
+                {[...Array(filteredData.length)].map(
+                  (x, i) =>
+                    i > 0 && i % 2 === 0
+                      ? <Menu.Item key={i}>{i}</Menu.Item>
+                      : ""
+                )}
                 <Menu.Item as="a" icon>
                   <Icon name="right chevron" />
                 </Menu.Item>

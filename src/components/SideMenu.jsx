@@ -17,9 +17,6 @@ export default class SideMenu extends Component {
       fiberMdName: [],
       fiberCmtsName: [],
       fiberAlias: [],
-      cmtsIntUsds: [],
-      cmtsIntName: [],
-      cmtsIntCmts: [],
       modemName: [],
       modemFiber: [],
       modemMd: [],
@@ -33,7 +30,6 @@ export default class SideMenu extends Component {
       submittedModem: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
   // state = {
   //   visible: true,
@@ -55,7 +51,19 @@ export default class SideMenu extends Component {
     });
   };
 
-  handleChange = (evt, { name, value }) => this.setState({ [name]: value });
+  getOptions = field => {
+    var [section, ...fieldName] = field.split("-");
+    fieldName = fieldName.join(" ");
+    let options = [];
+    this.props.data[section].map(row => {
+      options.push({
+        key: row[fieldName].toLowerCase(),
+        text: row[fieldName],
+        value: row[fieldName].toLowerCase()
+      });
+    });
+    return options;
+  };
 
   render() {
     const {
@@ -70,9 +78,6 @@ export default class SideMenu extends Component {
       fiberMdName,
       fiberCmtsName,
       fiberAlias,
-      cmtsIntUsds,
-      cmtsIntName,
-      cmtsIntCmts,
       modemName,
       modemFiber,
       modemMd,
@@ -122,12 +127,7 @@ export default class SideMenu extends Component {
                       multiple
                       value={this.props.filters["networkcmts-Name"]}
                       onChange={this.props.handleChange}
-                      options={[
-                        { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
-                        { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
-                        { key: "cmts-3", text: "CMTS-3", value: "cmts-3" },
-                        { key: "cmts-4", text: "CMTS-4", value: "cmts-4" }
-                      ]}
+                      options={this.getOptions("networkCmts-Name")}
                       placeholder="CMTS Name"
                     />
                     <Form.Select
@@ -136,10 +136,7 @@ export default class SideMenu extends Component {
                       value={this.props.filters["networkcmts-Model"]}
                       multiple
                       onChange={this.props.handleChange}
-                      options={[
-                        { key: "alcatel", text: "Alcatel", value: "alcatel" },
-                        { key: "arris", text: "Arris", value: "arris" }
-                      ]}
+                      options={this.getOptions("networkCmts-Model")}
                       placeholder="Model"
                     />
                     <Form.Select
@@ -148,10 +145,7 @@ export default class SideMenu extends Component {
                       multiple
                       value={this.props.filters["networkcmts-Software-Version"]}
                       onChange={this.props.handleChange}
-                      options={[
-                        { key: "1.0", text: "1.0", value: "1.0" },
-                        { key: "2.0", text: "2.0", value: "2.0" }
-                      ]}
+                      options={this.getOptions("networkCmts-Software-Version")}
                       placeholder="Software Version"
                     />
                     <label>CPU</label>
@@ -165,16 +159,19 @@ export default class SideMenu extends Component {
                   </Form>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
+                  <Button
+                    color="black"
+                    size="small"
+                    content="Close"
+                    onClick={this.close}
+                  />
                   <Button
                     positive
                     size="small"
-                    icon="checkmark"
+                    icon="undo"
                     labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
+                    content="Clear Filters"
+                    onClick={this.props.handleClearForm}
                   />
                 </Modal.Actions>
               </Modal>
@@ -343,101 +340,6 @@ export default class SideMenu extends Component {
               <Modal
                 dimmer="blurring"
                 trigger={
-                  <Menu.Item name="cmts-interface">
-                    CMTS Interface
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>CMTS Interface Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      label="US/DS"
-                      name="cmts-int-usds"
-                      value={cmtsIntUsds}
-                      onChange={this.handleChange}
-                      options={[
-                        {
-                          key: "upstream",
-                          text: "Upstream",
-                          value: "upstream"
-                        },
-                        {
-                          key: "downstream",
-                          text: "Downstream",
-                          value: "downstream"
-                        }
-                      ]}
-                      placeholder="US/DS"
-                    />
-                    <Form.Select
-                      label="Name"
-                      name="cmts-int-name"
-                      value={cmtsIntName}
-                      onChange={this.handleChange}
-                      options={[
-                        {
-                          key: "interface-1",
-                          text: "Interface-1",
-                          value: "interface-1"
-                        },
-                        {
-                          key: "interface-2",
-                          text: "Interface-2",
-                          value: "interface-2"
-                        },
-                        {
-                          key: "interface-3",
-                          text: "Interface-3",
-                          value: "interface-3"
-                        },
-                        {
-                          key: "interface-4",
-                          text: "Interface-4",
-                          value: "interface-4"
-                        }
-                      ]}
-                      placeholder="Name"
-                    />
-                    <Form.Select
-                      label="CMTS Name"
-                      name="cmts-int-cmts"
-                      value={cmtsIntCmts}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
-                        { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
-                        { key: "cmts-3", text: "CMTS-3", value: "cmts-3" },
-                        { key: "cmts-4", text: "CMTS-4", value: "cmts-4" }
-                      ]}
-                      placeholder="CMTS Name"
-                    />
-                    <label>SNR</label>
-                    <Picker />
-                    <label>Micro-Reflections</label>
-                    <Picker />
-                    <label>% Uncorrected</label>
-                    <Picker />
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
-                  <Button
-                    positive
-                    size="small"
-                    icon="checkmark"
-                    labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
-                  />
-                </Modal.Actions>
-              </Modal>
-
-              <Modal
-                dimmer="blurring"
-                trigger={
                   <Menu.Item name="modem">
                     Modem
                   </Menu.Item>
@@ -532,115 +434,6 @@ export default class SideMenu extends Component {
                 </Modal.Actions>
               </Modal>
 
-              <Modal
-                dimmer="blurring"
-                trigger={
-                  <Menu.Item name="modem-interface">
-                    Modem Interface
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>Modem Interface Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      label="US/DS"
-                      name="mi-usds"
-                      value={miUsds}
-                      onChange={this.handleChange}
-                      options={[
-                        {
-                          key: "upstream",
-                          text: "Upstream",
-                          value: "upstream"
-                        },
-                        {
-                          key: "downstream",
-                          text: "Downstream",
-                          value: "downstream"
-                        }
-                      ]}
-                      placeholder="US/DS"
-                    />
-                    <Form.Select
-                      name="mi-name"
-                      label="Interface"
-                      multiple
-                      value={miName}
-                      onChange={this.handleChange}
-                      options={[
-                        {
-                          key: "interface-1",
-                          text: "Interface-1",
-                          value: "interface-1"
-                        },
-                        {
-                          key: "interface-2",
-                          text: "Interface-2",
-                          value: "interface-2"
-                        },
-                        {
-                          key: "interface-3",
-                          text: "Interface-3",
-                          value: "interface-3"
-                        },
-                        {
-                          key: "interface-4",
-                          text: "Interface-4",
-                          value: "interface-4"
-                        }
-                      ]}
-                      placeholder="Interface"
-                    />
-                    <Form.Select
-                      name="mi-modem"
-                      label="Modem"
-                      value={miModem}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "modem-1", text: "Modem-1", value: "modem-1" },
-                        { key: "modem-2", text: "Modem-2", value: "modem-2" },
-                        { key: "modem-3", text: "Modem-3", value: "modem-3" },
-                        { key: "modem-4", text: "Modem-4", value: "modem-4" }
-                      ]}
-                      placeholder="Modem"
-                    />
-                    <label>SNR</label>
-                    <Picker />
-                    <label>Down Power</label>
-                    <Picker />
-                    <label>Tx Power</label>
-                    <Picker />
-                    <label>% Uncorrected</label>
-                    <Picker />
-                    {err &&
-                      <Message header="Error" content={err.message} error />}
-                    <Button type="submit" primary>Set Filters</Button>
-                  </Form>
-                  <strong>onChange:</strong>
-                  <pre>
-                    {JSON.stringify({ miName, miModem, miUsds }, null, 2)}
-                  </pre>
-                  <strong>onSubmit:</strong>
-                  <pre>
-                    {JSON.stringify(
-                      { submittedName, submittedModem, submittedUsds },
-                      null,
-                      2
-                    )}
-                  </pre>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button
-                    positive
-                    size="small"
-                    icon="checkmark"
-                    labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
-                  />
-                </Modal.Actions>
-              </Modal>
             </Menu.Menu>
           </Menu.Item>
           <Menu.Item>

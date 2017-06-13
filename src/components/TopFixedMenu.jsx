@@ -49,7 +49,7 @@ export default class TopFixedMenu extends Component {
           />
         </Menu.Item>
         <Menu.Item>
-          <Dropdown item icon="sidebar" simple>
+          <Dropdown item icon="sidebar">
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/dashboard" text="Dashboard" />
               <Dropdown.Divider />
@@ -73,7 +73,11 @@ export default class TopFixedMenu extends Component {
               <Dropdown.Item as={Link} to="/databrowser/alerts" text="Alerts" />
               <Dropdown.Item as={Link} to="/databrowser/map" text="Maps" />
               <Dropdown.Divider />
-              <Dropdown.Item as={Link} to="/docsismaintenance" text="Docsis Maintenance" />
+              <Dropdown.Item
+                as={Link}
+                to="/docsismaintenance"
+                text="Docsis Maintenance"
+              />
             </Dropdown.Menu>
           </Dropdown>
           <Input
