@@ -10,19 +10,6 @@ import TopFixedMenu from './components/TopFixedMenu';
 import '../public/css/main.css';
 import '../node_modules/semantic-ui-css/semantic.min.css';
 
-// const routes = [
-//   {
-//     path: '/databrowser/',
-//     exact: false,
-//     main: () => <div><DataBrowser /></div>,
-//   },
-//   {
-//     path: '/dashboard',
-//     exact: true,
-//     main: () => <Dashboard />,
-//   },
-// ];
-
 const App = () => (
   <Router>
     <div className="App">
@@ -36,9 +23,3 @@ const App = () => (
   </Router>
 );
 export default App;
-
-/* <Header
-      title={props.children.props.route.title}
-      subheader={props.children.props.route.subheader}
-    />
-    {this.props.children}*/

@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { Image } from 'semantic-ui-react';
-// import Child from './Child.jsx';
+import BarChart from './BarChart';
 
 export default class MapNetwork extends Component {
-  //   handleChildClick(childData, event) {
-  //     alert(
-  //       'The Child button data is: ' +
-  //         childData.childText +
-  //         ' - ' +
-  //         childData.childNumber,
-  //     );
-  //     alert('The Child HTML is: ' + event.target.outerHTML);
-  //   }
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
+        <BarChart data={[5, 10, 1, 3]} size={[500, 500]} />
         {/* {this.props.childrenData.map(child => (
           <Child
             key={child.childNumber}
@@ -22,7 +18,7 @@ export default class MapNetwork extends Component {
             onClick={e => this.handleChildClick(child, e)}
           />
         ))}*/}
-        <Image src="/img/network_view.png" />
+        {/* <Image src="/img/network_view.png" />*/}
       </div>
     );
   }

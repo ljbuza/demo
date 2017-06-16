@@ -24,7 +24,6 @@ const routes = [
     ),
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
     sidemenu: () => <SideMenu />
-    // main: () => <div><DbTable view="networkCmts" /></div>,
   },
   {
     path: "/databrowser/network-cmts",
@@ -33,7 +32,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><DbTable view="networkCmts" /></div>,
   },
   {
     path: "/databrowser/network-mac",
@@ -42,7 +40,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><NetworkMac /></div>,
   },
   {
     path: "/databrowser/network-fiber",
@@ -51,7 +48,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><NetworkFiber /></div>,
   },
   {
     path: "/databrowser/network-cface",
@@ -60,7 +56,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><NetworkCface /></div>,
   },
   {
     path: "/databrowser/network-modem",
@@ -69,7 +64,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><NetworkModem /></div>,
   },
   {
     path: "/databrowser/network-mface",
@@ -78,7 +72,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenu />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
-    // main: () => <div><NetworkMface /></div>,
   },
   {
     path: "/databrowser/equip-cmts",
@@ -87,7 +80,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
-    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: "/databrowser/equip-modem",
@@ -96,7 +88,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
-    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: "/databrowser/equip-mta",
@@ -105,7 +96,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenuEquip />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
-    // main: () => <div><EquipCmts /></div>,
   },
   {
     path: "/databrowser/subscribers",
@@ -115,7 +105,6 @@ const routes = [
     ),
     sidemenu: () => <SideMenuSubscr />,
     secondarymenu: () => <SecondaryMenu section="subscriberMenu" />
-    // main: () => <div><Subscriber /></div>,
   },
   {
     path: "/databrowser/subscribers/:userid",
@@ -131,7 +120,6 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Order Information" />,
     sidemenu: () => <SideMenuOrders />,
     secondarymenu: () => <SecondaryMenu section="orderMenu" />
-    // main: () => <div><Order /></div>,
   },
   {
     path: "/databrowser/alerts",
@@ -139,7 +127,6 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
     sidemenu: () => <SideMenuAlerts />,
     secondarymenu: () => <SecondaryMenu section="alertsMenu" />
-    // main: () => <div><Order /></div>,
   },
   {
     path: "/databrowser/map",
@@ -147,7 +134,6 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
     secondarymenu: () => <SecondaryMenu section="mapMenu" />
-    // main: () => <div><Map /></div>,
   },
   {
     path: "/databrowser/map-network",
@@ -155,7 +141,6 @@ const routes = [
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
     secondarymenu: () => <SecondaryMenu section="mapMenu" />
-    // main: () => <div><MapNetwork /></div>,
   }
 ];
 
@@ -205,45 +190,41 @@ export default class DataBrowser extends Component {
   render() {
     const { data, filters } = this.state;
     return (
-      // const DataBrowser = ({ match }) => (
-      (
+      <div>
         <div>
-          <div>
-            {/* const extraProps = {title: 'Foo Bar Baz'};*/}
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              exact={route.exact}
+              path={route.path}
+              component={route.header}
+            />
+          ))}
+          <div className="ui container" id="main_body">
+            <Route
+              path="/databrowser/subscribers/:userid"
+              component={SubscriberOverview}
+            />
+
             {routes.map((route, index) => (
               <Route
                 key={index}
-                exact={route.exact}
                 path={route.path}
-                component={route.header}
-                // render={props => <Header {...props} titles={route.header} />
+                exact={route.exact}
+                component={route.secondarymenu}
               />
             ))}
-            <div className="ui container" id="main_body">
-              <Route
-                path="/databrowser/subscribers/:userid"
-                component={SubscriberOverview}
-              />
-
-              {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.secondarymenu}
-                />
-              ))}
-              <div className="ui two column grid">
-                <div className="stretched row">
-                  <div className="three wide column">
-                    <SideMenu
-                      handleChange={this.handleChange}
-                      handleClearForm={this.handleClearForm}
-                      filters={this.state.filters}
-                      data={this.state.data}
-                      usedColumns={this.state.usedColumns}
-                    />
-                    {/*{routes.map((route, index) => (
+            <div className="ui two column grid">
+              <div className="stretched row">
+                <div className="three wide column">
+                  <SideMenu
+                    handleChange={this.handleChange}
+                    handleClearForm={this.handleClearForm}
+                    filters={this.state.filters}
+                    data={this.state.data}
+                    usedColumns={this.state.usedColumns}
+                  />
+                  {/*{routes.map((route, index) => (
                       <Route
                         key={index}
                         path={route.path}
@@ -251,150 +232,149 @@ export default class DataBrowser extends Component {
                         component={route.sidemenu()}
                       />
                     ))}*/}
-                  </div>
-                  <div className="thirteen wide column">
-                    <div className="ui vertical basic segment">
-                      <Route
-                        exact
-                        path="/databrowser/network-cmts"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkCmts}
-                            filters={this.state.filters}
-                            view="networkcmts"
-                            usedColumns={this.state.usedColumns}
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/network-mac"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkMac}
-                            filters={this.state.filters}
-                            view="networkmac"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/network-fiber"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkFiber}
-                            filters={this.state.filters}
-                            view="networkfiber"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/network-cface"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkCface}
-                            filters={this.state.filters}
-                            view="networkcface"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/network-modem"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkModem}
-                            filters={this.state.filters}
-                            view="networkmodem"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/network-mface"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.networkMface}
-                            filters={this.state.filters}
-                            view="networkmface"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/equip-cmts"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.equipCmts}
-                            filters={this.state.filters}
-                            view="equipcmts"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/equip-modem"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.equipModem}
-                            filters={this.state.filters}
-                            view="equipmodem"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/equip-mta"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.equipMta}
-                            filters={this.state.filters}
-                            view="equipmta"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/subscribers"
-                        component={Subscriber}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/orders"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.orders}
-                            filters={this.state.filters}
-                            view="orders"
-                          />
-                        )}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/alerts"
-                        render={props => (
-                          <DbTable
-                            data={this.state.data.alerts}
-                            filters={this.state.filters}
-                            view="alerts"
-                          />
-                        )}
-                      />
-                      <Route exact path="/databrowser/map" component={Map} />
-                      <Route
-                        exact
-                        path="/databrowser/map-network"
-                        component={MapNetwork}
-                      />
-                    </div>
+                </div>
+                <div className="thirteen wide column">
+                  <div className="ui vertical basic segment">
+                    <Route
+                      exact
+                      path="/databrowser/network-cmts"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkCmts}
+                          filters={this.state.filters}
+                          view="networkcmts"
+                          usedColumns={this.state.usedColumns}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/network-mac"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkMac}
+                          filters={this.state.filters}
+                          view="networkmac"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/network-fiber"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkFiber}
+                          filters={this.state.filters}
+                          view="networkfiber"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/network-cface"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkCface}
+                          filters={this.state.filters}
+                          view="networkcface"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/network-modem"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkModem}
+                          filters={this.state.filters}
+                          view="networkmodem"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/network-mface"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.networkMface}
+                          filters={this.state.filters}
+                          view="networkmface"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/equip-cmts"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.equipCmts}
+                          filters={this.state.filters}
+                          view="equipcmts"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/equip-modem"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.equipModem}
+                          filters={this.state.filters}
+                          view="equipmodem"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/equip-mta"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.equipMta}
+                          filters={this.state.filters}
+                          view="equipmta"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/subscribers"
+                      component={Subscriber}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/orders"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.orders}
+                          filters={this.state.filters}
+                          view="orders"
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/alerts"
+                      render={props => (
+                        <DbTable
+                          data={this.state.data.alerts}
+                          filters={this.state.filters}
+                          view="alerts"
+                        />
+                      )}
+                    />
+                    <Route exact path="/databrowser/map" component={Map} />
+                    <Route
+                      exact
+                      path="/databrowser/map-network"
+                      component={MapNetwork}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )
+      </div>
     );
   }
 }

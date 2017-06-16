@@ -1,6 +1,15 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { Checkbox, Table, Form, Menu, Icon, Popup } from "semantic-ui-react";
+import {
+  Checkbox,
+  Table,
+  Form,
+  Menu,
+  Icon,
+  Popup,
+  Segment,
+  Label
+} from "semantic-ui-react";
 import Pagination from "./Pagination";
 
 const ColumnSelect = props => {
@@ -113,68 +122,73 @@ export default class DbTable extends Component {
     // const rowNames = Object.keys(data[0]);
     const filteredData = this.filterData(data, usedColumns, this.props.filters);
     return (
-      <Table striped selectable sortable size="small" compact>
-        <Table.Header>
-          <Table.Row>
-            {Object.keys(filteredData[0]).map((cellname, index) => (
-              <Table.HeaderCell
-                key={index}
-                sorted={sortColumn === { cellname } && direction}
-                onClick={this.handleSort({ cellname })}
-              >
-                {cellname}
-                {index + 1 === Object.keys(filteredData[0]).length
-                  ? <ColumnSelect
-                      rowNames={columns}
-                      usedColumns={usedColumns}
-                      handleColumnChoice={this.handleColumnChoice}
-                    />
-                  : ""}
-              </Table.HeaderCell>
-            ))}
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {/*<Table.Cell>
+      <div>
+        <Table striped selectable sortable size="small" compact>
+          <Table.Header>
+            <Table.Row>
+              {Object.keys(filteredData[0]).map((cellname, index) => (
+                <Table.HeaderCell
+                  key={index}
+                  sorted={sortColumn === { cellname } && direction}
+                  onClick={this.handleSort({ cellname })}
+                >
+                  {cellname}
+                  {index + 1 === Object.keys(filteredData[0]).length
+                    ? <Label attached="top right">
+                        <ColumnSelect
+                          rowNames={columns}
+                          usedColumns={usedColumns}
+                          handleColumnChoice={this.handleColumnChoice}
+                        />
+                      </Label>
+                    : ""}
+                </Table.HeaderCell>
+              ))}
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+
+            {/*<Table.Cell>
               <Input
                 style={{ width: "60px" }}
                 size="mini"
                 placeholder="filter..."
               />
             </Table.Cell>*/}
-          {filteredData.map((rows, index) => (
-            <Table.Row key={index}>
-              {Object.values(rows).map((cell, index) => (
-                <Table.Cell key={index}>{cell}</Table.Cell>
-              ))}
-            </Table.Row>
-          ))}
-        </Table.Body>
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan="10">
-              {/*<Pagination
+            {filteredData.map((rows, index) => (
+              <Table.Row key={index}>
+                {Object.values(rows).map((cell, index) => (
+                  <Table.Cell key={index}>{cell}</Table.Cell>
+                ))}
+              </Table.Row>
+            ))}
+          </Table.Body>
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan="10">
+                {/*<Pagination
               items={filteredData}
               onChangePage={this.handlePageChange}
             />*/}
-              <Menu size="mini" floated="right" pagination>
-                <Menu.Item as="a" icon>
-                  <Icon name="left chevron" />
-                </Menu.Item>
-                {[...Array(filteredData.length)].map(
-                  (x, i) =>
-                    i > 0 && i % 2 === 0
-                      ? <Menu.Item key={i}>{i}</Menu.Item>
-                      : ""
-                )}
-                <Menu.Item as="a" icon>
-                  <Icon name="right chevron" />
-                </Menu.Item>
-              </Menu>
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
+                <Menu size="mini" floated="right" pagination>
+                  <Menu.Item as="a" icon>
+                    <Icon name="left chevron" />
+                  </Menu.Item>
+                  {[...Array(filteredData.length)].map(
+                    (x, i) =>
+                      i > 0 && i % 2 === 0
+                        ? <Menu.Item key={i}>{i}</Menu.Item>
+                        : ""
+                  )}
+                  <Menu.Item as="a" icon>
+                    <Icon name="right chevron" />
+                  </Menu.Item>
+                </Menu>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        </Table>
+      </div>
     );
   }
 }

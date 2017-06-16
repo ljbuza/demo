@@ -78,6 +78,9 @@ export default class TopFixedMenu extends Component {
                 to="/docsismaintenance"
                 text="Docsis Maintenance"
               />
+              <Dropdown.Divider />
+              <Dropdown.Item as={Link} to="/network-view" text="Network View" />
+              <Dropdown.Item as={Link} to="/map-view" text="Map View" />
             </Dropdown.Menu>
           </Dropdown>
           <Input

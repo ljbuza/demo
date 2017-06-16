@@ -149,7 +149,7 @@ export default class SideMenu extends Component {
                       placeholder="Software Version"
                     />
                     <label>CPU</label>
-                    <Picker />
+                    <Form.Input />
                     <label>Memory</label>
                     <Picker />
                     <label>Temp</label>
