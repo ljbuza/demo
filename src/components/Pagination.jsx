@@ -1,16 +1,16 @@
-import React, { PropTypes } from 'react';
-import _ from 'lodash';
-import { Menu } from 'semantic-ui-react';
+import React, { PropTypes } from "react";
+import _ from "lodash";
+import { Menu } from "semantic-ui-react";
 
 const propTypes = {
   items: PropTypes.array.isRequired,
   onChangePage: PropTypes.func.isRequired,
-  initialPage: PropTypes.number,
+  initialPage: PropTypes.number
 };
 
-const defaultProps = {
-  initialPage: 1,
-};
+// const defaultProps = {
+//   initialPage: 1,
+// };
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -53,8 +53,7 @@ class Pagination extends React.Component {
     // calculate total pages
     var totalPages = Math.ceil(totalItems / pageSize);
 
-    var startPage,
-      endPage;
+    var startPage, endPage;
     if (totalPages <= 10) {
       // less than 10 total pages so show all
       startPage = 1;
@@ -90,7 +89,7 @@ class Pagination extends React.Component {
       endPage,
       startIndex,
       endIndex,
-      pages,
+      pages
     };
   }
 
@@ -115,4 +114,4 @@ class Pagination extends React.Component {
 }
 
 Pagination.propTypes = propTypes;
-Pagination.defaultProps;
+// Pagination.defaultProps;

@@ -15,24 +15,20 @@
       "to": "/databrowser/network-cmts"
     },
     {
-      "name": "MAC domain",
+      "name": "MAC domains",
       "to": "/databrowser/network-mac"
     },
     {
-      "name": "fiber node",
+      "name": "fiber nodes",
       "to": "/databrowser/network-fiber"
     },
     {
-      "name": "CMTS interface",
-      "to": "/databrowser/network-cface"
+      "name": "MAC Domain interfaces",
+      "to": "/databrowser/network-mdface"
     },
     {
-      "name": "modem",
-      "to": "/databrowser/network-modem"
-    },
-    {
-      "name": "modem interface",
-      "to": "/databrowser/network-mface"
+      "name": "fiber node interfaces",
+      "to": "/databrowser/network-fnface"
     }
   ],
   "equipmentMenu": [

@@ -1,460 +1,516 @@
 import React, { Component } from "react";
-import { Form, Modal, Menu, Label, Button, Message } from "semantic-ui-react";
+import { Form, Modal, Menu, Label, Button } from "semantic-ui-react";
 import Picker from "./Picker";
+import { observer } from "mobx-react";
+import { observable } from "mobx";
 
-export default class SideMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: true,
-      cmtsName: [],
-      cmtsModel: [],
-      cmtsSwVersion: [],
-      mdName: [],
-      mdCmtsName: [],
-      mdAlias: [],
-      fiberNode: [],
-      fiberMdName: [],
-      fiberCmtsName: [],
-      fiberAlias: [],
-      modemName: [],
-      modemFiber: [],
-      modemMd: [],
-      modemCmts: [],
-      modemValue: [],
-      miUsds: [],
-      miName: [],
-      miModem: [],
-      submittedUsds: [],
-      submittedName: [],
-      submittedModem: []
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  // state = {
-  //   visible: true,
-  //   usds: "",
-  //   submittedUsds: "",
-  //   name: [],
-  //   submittedName: [],
-  //   modem: "",
-  //   submittedModem: ""
-  // };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-    // const { usds, name, modem } = this.state;
-    this.setState({
-      submittedUsds: this.state.miUsds,
-      submittedName: this.state.miName,
-      submittedModem: this.state.miModem
-    });
-  };
-
-  getOptions = field => {
-    var [section, ...fieldName] = field.split("-");
-    fieldName = fieldName.join(" ");
-    let options = [];
-    this.props.data[section].map(row => {
-      options.push({
-        key: row[fieldName].toLowerCase(),
-        text: row[fieldName],
-        value: row[fieldName].toLowerCase()
-      });
-    });
-    return options;
-  };
-
-  render() {
-    const {
-      err,
-      cmtsName,
-      cmtsModel,
-      cmtsSwVersion,
-      mdName,
-      mdCmtsName,
-      mdAlias,
-      fiberNode,
-      fiberMdName,
-      fiberCmtsName,
-      fiberAlias,
-      modemName,
-      modemFiber,
-      modemMd,
-      modemCmts,
-      modemValue,
-      miUsds,
-      miName,
-      miModem,
-      submittedUsds,
-      submittedName,
-      submittedModem
-    } = this.state;
-
-    let cmtsLabel = <div />;
-    if (Object.keys(this.props.filters).length) {
-      let labelCount = 0;
-      Object.keys(this.props.filters).map(key => {
-        if (key.startsWith("networkcmts") && this.props.filters[key].length) {
-          labelCount = labelCount + 1;
-        }
-      });
-      if (labelCount) {
-        cmtsLabel = <Label color="blue">{labelCount}</Label>;
-      }
+const SideMenu = observer(
+  class SideMenu extends Component {
+    constructor(props) {
+      super(props);
+      this.rawData = [...this.props.store.data];
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    return (
-      <div className="ui basic segment">
-        <Menu compact text vertical>
-          <Menu.Item>
-            <Menu.Header>View Filters</Menu.Header>
-            <Menu.Menu>
-              <Modal
-                dimmer="blurring"
-                trigger={
-                  <Menu.Item name="cmts">
-                    {cmtsLabel}CMTS
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>CMTS Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      name="networkcmts-Name"
-                      label="CMTS Name"
-                      multiple
-                      value={this.props.filters["networkcmts-Name"]}
-                      onChange={this.props.handleChange}
-                      options={this.getOptions("networkCmts-Name")}
-                      placeholder="CMTS Name"
-                    />
-                    <Form.Select
-                      name="networkcmts-Model"
-                      label="Model"
-                      value={this.props.filters["networkcmts-Model"]}
-                      multiple
-                      onChange={this.props.handleChange}
-                      options={this.getOptions("networkCmts-Model")}
-                      placeholder="Model"
-                    />
-                    <Form.Select
-                      name="networkcmts-Software-Version"
-                      label="Software Version"
-                      multiple
-                      value={this.props.filters["networkcmts-Software-Version"]}
-                      onChange={this.props.handleChange}
-                      options={this.getOptions("networkCmts-Software-Version")}
-                      placeholder="Software Version"
-                    />
-                    <label>CPU</label>
-                    <Form.Input />
-                    <label>Memory</label>
-                    <Picker />
-                    <label>Temp</label>
-                    <Picker />
-                    <label>Uptime</label>
-                    <Picker />
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button
-                    color="black"
-                    size="small"
-                    content="Close"
-                    onClick={this.close}
-                  />
-                  <Button
-                    positive
-                    size="small"
-                    icon="undo"
-                    labelPosition="right"
-                    content="Clear Filters"
-                    onClick={this.props.handleClearForm}
-                  />
-                </Modal.Actions>
-              </Modal>
+    handleSubmit = evt => {
+      evt.preventDefault();
+      // const { usds, name, modem } = this.state;
+      this.setState({
+        submittedUsds: this.state.miUsds,
+        submittedName: this.state.miName,
+        submittedModem: this.state.miModem
+      });
+    };
 
-              <Modal
-                dimmer="blurring"
-                trigger={
-                  <Menu.Item name="mac-domain">
-                    MAC Domain
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>MAC Domain Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      name="md-name"
-                      label="MD Name"
-                      value={mdName}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "md-1", text: "MD-1", value: "md-1" },
-                        { key: "md-2", text: "MD-2", value: "md-2" },
-                        { key: "md-3", text: "MD-3", value: "md-3" },
-                        { key: "md-4", text: "MD-4", value: "md-4" }
-                      ]}
-                      placeholder="MD Name"
-                    />
-                    <Form.Select
-                      name="md-cmts-name"
-                      label="CMTS Name"
-                      value={mdCmtsName}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
-                        { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
-                        { key: "cmts-3", text: "CMTS-3", value: "cmts-3" },
-                        { key: "cmts-4", text: "CMTS-4", value: "cmts-4" }
-                      ]}
-                      placeholder="CMTS Name"
-                    />
-                    <Form.Select
-                      label="Alias"
-                      name="md-alias"
-                      value={mdAlias}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "alcatel", text: "Alcatel", value: "alcatel" },
-                        { key: "arris", text: "Arris", value: "arris" }
-                      ]}
-                      placeholder="Alias"
-                    />
-                    <label>Fiber Nodes</label>
-                    <Picker />
-                    <label>Modems Online</label>
-                    <Picker />
-                    <label>Modems Offline</label>
-                    <Picker />
-                    <label>Upstream Interfaces</label>
-                    <Picker />
-                    <label>Downstream Interfaces</label>
-                    <Picker />
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
-                  <Button
-                    positive
-                    size="small"
-                    icon="checkmark"
-                    labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
-                  />
-                </Modal.Actions>
-              </Modal>
+    render() {
+      let cmtsLabel, mdLabel, fnLabel, mdiLabel, fniLabel;
 
-              <Modal
-                dimmer="blurring"
-                trigger={
-                  <Menu.Item name="fiber-node">
-                    <Label color="blue">2</Label>Fiber Node
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>Fiber Node Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      label="Fiber Node"
-                      name="fiber-node"
-                      value={fiberNode}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "fiber-1", text: "Fiber-1", value: "fiber-1" },
-                        { key: "fiber-2", text: "Fiber-2", value: "fiber-2" },
-                        { key: "fiber-3", text: "Fiber-3", value: "fiber-3" },
-                        { key: "fiber-4", text: "Fiber-4", value: "fiber-4" }
-                      ]}
-                      placeholder="Fiber Node"
-                    />
-                    <Form.Select
-                      label="MD Name"
-                      name="fiber-md-name"
-                      value={fiberMdName}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "md-1", text: "MD-1", value: "md-1" },
-                        { key: "md-2", text: "MD-2", value: "md-2" },
-                        { key: "md-3", text: "MD-3", value: "md-3" },
-                        { key: "md-4", text: "MD-4", value: "md-4" }
-                      ]}
-                      placeholder="MD Name"
-                    />
-                    <Form.Select
-                      label="CMTS Name"
-                      name="fiber-cmts-name"
-                      value={fiberCmtsName}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
-                        { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
-                        { key: "cmts-3", text: "CMTS-3", value: "cmts-3" },
-                        { key: "cmts-4", text: "CMTS-4", value: "cmts-4" }
-                      ]}
-                      placeholder="CMTS Name"
-                    />
-                    <Form.Select
-                      label="Alias"
-                      name="fiber-alias"
-                      value={fiberAlias}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "alcatel", text: "Alcatel", value: "alcatel" },
-                        { key: "arris", text: "Arris", value: "arris" }
-                      ]}
-                      placeholder="Alias"
-                    />
-                    <label>Modems Online</label>
-                    <Picker />
-                    <label>Modems Offline</label>
-                    <Picker />
-                    <label>Upstream Interfaces</label>
-                    <Picker />
-                    <label>Downstream Interfaces</label>
-                    <Picker />
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
-                  <Button
-                    positive
-                    size="small"
-                    icon="checkmark"
-                    labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
-                  />
-                </Modal.Actions>
-              </Modal>
+      if (Object.keys(this.props.store.filters).length) {
+        let cmtsCount = 0;
+        let fnCount = 0;
+        let mdCount = 0;
+        let fniCount = 0;
+        let mdiCount = 0;
+        Object.keys(this.props.store.filters).map(key => {
+          if (key.startsWith("cmts") && this.props.store.filters[key].length) {
+            cmtsCount += 1;
+          } else if (
+            key.startsWith("fiber nodes") &&
+            this.props.store.filters[key].length
+          ) {
+            fnCount += 1;
+          } else if (
+            key.startsWith("mac domains") &&
+            this.props.store.filters[key].length
+          ) {
+            mdCount += 1;
+          } else if (
+            key.startsWith("fn interfaces") &&
+            this.props.store.filters[key].length
+          ) {
+            fniCount += 1;
+          } else if (
+            key.startsWith("md interfaces") &&
+            this.props.store.filters[key].length
+          ) {
+            mdiCount += 1;
+          }
+          return undefined;
+        });
+        if (cmtsCount) {
+          cmtsLabel = cmtsCount
+            ? <Label color="blue">{cmtsCount}</Label>
+            : <div />;
+        }
+        if (mdCount) {
+          mdLabel = mdCount ? <Label color="blue">{mdCount}</Label> : <div />;
+        }
+        if (fnCount) {
+          fnLabel = fnCount ? <Label color="blue">{fnCount}</Label> : <div />;
+        }
+        if (mdiCount) {
+          mdiLabel = mdiCount
+            ? <Label color="blue">{mdiCount}</Label>
+            : <div />;
+        }
+        if (fniCount) {
+          fniLabel = fniCount
+            ? <Label color="blue">{fniCount}</Label>
+            : <div />;
+        }
+      }
 
-              <Modal
-                dimmer="blurring"
-                trigger={
-                  <Menu.Item name="modem">
-                    Modem
-                  </Menu.Item>
-                }
-              >
-                <Modal.Header>Modem Filters</Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
-                    <Form.Select
-                      label="Modem"
-                      name="modem-name"
-                      value={modemName}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "modem-1", text: "Modem-1", value: "modem-1" },
-                        { key: "modem-2", text: "Modem-2", value: "modem-2" },
-                        { key: "modem-3", text: "Modem-3", value: "modem-3" },
-                        { key: "modem-4", text: "Modem-4", value: "modem-4" },
-                        { key: "modem-5", text: "Modem-5", value: "modem-5" }
-                      ]}
-                      placeholder="Modem"
-                    />
+      if (this.props.store.isLoading) {
+        return <div>is loading...</div>;
+      } else {
+        return (
+          <div className="ui basic segment">
+            <Menu compact text vertical>
+              <Menu.Item>
+                <Menu.Header>View Filters</Menu.Header>
+                <Menu.Menu>
+                  <Modal
+                    dimmer="blurring"
+                    trigger={
+                      <Menu.Item name="cmts">
+                        <FilterLabel
+                          section="networkCmts"
+                          filters={this.props.store.filters}
+                        />
+                        {cmtsLabel}
+                        CMTS
+                      </Menu.Item>
+                    }
+                  >
+                    <Modal.Header>CMTS Filters</Modal.Header>
+                    <Modal.Content>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Select
+                          name="cmts-name"
+                          label="CMTS Name"
+                          multiple
+                          value={this.props.store.filters["cmts-name"]}
+                          onChange={this.props.store.addFilter}
+                          options={this.props.store.options.cmts.name}
+                          placeholder="CMTS Name"
+                        />
+                        <Form.Select
+                          name="cmts-model"
+                          label="Model"
+                          value={this.props.store.filters["cmts-model"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={this.props.store.options.cmts.model}
+                          placeholder="Model"
+                        />
+                        <Form.Select
+                          name="cmts-software version"
+                          label="Software Version"
+                          multiple
+                          value={
+                            this.props.store.filters["cmts-software version"]
+                          }
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options.cmts["software version"]
+                          }
+                          placeholder="Software Version"
+                        />
+                        <label>CPU</label>
+                        <Form.Input />
+                        <label>Memory</label>
+                        <Picker />
+                        <label>Temp</label>
+                        <Picker />
+                        <label>Uptime</label>
+                        <Picker />
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button
+                        color="black"
+                        size="small"
+                        content="Close"
+                        onClick={this.close}
+                      />
+                      <Button
+                        positive
+                        size="small"
+                        icon="undo"
+                        labelPosition="right"
+                        content="Clear Filters"
+                        onClick={this.props.handleClearForm}
+                      />
+                    </Modal.Actions>
+                  </Modal>
 
-                    <Form.Select
-                      label="Fiber Node"
-                      name="modem-fiber"
-                      value={modemFiber}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "fiber-1", text: "Fiber-1", value: "fiber-1" },
-                        { key: "fiber-2", text: "Fiber-2", value: "fiber-2" },
-                        { key: "fiber-3", text: "Fiber-3", value: "fiber-3" },
-                        { key: "fiber-4", text: "Fiber-4", value: "fiber-4" }
-                      ]}
-                      placeholder="Fiber Node"
-                    />
-                    <Form.Select
-                      label="MD Name"
-                      name="modem-md"
-                      value={modemMd}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "md-1", text: "MD-1", value: "md-1" },
-                        { key: "md-2", text: "MD-2", value: "md-2" },
-                        { key: "md-3", text: "MD-3", value: "md-3" },
-                        { key: "md-4", text: "MD-4", value: "md-4" }
-                      ]}
-                      placeholder="MD Name"
-                    />
-                    <Form.Select
-                      label="CMTS Name"
-                      name="modem-cmts"
-                      value={modemCmts}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "cmts-1", text: "CMTS-1", value: "cmts-1" },
-                        { key: "cmts-2", text: "CMTS-2", value: "cmts-2" },
-                        { key: "cmts-3", text: "CMTS-3", value: "cmts-3" },
-                        { key: "cmts-4", text: "CMTS-4", value: "cmts-4" }
-                      ]}
-                      placeholder="CMTS Name"
-                    />
-                    <Form.Select
-                      label="Status"
-                      name="modem-status"
-                      value={modemValue}
-                      onChange={this.handleChange}
-                      options={[
-                        { key: "online", text: "Online", value: "online" },
-                        { key: "offline", text: "Offline", value: "offline" }
-                      ]}
-                      placeholder="Status"
-                    />
-                    <label>Upstream Interfaces</label>
-                    <Picker />
-                    <label>Downstream Interfaces</label>
-                    <Picker />
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color="black" size="small" onClick={this.close}>
-                    Cancel
-                  </Button>
-                  <Button
-                    positive
-                    size="small"
-                    icon="checkmark"
-                    labelPosition="right"
-                    content="Apply"
-                    onClick={this.close}
-                  />
-                </Modal.Actions>
-              </Modal>
+                  <Modal
+                    dimmer="blurring"
+                    trigger={
+                      <Menu.Item name="mac domains">
+                        <FilterLabel
+                          section="mac domains"
+                          filters={this.props.store.filters}
+                        />
+                        {mdLabel}
+                        MAC Domains{" "}
+                      </Menu.Item>
+                    }
+                  >
+                    <Modal.Header>MAC Domain Filters</Modal.Header>
+                    <Modal.Content>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Select
+                          name="mac domains-name"
+                          label="MAC Domain"
+                          value={this.props.store.filters["mac domains-name"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["mac domains"]["name"]
+                          }
+                          placeholder="MAC Domain"
+                        />
+                        <Form.Select
+                          name="mac domains-alias"
+                          label="Alias"
+                          value={this.props.store.filters["mac domains-alias"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["mac domains"]["alias"]
+                          }
+                          placeholder="Alias"
+                        />
+                        <label>Upstream Interfaces</label>
+                        <Picker />
+                        <label>Downstream Interfaces</label>
+                        <Picker />
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button color="black" size="small" onClick={this.close}>
+                        Cancel
+                      </Button>
+                      <Button
+                        positive
+                        size="small"
+                        icon="checkmark"
+                        labelPosition="right"
+                        content="Apply"
+                        onClick={this.close}
+                      />
+                    </Modal.Actions>
+                  </Modal>
 
-            </Menu.Menu>
-          </Menu.Item>
-          <Menu.Item>
-            <Menu.Header>Favorite Filters</Menu.Header>
-            <Menu.Menu>
-              <Menu.Item name="offline report" />
-              <Menu.Item name="bend cable modems" />
-              <Menu.Item name="max power" />
-            </Menu.Menu>
-          </Menu.Item>
-          <Menu.Item>
-            <Menu.Header>Shared Filters</Menu.Header>
-            <Menu.Menu>
-              <Menu.Item name="high SNR" />
-              <Menu.Item name="high flaps" />
-              <Menu.Item name="un-provisioned subscriber" />
-              <Menu.Item icon="add circle" name="add more" />
-            </Menu.Menu>
-          </Menu.Item>
-        </Menu>
-      </div>
-    );
+                  <Modal
+                    dimmer="blurring"
+                    trigger={
+                      <Menu.Item name="fiber nodes">
+                        <FilterLabel
+                          section="fiber nodes"
+                          filters={this.props.store.filters["fiber nodes"]}
+                        />
+                        {fnLabel}
+                        Fiber Node
+                      </Menu.Item>
+                    }
+                  >
+                    <Modal.Header>Fiber Node Filters</Modal.Header>
+                    <Modal.Content>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Select
+                          label="Fiber Node"
+                          name="fiber nodes-name"
+                          value={this.props.store.filters["fiber nodes-name"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["fiber nodes"]["name"]
+                          }
+                          placeholder="Fiber Node"
+                        />
+                        <Form.Select
+                          name="fiber nodes-alias"
+                          label="Alias"
+                          value={this.props.store.filters["fiber nodes-alias"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["fiber nodes"]["alias"]
+                          }
+                          placeholder="Alias"
+                        />
+                        <label>Modems Online</label>
+                        <Picker />
+                        <label>Modems Offline</label>
+                        <Picker />
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button color="black" size="small" onClick={this.close}>
+                        Cancel
+                      </Button>
+                      <Button
+                        positive
+                        size="small"
+                        icon="checkmark"
+                        labelPosition="right"
+                        content="Apply"
+                        onClick={this.close}
+                      />
+                    </Modal.Actions>
+                  </Modal>
+
+                  <Modal
+                    dimmer="blurring"
+                    trigger={
+                      <Menu.Item name="md interfaces">
+                        <FilterLabel
+                          section="md interfaces"
+                          filters={this.props.store.filters["md interfaces"]}
+                        />
+                        MAC Domain Interfaces
+                        {mdiLabel}
+                      </Menu.Item>
+                    }
+                  >
+                    <Modal.Header>MAC Domain Interfaces Filters</Modal.Header>
+                    <Modal.Content>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Select
+                          label="MAC Domain Interface"
+                          name="md interfaces-name"
+                          value={this.props.store.filters["md interfaces-name"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["md interfaces"]["name"]
+                          }
+                          placeholder="MAC Domain Interface"
+                        />
+                        <label>Frequency</label>
+                        <Picker />
+                        <label>Direction</label>
+                        <Picker />
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button color="black" size="small" onClick={this.close}>
+                        Cancel
+                      </Button>
+                      <Button
+                        positive
+                        size="small"
+                        icon="checkmark"
+                        labelPosition="right"
+                        content="Apply"
+                        onClick={this.close}
+                      />
+                    </Modal.Actions>
+                  </Modal>
+
+                  <Modal
+                    dimmer="blurring"
+                    trigger={
+                      <Menu.Item name="fn interfaces">
+                        <FilterLabel
+                          section="fn interfaces"
+                          filters={this.props.store.filters["fn interfaces"]}
+                        />
+                        Fiber Node Interfaces
+                        {fniLabel}
+                      </Menu.Item>
+                    }
+                  >
+                    <Modal.Header>Fiber Node Interfaces Filters</Modal.Header>
+                    <Modal.Content>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Select
+                          label="Fiber Node Interface"
+                          name="fn interfaces-name"
+                          value={this.props.store.filters["fn interfaces-name"]}
+                          multiple
+                          onChange={this.props.store.addFilter}
+                          options={
+                            this.props.store.options["fn interfaces"]["name"]
+                          }
+                          placeholder="Fiber Node Interface"
+                        />
+                        <label>Frequency</label>
+                        <Picker />
+                        <label>Direction</label>
+                        <Picker />
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button color="black" size="small" onClick={this.close}>
+                        Cancel
+                      </Button>
+                      <Button
+                        positive
+                        size="small"
+                        icon="checkmark"
+                        labelPosition="right"
+                        content="Apply"
+                        onClick={this.close}
+                      />
+                    </Modal.Actions>
+                  </Modal>
+
+                  {/* <Modal
+                  dimmer="blurring"
+                  trigger={
+                    <Menu.Item name="modem">
+                      Modem
+                    </Menu.Item>
+                  }
+                >
+                  <Modal.Header>Modem Filters</Modal.Header>
+                  <Modal.Content>
+                    <Form onSubmit={this.handleSubmit}>
+                      <Form.Select
+                        label="Modem"
+                        name="networkModem-Name"
+                        value={this.props.store.filters["networkModem-Name"]}
+                        multiple
+                        onChange={this.props.store.addFilter}
+                        options={this.props.store.options.networkModem["Name"]}
+                        placeholder="Modem"
+                      />
+                      <Form.Select
+                        label="Fiber Node"
+                        name="networkModem-Fiber"
+                        value={this.props.store.filters["networkModem-Fiber"]}
+                        multiple
+                        onChange={this.props.store.addFilter}
+                        options={this.props.store.options.networkModem["Fiber"]}
+                        placeholder="Fiber Node"
+                      />
+                      <Form.Select
+                        label="MD Name"
+                        name="networkModem-MAC Domain"
+                        value={
+                          this.props.store.filters["networkModem-MAC Domain"]
+                        }
+                        multiple
+                        onChange={this.props.store.addFilter}
+                        options={
+                          this.props.store.options.networkModem["MAC Domain"]
+                        }
+                        placeholder="MD Name"
+                      />
+                      <Form.Select
+                        label="CMTS Name"
+                        name="networkModem-CMTS"
+                        value={this.props.store.filters["networkModem-CMTS"]}
+                        multiple
+                        onChange={this.props.store.addFilter}
+                        options={this.props.store.options.networkModem["CMTS"]}
+                        placeholder="CMTS Name"
+                      />
+                      <Form.Select
+                        label="Status"
+                        name="networkModem-Status"
+                        value={this.props.store.filters["networkModem-Status"]}
+                        multiple
+                        onChange={this.props.store.addFilter}
+                        options={
+                          this.props.store.options.networkModem["Status"]
+                        }
+                        placeholder="Status"
+                      />
+                      <label>Upstream Interfaces</label>
+                      <Picker />
+                      <label>Downstream Interfaces</label>
+                      <Picker />
+                    </Form>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color="black" size="small" onClick={this.close}>
+                      Cancel
+                    </Button>
+                    <Button
+                      positive
+                      size="small"
+                      icon="checkmark"
+                      labelPosition="right"
+                      content="Apply"
+                      onClick={this.close}
+                    />
+                  </Modal.Actions>
+                </Modal>
+ */}
+                </Menu.Menu>
+              </Menu.Item>
+              <Menu.Item>
+                <Menu.Header>Favorite Filters</Menu.Header>
+                <Menu.Menu>
+                  <Menu.Item name="offline report" />
+                  <Menu.Item name="bend cable modems" />
+                  <Menu.Item name="max power" />
+                </Menu.Menu>
+              </Menu.Item>
+              <Menu.Item>
+                <Menu.Header>Shared Filters</Menu.Header>
+                <Menu.Menu>
+                  <Menu.Item name="high SNR" />
+                  <Menu.Item name="high flaps" />
+                  <Menu.Item name="un-provisioned subscriber" />
+                  <Menu.Item icon="add circle" name="add more" />
+                </Menu.Menu>
+              </Menu.Item>
+            </Menu>
+          </div>
+        );
+      }
+    }
   }
-}
+);
+export default SideMenu;
+
+const FilterLabel = observer(
+  class FilterLabel extends React.Component {
+    // const FilterLabel = ({ section, filters }) => {
+    render() {
+      let labelCount = 0;
+      const filters = this.props.filters;
+      const section = this.props.section;
+
+      if (filters && Object.keys(filters).length) {
+        Object.keys(filters).map(key => {
+          if (key.startsWith(section) && filters[key].length) {
+            labelCount += 1;
+          }
+          return undefined;
+        });
+      }
+
+      return (
+        <div>
+          {labelCount > 0 ? <Label color="blue">{labelCount}</Label> : ""}
+        </div>
+      );
+    }
+  }
+);

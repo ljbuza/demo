@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Image } from 'semantic-ui-react';
-import BarChart from './BarChart';
+import React, { Component } from "react";
+// import { Image } from 'semantic-ui-react';
+import BarChart from "./BarChart";
 
 export default class MapNetwork extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (

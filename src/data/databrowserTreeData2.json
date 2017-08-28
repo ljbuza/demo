@@ -1,0 +1,372 @@
+{
+  "cmts": [
+    {
+      "name": "cmts-1",
+      "ip address": "122.54.184.5",
+      "model": "cisco",
+      "software version": "2.0",
+      "cpu": "24",
+      "memory": "34",
+      "temp": "124",
+      "uptime": "1750"
+    },
+    {
+      "name": "cmts-2",
+      "ip address": "22.154.14.30",
+      "model": "arris",
+      "software version": "1.0",
+      "cpu": "24",
+      "memory": "34",
+      "temp": "124",
+      "uptime": "1750"
+    }
+  ],
+  "mac domains": [
+    {
+      "name": "md-1a",
+      "parents": [
+        "cmts-cmts-1"
+      ],
+      "upstream": 16,
+      "downstream": 8
+    },
+    {
+      "name": "md-1b",
+      "parents": [
+        "cmts-cmts-1"
+      ],
+      "upstream": 16,
+      "downstream": 8
+    },
+    {
+      "name": "md-2a",
+      "parents": [
+        "cmts-cmts-2"
+      ],
+      "upstream": 16,
+      "downstream": 8
+    },
+    {
+      "name": "md-2b",
+      "parents": [
+        "cmts-cmts-2"
+      ],
+      "upstream": 16,
+      "downstream": 8
+    }
+  ],
+  "md interfaces": [
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "03",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a"
+      ],
+      "frequency": "5mhz",
+      "direction": "downstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "03",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "03",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b"
+      ],
+      "frequency": "5mhz",
+      "direction": "downstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "03",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a"
+      ],
+      "frequency": "5mhz",
+      "direction": "downstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2b"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2b"
+      ],
+      "frequency": "5mhz",
+      "direction": "upstream",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "03",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2b"
+      ],
+      "frequency": "5mhz",
+      "direction": "downstream",
+      "description": "ubr2-120"
+    }
+  ],
+  "fiber nodes": [
+    {
+      "name": "fn-1a1",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a"
+      ],
+      "modems online": 134,
+      "modems offline": 2
+    },
+    {
+      "name": "fn-1a2",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a"
+      ],
+      "modems online": 3374,
+      "modems offline": 45
+    },
+    {
+      "name": "fn-1b1",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b"
+      ],
+      "modems online": 134,
+      "modems offline": 2
+    },
+    {
+      "name": "fn-1b2",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b"
+      ],
+      "modems online": 3374,
+      "modems offline": 45
+    },
+    {
+      "name": "fn-2a1",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a"
+      ],
+      "modems online": 134,
+      "modems offline": 2
+    },
+    {
+      "name": "fn-2a2",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a"
+      ],
+      "modems online": 3374,
+      "modems offline": 45
+    },
+    {
+      "name": "fn-2b1",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2b"
+      ],
+      "modems online": 134,
+      "modems offline": 2
+    },
+    {
+      "name": "fn-2b2",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2b"
+      ],
+      "modems online": 3374,
+      "modems offline": 45
+    }
+  ],
+  "fn interfaces": [
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a",
+        "fiber nodes-fn-1a1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a",
+        "fiber nodes-fn-1a2"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b",
+        "fiber nodes-fn-1b1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a",
+        "fiber nodes-fn-1a1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1a",
+        "fiber nodes-fn-1a2"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-1b",
+        "fiber nodes-fn-1b1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-2a",
+        "fiber nodes-fn-2a1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-1",
+        "mac domains-md-2a",
+        "fiber nodes-fn-2a2"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a",
+        "fiber nodes-fn-2a2"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "cmts-cmts-2",
+        "mac domains-md-2a",
+        "fiber nodes-fn-2a2"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "01",
+      "parents": [
+        "fiber nodes-fn-2b1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    },
+    {
+      "name": "02",
+      "parents": [
+        "fiber nodes-fn-2b1"
+      ],
+      "frequency": "5mhz",
+      "description": "ubr2-120"
+    }
+  ]
+}

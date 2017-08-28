@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, browserRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import MenuItems from '../data/SecMenuItems.json';
 

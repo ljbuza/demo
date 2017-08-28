@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
   Container,
-  Segment,
+  // Segment,
   Card,
   Message,
   Grid,
   List,
-  Link,
+  // Link,
   Icon
 } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
@@ -40,7 +40,7 @@ export default class Dashboard extends Component {
     };
   }
 
-  handleClick = (e, {}) => {
+  handleClick = e => {
     this.setState({ item: e.target.innerText });
   };
 

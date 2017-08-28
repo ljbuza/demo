@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
-  Accordion,
-  Card,
+  // Accordion,
+  // Card,
   Statistic,
   Table,
   Image,
   Item,
-  Divider,
+  // Divider,
   Menu,
   Segment,
   Message,
@@ -271,261 +271,261 @@ class ModemMenu extends Component {
   }
 }
 
-const Power = () => (
-  <table className="ui compact striped celled definition table">
-    <tbody>
-      <Table.Row>
-        <th>Interface</th>
-        <Table.Cell><a href="#openModal">P</a></Table.Cell>
-        <Table.Cell><a href="#openModal">0</a></Table.Cell>
-        <Table.Cell><a href="#openModal">1</a></Table.Cell>
-        <Table.Cell><a href="#openModal">2</a></Table.Cell>
-        <Table.Cell><a href="#openModal">3</a></Table.Cell>
-        <Table.Cell><a href="#openModal">4</a></Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <th>RXMER</th>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <th>DownPower</th>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-        <Table.Cell><a href="#openModal">12</a></Table.Cell>
-      </Table.Row>
-    </tbody>
-  </table>
-);
+// const Power = () => (
+//   <table className="ui compact striped celled definition table">
+//     <tbody>
+//       <Table.Row>
+//         <th>Interface</th>
+//         <Table.Cell><a href="#openModal">P</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">0</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">1</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">2</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">3</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">4</a></Table.Cell>
+//       </Table.Row>
+//       <Table.Row>
+//         <th>RXMER</th>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//       </Table.Row>
+//       <Table.Row>
+//         <th>DownPower</th>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//         <Table.Cell><a href="#openModal">12</a></Table.Cell>
+//       </Table.Row>
+//     </tbody>
+//   </table>
+// );
 
-class Info1 extends Component {
-  state = { activeItem: "alert" };
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+// class Info1 extends Component {
+//   state = { activeItem: "alert" };
+//   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
-  render() {
-    const { activeItem } = this.state;
-    const tabContent = [<Alerts />, <Power />, <All />];
-    return (
-      <div>
-        <Menu attached="top" tabular>
-          <Menu.Item
-            name="power"
-            active={activeItem === "power"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="all"
-            active={activeItem === "all"}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
-        <Segment attached="bottom">
-          {activeItem === "alert" ? tabContent[0] : ""}
-          {activeItem === "power" ? tabContent[1] : ""}
-          {activeItem === "all" ? tabContent[2] : ""}
-        </Segment>
-      </div>
-    );
-  }
-}
+//   render() {
+//     const { activeItem } = this.state;
+//     const tabContent = [<Alerts />, <Power />, <All />];
+//     return (
+//       <div>
+//         <Menu attached="top" tabular>
+//           <Menu.Item
+//             name="power"
+//             active={activeItem === "power"}
+//             onClick={this.handleItemClick}
+//           />
+//           <Menu.Item
+//             name="all"
+//             active={activeItem === "all"}
+//             onClick={this.handleItemClick}
+//           />
+//         </Menu>
+//         <Segment attached="bottom">
+//           {activeItem === "alert" ? tabContent[0] : ""}
+//           {activeItem === "power" ? tabContent[1] : ""}
+//           {activeItem === "all" ? tabContent[2] : ""}
+//         </Segment>
+//       </div>
+//     );
+//   }
+// }
 
-class Info2 extends Component {
-  state = { activeItem: "alert" };
+// class Info2 extends Component {
+//   state = { activeItem: "alert" };
 
-  handleItemClick = (e, { name }) => {
-    this.setState({ activeItem: name });
-  };
+//   handleItemClick = (e, { name }) => {
+//     this.setState({ activeItem: name });
+//   };
 
-  render() {
-    const { activeItem } = this.state;
-    const tabContent = [<Alerts />, <Power />, <All />];
-    return (
-      <div className="scrolling">
-        <Menu attached="top" tabular>
-          <Menu.Item
-            name="alert"
-            active={activeItem === "alert"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="power"
-            active={activeItem === "power"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="PNM"
-            active={activeItem === "PNM"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="all"
-            active={activeItem === "all"}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
-        <Segment attached="bottom">
-          {activeItem === "alert" ? tabContent[0] : ""}
-          {activeItem === "power" ? tabContent[1] : ""}
-          {activeItem === "all" ? tabContent[2] : ""}
-        </Segment>
-      </div>
-    );
-  }
-}
+//   render() {
+//     const { activeItem } = this.state;
+//     const tabContent = [<Alerts />, <Power />, <All />];
+//     return (
+//       <div className="scrolling">
+//         <Menu attached="top" tabular>
+//           <Menu.Item
+//             name="alert"
+//             active={activeItem === "alert"}
+//             onClick={this.handleItemClick}
+//           />
+//           <Menu.Item
+//             name="power"
+//             active={activeItem === "power"}
+//             onClick={this.handleItemClick}
+//           />
+//           <Menu.Item
+//             name="PNM"
+//             active={activeItem === "PNM"}
+//             onClick={this.handleItemClick}
+//           />
+//           <Menu.Item
+//             name="all"
+//             active={activeItem === "all"}
+//             onClick={this.handleItemClick}
+//           />
+//         </Menu>
+//         <Segment attached="bottom">
+//           {activeItem === "alert" ? tabContent[0] : ""}
+//           {activeItem === "power" ? tabContent[1] : ""}
+//           {activeItem === "all" ? tabContent[2] : ""}
+//         </Segment>
+//       </div>
+//     );
+//   }
+// }
 
-const CardGroups = () => (
-  <Grid columns={2}>
-    <Grid.Row>
-      <Grid.Column>
-        <Card.Group>
-          <Card fluid>
-            <Card.Content>
-              <Image floated="right" size="small" src="/img/cmts.jpg" />
-              <Card.Header>
-                CMTS Health
-              </Card.Header>
-              <Card.Meta>
-                Last Updated : 10 Minutes ago
-              </Card.Meta>
-              <Card.Description>
-                <table className="ui compact very basic table">
-                  <tbody>
-                    <Table.Row>
-                      <Table.Cell className="right aligned">Port:</Table.Cell>
-                      <Table.Cell>C/U2/7.0</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell className="right aligned">
-                        Fiber Node:
-                      </Table.Cell>
-                      <Table.Cell>3</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell className="right aligned">
-                        Port Capacity:
-                      </Table.Cell>
-                      <Table.Cell className="positive">80% </Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell className="right aligned">
-                        Online Percent
-                      </Table.Cell>
-                      <Table.Cell>100%</Table.Cell>
-                    </Table.Row>
-                  </tbody>
-                </table>
-              </Card.Description>
-              <Divider />
-              <b>Info 1</b>
-              <Info1 />
-              <Divider />
-              <b>Info 2</b>
-              <Info2 />
-            </Card.Content>
-          </Card>
-        </Card.Group>
-      </Grid.Column>
-      <Grid.Column>
-        <Card.Group>
-          <Card fluid>
-            <Card.Content>
-              <Image floated="right" size="mini" src="/img/modem.jpg" />
-              <Card.Header>
-                Modem-X Health
-              </Card.Header>
-              <Card.Meta>
-                Last Updated : 8 Minutes ago
-              </Card.Meta>
-              <Card.Description>
-                <table className="ui compact very basic table">
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Equipment Type:
-                    </Table.Cell>
-                    <Table.Cell>Cable Modem </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Mac Address:
-                    </Table.Cell>
-                    <Table.Cell>
-                      <a href="Filters/filter_cpe.html">AA:BB:CC:DD:EE:FF</a>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      IP Address:
-                    </Table.Cell>
-                    <Table.Cell>
-                      <a href="Filters/filter_cpe.html">60.10.208.10 </a>
-                      <a href="Filters/filter_cpe.html">
-                        <div className="ui icon button" data-tooltip="History">
-                          <i className="history icon" />
-                        </div>
-                      </a>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">Service:</Table.Cell>
-                    <Table.Cell>DOCSIS</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Product Name:
-                    </Table.Cell>
-                    <Table.Cell>TDS-GOLD</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Download Speed:
-                    </Table.Cell>
-                    <Table.Cell>10 Mbps</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Upload Speed:
-                    </Table.Cell>
-                    <Table.Cell>10 Mbps</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="right aligned">
-                      Prove Type:
-                    </Table.Cell>
-                    <Table.Cell>100.10</Table.Cell>
-                  </Table.Row>
-                </table>
-                <Divider />
-                <Info1 />
-                <Divider />
-                <Info2 />
-              </Card.Description>
-            </Card.Content>
-          </Card>
-        </Card.Group>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
-);
+// const CardGroups = () => (
+//   <Grid columns={2}>
+//     <Grid.Row>
+//       <Grid.Column>
+//         <Card.Group>
+//           <Card fluid>
+//             <Card.Content>
+//               <Image floated="right" size="small" src="/img/cmts.jpg" />
+//               <Card.Header>
+//                 CMTS Health
+//               </Card.Header>
+//               <Card.Meta>
+//                 Last Updated : 10 Minutes ago
+//               </Card.Meta>
+//               <Card.Description>
+//                 <table className="ui compact very basic table">
+//                   <tbody>
+//                     <Table.Row>
+//                       <Table.Cell className="right aligned">Port:</Table.Cell>
+//                       <Table.Cell>C/U2/7.0</Table.Cell>
+//                     </Table.Row>
+//                     <Table.Row>
+//                       <Table.Cell className="right aligned">
+//                         Fiber Node:
+//                       </Table.Cell>
+//                       <Table.Cell>3</Table.Cell>
+//                     </Table.Row>
+//                     <Table.Row>
+//                       <Table.Cell className="right aligned">
+//                         Port Capacity:
+//                       </Table.Cell>
+//                       <Table.Cell className="positive">80% </Table.Cell>
+//                     </Table.Row>
+//                     <Table.Row>
+//                       <Table.Cell className="right aligned">
+//                         Online Percent
+//                       </Table.Cell>
+//                       <Table.Cell>100%</Table.Cell>
+//                     </Table.Row>
+//                   </tbody>
+//                 </table>
+//               </Card.Description>
+//               <Divider />
+//               <b>Info 1</b>
+//               <Info1 />
+//               <Divider />
+//               <b>Info 2</b>
+//               <Info2 />
+//             </Card.Content>
+//           </Card>
+//         </Card.Group>
+//       </Grid.Column>
+//       <Grid.Column>
+//         <Card.Group>
+//           <Card fluid>
+//             <Card.Content>
+//               <Image floated="right" size="mini" src="/img/modem.jpg" />
+//               <Card.Header>
+//                 Modem-X Health
+//               </Card.Header>
+//               <Card.Meta>
+//                 Last Updated : 8 Minutes ago
+//               </Card.Meta>
+//               <Card.Description>
+//                 <table className="ui compact very basic table">
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Equipment Type:
+//                     </Table.Cell>
+//                     <Table.Cell>Cable Modem </Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Mac Address:
+//                     </Table.Cell>
+//                     <Table.Cell>
+//                       <a href="Filters/filter_cpe.html">AA:BB:CC:DD:EE:FF</a>
+//                     </Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       IP Address:
+//                     </Table.Cell>
+//                     <Table.Cell>
+//                       <a href="Filters/filter_cpe.html">60.10.208.10 </a>
+//                       <a href="Filters/filter_cpe.html">
+//                         <div className="ui icon button" data-tooltip="History">
+//                           <i className="history icon" />
+//                         </div>
+//                       </a>
+//                     </Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">Service:</Table.Cell>
+//                     <Table.Cell>DOCSIS</Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Product Name:
+//                     </Table.Cell>
+//                     <Table.Cell>TDS-GOLD</Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Download Speed:
+//                     </Table.Cell>
+//                     <Table.Cell>10 Mbps</Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Upload Speed:
+//                     </Table.Cell>
+//                     <Table.Cell>10 Mbps</Table.Cell>
+//                   </Table.Row>
+//                   <Table.Row>
+//                     <Table.Cell className="right aligned">
+//                       Prove Type:
+//                     </Table.Cell>
+//                     <Table.Cell>100.10</Table.Cell>
+//                   </Table.Row>
+//                 </table>
+//                 <Divider />
+//                 <Info1 />
+//                 <Divider />
+//                 <Info2 />
+//               </Card.Description>
+//             </Card.Content>
+//           </Card>
+//         </Card.Group>
+//       </Grid.Column>
+//     </Grid.Row>
+//   </Grid>
+// );
 
-const panels = [
-  {
-    key: "2",
-    title: "CMTS-01",
-    content: <CardGroups />
-  },
-  {
-    key: "3",
-    title: "CMTS-02",
-    content: <CardGroups />
-  }
-];
+// const panels = [
+//   {
+//     key: "2",
+//     title: "CMTS-01",
+//     content: <CardGroups />
+//   },
+//   {
+//     key: "3",
+//     title: "CMTS-02",
+//     content: <CardGroups />
+//   }
+// ];
 
 export default class SubscriberOverview extends Component {
   constructor(props) {
