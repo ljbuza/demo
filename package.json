@@ -36,6 +36,7 @@
     "semantic-ui-react": "^0.68.2"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {
