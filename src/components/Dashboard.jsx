@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  // Segment,
-  Card,
-  Message,
-  Grid,
-  List,
-  // Link,
-  Icon
-} from "semantic-ui-react";
+import { Container, Card, Message, Grid, List, Icon } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import Header from "./Header";
 import tableData from "../data/DashboardData.js";
