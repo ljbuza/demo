@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import { Image } from 'semantic-ui-react';
-import BarChart from "./BarChart";
+// import BarChart from "./BarChart";
 
 export default class MapNetwork extends Component {
   // constructor(props) {
@@ -10,7 +10,7 @@ export default class MapNetwork extends Component {
   render() {
     return (
       <div>
-        <BarChart data={[5, 10, 1, 3]} size={[500, 500]} />
+        {/* <BarChart data={[5, 10, 1, 3]} size={[500, 500]} /> */}
         {/* {this.props.childrenData.map(child => (
           <Child
             key={child.childNumber}

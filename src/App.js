@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import DataBrowser from './components/DataBrowser';
 
-import DocsisMaintenance from './docsisComponents/DocsisMaintenance';
+// import DocsisMaintenance from './docsisComponents/DocsisMaintenance';
 
 import TopFixedMenu from './components/TopFixedMenu';
 import '../public/css/main.css';
@@ -17,7 +17,7 @@ const App = () => (
       <div>
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/databrowser" component={DataBrowser} />
-        <Route path="/docsismaintenance" component={DocsisMaintenance} />
+        {/* <Route path="/docsismaintenance" component={DocsisMaintenance} /> */}
       </div>
     </div>
   </Router>

@@ -16,7 +16,7 @@ import Map from "./Map";
 import MapNetwork from "./MapNetwork";
 import SecondaryMenu from "./SecondaryMenu";
 import SideMenuMap from "./SideMenuMap";
-import tableData from "../data/databrowserData.json";
+// import tableData from "../data/databrowserData.json";
 import DataBrowserStore from "../stores/DataBrowserStore";
 
 const routes = [
@@ -121,7 +121,7 @@ const routes = [
     path: "/databrowser/alerts",
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
-    sidemenu: () => <SideMenuAlerts />,
+    sidemenu: () => <SideMenuAlerts store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="alertsMenu" />
   },
   {
@@ -145,14 +145,14 @@ const DataBrowser = observer(
     // @observer class DataBrowser extends Component {
     constructor(props) {
       super(props);
-      this.handleChange = this.handleChange.bind(this);
-      this.handleClearForm = this.handleClearForm.bind(this);
-      this.state = {
-        match: props.match,
-        filters: {},
-        data: [],
-        usedColumns: []
-      };
+      // this.handleChange = this.handleChange.bind(this);
+      // this.handleClearForm = this.handleClearForm.bind(this);
+      // this.state = {
+      //   match: props.match,
+      //   filters: {},
+      //   data: [],
+      //   usedColumns: []
+      // };
     }
 
     // loadData() {
@@ -164,20 +164,20 @@ const DataBrowser = observer(
     //   });
     // }
 
-    componentWillMount() {
-      this.setState({
-        data: tableData
-      });
-      // fetch("../data/databrowserData.json").then(res => res.json()).then(data => {
-      //   console.log("data found: ", data);
-      //   this.setState({
-      //     data: data
-      // filters: {}
-    }
+    // componentWillMount() {
+    //   this.setState({
+    //     data: tableData
+    //   });
+    //   // fetch("../data/databrowserData.json").then(res => res.json()).then(data => {
+    //   console.log("data found: ", data);
+    //   this.setState({
+    //     data: data
+    // filters: {}
+    // }
 
-    handleClearForm() {
-      this.setState({ filters: {} });
-    }
+    // handleClearForm() {
+    //   this.setState({ filters: {} });
+    // }
 
     handleChange = (evt, { name, value }) => {
       const filters = this.state.filters;
@@ -221,18 +221,25 @@ const DataBrowser = observer(
                         render={props => <div />}
                       />
                       <Route
-                        path="/"
+                        path="/databrowser/network-*"
                         render={props => <SideMenu store={DataBrowserStore} />}
                       />
+                      <Route
+                        exact
+                        path="/databrowser/alerts"
+                        render={props => (
+                          <SideMenuAlerts store={DataBrowserStore} />
+                        )}
+                      />
                     </Switch>
-                    {/*{routes.map((route, index) => (
+                    {/* {routes.map((route, index) => (
                       <Route
                         key={index}
                         path={route.path}
                         exact={route.exact}
                         component={route.sidemenu()}
                       />
-                    ))}*/}
+                    ))} */}
                   </div>
                   <div className="thirteen wide column">
                     <div className="ui vertical basic segment">
@@ -240,7 +247,11 @@ const DataBrowser = observer(
                         exact
                         path="/databrowser/network-cmts"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="cmts" />
+                          <DbTable
+                            location={location}
+                            store={DataBrowserStore}
+                            view="cmts"
+                          />
                         )}
                       />
                       <Route

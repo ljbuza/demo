@@ -23,6 +23,10 @@ const DbTable = observer(
     //   this.props.store.section = this.props.section;
     // };
 
+    componentWillMount() {
+      this.props.store.fetchData(this.props.view);
+    }
+
     handleColumnChoice = evt => {
       //   const { columns, usedColumns } = this.props.store;
       //   const columnChosen = evt.target.innerHTML;
@@ -119,7 +123,7 @@ const DbTable = observer(
       //   this.props.store.filters
       // );
       // const view = 'mac domains';
-      const view = "fiber nodes";
+      const view = this.props.view;
 
       const findLevel = (data, view, level) => {
         let newData = [];
@@ -189,7 +193,9 @@ const DbTable = observer(
       // console.log('headers:', td_headers.join(', '));
       // console.log('rows:', rows);
 
-      const headers = Object.keys(filteredData[this.props.view][0]);
+      const headers = Object.keys(
+        this.props.store.filteredData[this.props.view][0]
+      );
 
       if (1 != 1) {
         return <div>is loading...</div>;
@@ -252,7 +258,9 @@ const DbTable = observer(
                 placeholder="filter..."
               />
             </Table.Cell>*/}
-                {filteredData[this.props.view].map((rows, index) => (
+                {this.props.store.filteredData[
+                  this.props.view
+                ].map((rows, index) => (
                   <Table.Row key={index}>
                     {Object.values(rows).map((cell, index) => (
                       <Table.Cell key={index}>{cell}</Table.Cell>

@@ -1,32 +1,19 @@
 import _ from 'lodash';
-// import { observable, computed, action, autorun } from 'mobx';
 import { action } from 'mobx';
-import tableData from '../data/databrowserData.json';
-// import tableData2 from "../data/databrowserTreeData.json";
-import tableData2 from '../data/databrowserTreeData2.json';
+import tableData from '../data/databrowserTreeData.json';
+import alertsData from '../data/alertsData.json';
 import { toJS, extendObservable } from 'mobx';
 
 export class DataBrowserStore {
   constructor() {
     extendObservable(this, {
-      // transportLayer,
       direction: null,
       sortColumn: null,
       // @observable section = null;
       rawdata: [],
-      data: tableData2,
+      data: tableData,
       filters: {},
       isLoading: true,
-
-      // constructor(transportLayer) {
-      //   // this.authorStore = authorStore; // Store that can resolve authors for us
-      //   this.transportLayer = transportLayer; // Thing that can make server requests for us
-      //   // this.transportLayer.onReceiveTodoUpdate(updatedTodo =>
-      //   //   this.updateTodoFromServer(updatedTodo)
-      //   // );
-      //   this.loadtableData();
-      //   this.rawdata = Object.assign({}, this.data);
-      // }
 
       sort: action(function (clickedColumn) {
         if (this.sortColumn !== clickedColumn) {
@@ -43,14 +30,14 @@ export class DataBrowserStore {
       }),
 
       addFilter: action.bound(function (evt, filter) {
-        this.loadtableData();
+        this.fetchData();
         // console.log('adding filter', filter.name);
         const section = filter.name.substring(0, filter.name.indexOf('-'));
         this.filters[filter.name] = filter.value;
       }),
 
       get usedColumns() {
-        return Object.keys(this.filteredData.cmts[0]);
+        return Object.keys(this.filteredData);
       },
 
       get sections() {
@@ -59,15 +46,15 @@ export class DataBrowserStore {
 
       get options() {
         let fieldOptions = {};
-        const sections = Object.keys(this.data);
+        const sections = Object.keys(this.filteredData);
         for (let section of sections) {
           fieldOptions[section] = {};
-          let fieldNames = Object.keys(this.data[section][0]);
+          let fieldNames = Object.keys(this.filteredData[section][0]);
           for (let field of fieldNames) {
             fieldOptions[section][field] = [];
           }
 
-          this.data[section].map((row) => {
+          this.filteredData[section].map((row) => {
             for (let field of Object.keys(row)) {
               if (field !== 'parents') {
                 let value = String(row[field]);
@@ -171,14 +158,18 @@ export class DataBrowserStore {
         return fdata;
       },
 
-      loadtableData: action(function () {
+      fetchData: action(function (view) {
         this.isLoading = true;
         // this.transportLayer.fetchTodos().then(fetchedTodos => {
         //   fetchedTodos.forEach(json => this.updateTodoFromServer(json));
         //   this.isLoading = false;
         // });
         // this.data = tableData[this.view];
-        this.data = tableData2;
+        if (view === 'alerts') {
+          this.data = alertsData;
+        } else {
+          this.data = tableData;
+        }
         // this.td = tableData2;
         this.isLoading = false;
         // return this.tableData;

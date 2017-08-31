@@ -1,0 +1,32 @@
+{
+  "alerts": [
+    {
+      "Status": "Red",
+      "Equipment": "CMTS-2",
+      "Last Updated": "10 minutes ago",
+      "Field": "Port Capacity",
+      "Value": "89%"
+    },
+    {
+      "Status": "Yellow",
+      "Equipment": "CMTS-1",
+      "Last Updated": "4 minutes ago",
+      "Field": "Port Capacity",
+      "Value": "89%"
+    },
+    {
+      "Status": "Red",
+      "Equipment": "CMTS-3",
+      "Last Updated": "1 hour ago",
+      "Field": "Port Capacity",
+      "Value": "89%"
+    },
+    {
+      "Status": "Red",
+      "Equipment": "CMTS-5",
+      "Last Updated": "1 hour ago",
+      "Field": "Port Capacity",
+      "Value": "89%"
+    }
+  ]
+}
