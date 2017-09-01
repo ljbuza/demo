@@ -23,7 +23,7 @@ const DbTable = observer(
     //   this.props.store.section = this.props.section;
     // };
 
-    componentWillMount() {
+    componentDidMount() {
       this.props.store.fetchData(this.props.view);
     }
 

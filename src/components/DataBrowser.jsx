@@ -18,6 +18,9 @@ import SecondaryMenu from "./SecondaryMenu";
 import SideMenuMap from "./SideMenuMap";
 // import tableData from "../data/databrowserData.json";
 import DataBrowserStore from "../stores/DataBrowserStore";
+import AlertBrowserStore from "../stores/AlertBrowserStore";
+import EquipBrowserStore from "../stores/EquipBrowserStore";
+import OrderBrowserStore from "../stores/OrderBrowserStore";
 
 const routes = [
   {
@@ -27,14 +30,14 @@ const routes = [
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    sidemenu: () => <SideMenu />
+    sidemenu: () => <SideMenu store={DataBrowserStore} />
   },
   {
     path: "/databrowser/network-cmts",
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    sidemenu: () => <SideMenu />,
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
   },
   {
@@ -42,7 +45,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    sidemenu: () => <SideMenu />,
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
   },
   {
@@ -50,7 +53,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    sidemenu: () => <SideMenu />,
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
   },
   {
@@ -58,7 +61,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    sidemenu: () => <SideMenu />,
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
   },
   {
@@ -66,7 +69,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
-    sidemenu: () => <SideMenu />,
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="networkMenu" />
   },
   {
@@ -74,7 +77,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
-    sidemenu: () => <SideMenuEquip />,
+    sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
   },
   {
@@ -82,7 +85,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
-    sidemenu: () => <SideMenuEquip />,
+    sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
   },
   {
@@ -90,7 +93,7 @@ const routes = [
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
-    sidemenu: () => <SideMenuEquip />,
+    sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
   },
   {
@@ -121,7 +124,7 @@ const routes = [
     path: "/databrowser/alerts",
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
-    sidemenu: () => <SideMenuAlerts store={DataBrowserStore} />,
+    sidemenu: () => <SideMenuAlerts store={AlertBrowserStore} />,
     secondarymenu: () => <SecondaryMenu section="alertsMenu" />
   },
   {
@@ -214,32 +217,28 @@ const DataBrowser = observer(
               <div className="ui two column grid">
                 <div className="stretched row">
                   <div className="three wide column">
-                    <Switch>
-                      <Route
-                        exact
-                        path="/databrowser/subscribers/:id"
-                        render={props => <div />}
-                      />
-                      <Route
-                        path="/databrowser/network-*"
-                        render={props => <SideMenu store={DataBrowserStore} />}
-                      />
-                      <Route
-                        exact
-                        path="/databrowser/alerts"
-                        render={props => (
-                          <SideMenuAlerts store={DataBrowserStore} />
-                        )}
-                      />
-                    </Switch>
-                    {/* {routes.map((route, index) => (
+                    {/* <Route
+                      exact
+                      path="/databrowser/subscribers/:id"
+                      render={props => <div />}
+                    />
+                    <Route
+                      path="/databrowser/network-*"
+                      render={props => <SideMenu store={DataBrowserStore} />}
+                    />
+                    <Route
+                      exact
+                      path="/databrowser/alerts"
+                      render={props => <SideMenuAlerts />}
+                    /> */}
+                    {routes.map((route, index) => (
                       <Route
                         key={index}
                         path={route.path}
                         exact={route.exact}
-                        component={route.sidemenu()}
+                        component={route.sidemenu}
                       />
-                    ))} */}
+                    ))}
                   </div>
                   <div className="thirteen wide column">
                     <div className="ui vertical basic segment">
@@ -298,21 +297,21 @@ const DataBrowser = observer(
                         exact
                         path="/databrowser/equip-cmts"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="equipCmts" />
+                          <DbTable store={EquipBrowserStore} view="cmts" />
                         )}
                       />
                       <Route
                         exact
                         path="/databrowser/equip-modem"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="equipModem" />
+                          <DbTable store={EquipBrowserStore} view="modem" />
                         )}
                       />
                       <Route
                         exact
                         path="/databrowser/equip-mta"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="equipMta" />
+                          <DbTable store={EquipBrowserStore} view="mta" />
                         )}
                       />
                       <Route
@@ -324,14 +323,14 @@ const DataBrowser = observer(
                         exact
                         path="/databrowser/orders"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="orders" />
+                          <DbTable store={OrderBrowserStore} view="orders" />
                         )}
                       />
                       <Route
                         exact
                         path="/databrowser/alerts"
                         render={props => (
-                          <DbTable store={DataBrowserStore} view="alerts" />
+                          <DbTable store={AlertBrowserStore} view="alerts" />
                         )}
                       />
                       <Route exact path="/databrowser/map" component={Map} />

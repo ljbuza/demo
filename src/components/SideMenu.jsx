@@ -79,9 +79,6 @@ const SideMenu = observer(
         }
       }
 
-      // if (this.props.store.isLoading) {
-      //   return <div>is loading...</div>;
-      // } else {
       return (
         <div className="ui basic segment">
           <Menu compact text vertical>

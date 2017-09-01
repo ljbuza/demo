@@ -1,0 +1,123 @@
+  {
+    "cmts": [
+      {
+        "name": "cmts-1",
+        "ip address": "12.32.54.568",
+        "model": "alcatel",
+        "software version": "2.0",
+        "cpu": "80%",
+        "memory": "70%",
+        "temp": "50",
+        "uptime": "8 hours"
+      },
+      {
+        "name": "cmts-2",
+        "ip": "12.32.54.568",
+        "model": "alcatel",
+        "software": "2.0",
+        "cpu": "70%",
+        "memory": "70%",
+        "temp": "60",
+        "uptime": "18 hours"
+      },
+      {
+        "name": "cmts-3",
+        "ip": "120.72.4.568",
+        "model": "alcatel",
+        "software": "2.0",
+        "cpu": "70%",
+        "memory": "70%",
+        "temp": "60",
+        "uptime": "143 hours"
+      },
+      {
+        "name": "cmts-4",
+        "ip": "12.32.54.8",
+        "model": "alcatel",
+        "software": "2.0",
+        "cpu": "70%",
+        "memory": "70%",
+        "temp": "60",
+        "uptime": "27 hours"
+      }
+    ],
+    "modem": [
+      {
+        "name": "modem-1",
+        "mac": "mac-1",
+        "model": "surfboard",
+        "vendor": "arris",
+        "software version": "2.0",
+        "ip address": "12.32.54.568",
+        "configuration": "xyz"
+      },
+      {
+        "name": "modem-2",
+        "mac": "mac-1",
+        "model": "surfboard",
+        "vendor": "arris",
+        "software version": "2.0",
+        "ip address": "12.22.154.68",
+        "configuration": "xyz"
+      },
+      {
+        "name": "modem-3",
+        "mac": "mac-1",
+        "model": "nighthawk",
+        "vendor": "netgear",
+        "software version": "2.0",
+        "ip address": "126.32.54.8",
+        "configuration": "xyz"
+      },
+      {
+        "name": "modem-4",
+        "mac": "mac-1",
+        "model": "ac1200",
+        "vendor": "netgear",
+        "software version": "1.0",
+        "ip address": "12.32.54.568",
+        "configuration": "xyz"
+      },
+      {
+        "name": "modem-5",
+        "mac": "mac-1",
+        "model": "sb6183",
+        "vendor": "arris",
+        "software version": "1.2",
+        "ip address": "32.132.54.5",
+        "configuration": "xyz"
+      }
+    ],
+    "mta": [
+      {
+        "name": "mta-1",
+        "ip address": "126.32.54.8",
+        "model": "alcatel",
+        "software version": "2.4",
+        "cpu": "80%",
+        "memory": "70%",
+        "temp": "50",
+        "uptime": "8 hours"
+      },
+      {
+        "name": "mta-2",
+        "ip address": "126.32.54.8",
+        "model": "motorola",
+        "software version": "2.4",
+        "cpu": "60%",
+        "memory": "20%",
+        "temp": "30",
+        "uptime": "2 hours"
+      },
+      {
+        "name": "mta-3",
+        "ip address": "26.32.154.1",
+        "model": "motorola",
+        "software version": "2.4",
+        "cpu": "60%",
+        "memory": "20%",
+        "temp": "30",
+        "uptime": "203 hours"
+      }
+    ]
+  }
