@@ -1,162 +1,161 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import { observer } from "mobx-react";
-import { extendObservable } from "mobx";
-import { withRouter } from "react-router";
-import Header from "./Header";
-import SideMenu from "./SideMenu";
-import SideMenuEquip from "./SideMenuEquip";
-import SideMenuSubscr from "./SideMenuSubscr";
-import SideMenuOrders from "./SideMenuOrders";
-import SideMenuAlerts from "./SideMenuAlerts";
-import DbTable from "./DbTable";
-import Subscriber from "./Subscriber";
-import SubscriberOverview from "./SubscriberOverview";
-import Map from "./Map";
-import MapNetwork from "./MapNetwork";
-import SecondaryMenu from "./SecondaryMenu";
-import SideMenuMap from "./SideMenuMap";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import { withRouter } from 'react-router';
+import Header from './Header';
+import SideMenu from './SideMenu';
+import SideMenuEquip from './SideMenuEquip';
+import SideMenuSubscr from './SideMenuSubscr';
+import SideMenuOrders from './SideMenuOrders';
+import SideMenuAlerts from './SideMenuAlerts';
+import DbTable from './DbTable';
+import Subscriber from './Subscriber';
+import SubscriberOverview from './SubscriberOverview';
+import Map from './Map';
+import MapNetwork from './MapNetwork';
+import SecondaryMenu from './SecondaryMenu';
+import SideMenuMap from './SideMenuMap';
 // import tableData from "../data/databrowserData.json";
-import DataBrowserStore from "../stores/DataBrowserStore";
-import AlertBrowserStore from "../stores/AlertBrowserStore";
-import EquipBrowserStore from "../stores/EquipBrowserStore";
-import OrderBrowserStore from "../stores/OrderBrowserStore";
+import DataBrowserStore from '../stores/DataBrowserStore';
+import AlertBrowserStore from '../stores/AlertBrowserStore';
+import EquipBrowserStore from '../stores/EquipBrowserStore';
+import OrderBrowserStore from '../stores/OrderBrowserStore';
 
 const routes = [
   {
-    path: "/databrowser",
+    path: '/databrowser',
     exact: true,
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     secondarymenu: () => <SecondaryMenu section="networkMenu" />,
-    sidemenu: () => <SideMenu store={DataBrowserStore} />
+    sidemenu: () => <SideMenu store={DataBrowserStore} />,
   },
   {
-    path: "/databrowser/network-cmts",
+    path: '/databrowser/network-cmts',
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu store={DataBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="networkMenu" />
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
   },
   {
-    path: "/databrowser/network-mac",
+    path: '/databrowser/network-mac',
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu store={DataBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="networkMenu" />
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
   },
   {
-    path: "/databrowser/network-fiber",
+    path: '/databrowser/network-fiber',
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu store={DataBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="networkMenu" />
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
   },
   {
-    path: "/databrowser/network-mdface",
+    path: '/databrowser/network-mdface',
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu store={DataBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="networkMenu" />
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
   },
   {
-    path: "/databrowser/network-fnface",
+    path: '/databrowser/network-fnface',
     header: () => (
       <Header title="Data Browser" subtitle="Network Information" />
     ),
     sidemenu: () => <SideMenu store={DataBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="networkMenu" />
+    secondarymenu: () => <SecondaryMenu section="networkMenu" />,
   },
   {
-    path: "/databrowser/equip-cmts",
+    path: '/databrowser/equip-cmts',
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
   },
   {
-    path: "/databrowser/equip-modem",
+    path: '/databrowser/equip-modem',
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
   },
   {
-    path: "/databrowser/equip-mta",
+    path: '/databrowser/equip-mta',
     header: () => (
       <Header title="Data Browser" subtitle="Equipment Information" />
     ),
     sidemenu: () => <SideMenuEquip store={EquipBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />
+    secondarymenu: () => <SecondaryMenu section="equipmentMenu" />,
   },
   {
-    path: "/databrowser/subscribers",
+    path: '/databrowser/subscribers',
     exact: true,
     header: () => (
       <Header title="Data Browser" subtitle="Subscriber Information" />
     ),
     sidemenu: () => <SideMenuSubscr />,
-    secondarymenu: () => <SecondaryMenu section="subscriberMenu" />
+    secondarymenu: () => <SecondaryMenu section="subscriberMenu" />,
   },
   {
-    path: "/databrowser/subscribers/:userid",
+    path: '/databrowser/subscribers/:userid',
     header: () => (
       <Header title="Noal Miles" subtitle="123 Main St, Anytown, WI" />
     ),
     sidemenu: () => <div />,
-    secondarymenu: () => <div />
+    secondarymenu: () => <div />,
   },
   {
-    path: "/databrowser/orders",
+    path: '/databrowser/orders',
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Order Information" />,
     sidemenu: () => <SideMenuOrders />,
-    secondarymenu: () => <SecondaryMenu section="orderMenu" />
+    secondarymenu: () => <SecondaryMenu section="orderMenu" />,
   },
   {
-    path: "/databrowser/alerts",
+    path: '/databrowser/alerts',
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Alerts Information" />,
     sidemenu: () => <SideMenuAlerts store={AlertBrowserStore} />,
-    secondarymenu: () => <SecondaryMenu section="alertsMenu" />
+    secondarymenu: () => <SecondaryMenu section="alertsMenu" />,
   },
   {
-    path: "/databrowser/map",
+    path: '/databrowser/map',
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
-    secondarymenu: () => <SecondaryMenu section="mapMenu" />
+    secondarymenu: () => <SecondaryMenu section="mapMenu" />,
   },
   {
-    path: "/databrowser/map-network",
+    path: '/databrowser/map-network',
     exact: true,
     header: () => <Header title="Data Browser" subtitle="Map Information" />,
     sidemenu: () => <SideMenuMap />,
-    secondarymenu: () => <SecondaryMenu section="mapMenu" />
-  }
+    secondarymenu: () => <SecondaryMenu section="mapMenu" />,
+  },
 ];
 
 const DataBrowser = observer(
-  class DataBrowser extends React.Component {
+  class DataBrowser extends Component {
     // @observer class DataBrowser extends Component {
-    constructor(props) {
-      super(props);
-      // this.handleChange = this.handleChange.bind(this);
-      // this.handleClearForm = this.handleClearForm.bind(this);
-      // this.state = {
-      //   match: props.match,
-      //   filters: {},
-      //   data: [],
-      //   usedColumns: []
-      // };
-    }
+    // constructor(props) {
+    // super(props);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleClearForm = this.handleClearForm.bind(this);
+    // this.state = {
+    //   match: props.match,
+    //   filters: {},
+    //   data: [],
+    //   usedColumns: []
+    // };
+    // }
 
     // loadData() {
     //   fetch("data.json").then(response => response.json()).then(json => {
@@ -182,11 +181,11 @@ const DataBrowser = observer(
     //   this.setState({ filters: {} });
     // }
 
-    handleChange = (evt, { name, value }) => {
-      const filters = this.state.filters;
-      filters[name] = value;
-      this.setState({ filters: filters });
-    };
+    // handleChange = (evt, { name, value }) => {
+    //   const filters = this.state.filters;
+    //   filters[name] = value;
+    //   this.setState({ filters: filters });
+    // };
 
     render() {
       // const { data, filters } = this.state;
@@ -348,7 +347,7 @@ const DataBrowser = observer(
         </div>
       );
     }
-  }
+  },
 );
 
 export default withRouter(DataBrowser);

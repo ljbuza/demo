@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { action } from 'mobx';
 import equipData from '../data/equipData.json';
-import { toJS, extendObservable } from 'mobx';
+import { extendObservable } from 'mobx';
 
 export class EquipBrowserStore {
   constructor() {
@@ -31,7 +31,7 @@ export class EquipBrowserStore {
       addFilter: action.bound(function (evt, filter) {
         this.fetchData();
         // console.log('adding filter', filter.name);
-        const section = filter.name.substring(0, filter.name.indexOf('-'));
+        // const section = filter.name.substring(0, filter.name.indexOf('-'));
         this.filters[filter.name] = filter.value;
       }),
 
@@ -53,11 +53,11 @@ export class EquipBrowserStore {
             fieldOptions[section][field] = [];
           }
 
-          this.filteredData[section].map((row) => {
+          this.filteredData[section].forEach((row) => {
             for (let field of Object.keys(row)) {
               if (field !== 'parents') {
                 let value = String(row[field]);
-                let foo = toJS(row);
+                // let foo = toJS(row);
                 fieldOptions[section][field].push({
                   key: value.toLowerCase(),
                   text: value,
@@ -80,7 +80,7 @@ export class EquipBrowserStore {
           return fdata;
         }
 
-        sections.map((section, index) => {
+        sections.forEach((section) => {
           let pulls = [];
           // console.log(section);
           if (fdata[section].length > 0) {
@@ -104,11 +104,11 @@ export class EquipBrowserStore {
           }
         });
 
-        sections.map((section, sindex) => {
+        sections.forEach((section) => {
           let pulls = [];
-          fdata[section].map((row, rindex) => {
+          fdata[section].forEach((row) => {
             if (row.parents) {
-              row.parents.map((parentKey, index) => {
+              row.parents.forEach((parentKey) => {
                 let parentSection = parentKey.substring(
                   0,
                   parentKey.indexOf('-'),
@@ -118,7 +118,7 @@ export class EquipBrowserStore {
                 );
                 let parentNames = [];
                 try {
-                  fdata[parentSection].map((row) => {
+                  fdata[parentSection].forEach((row) => {
                     parentNames.push(row.name);
                   });
                   if (!parentNames.includes(parentValue)) {

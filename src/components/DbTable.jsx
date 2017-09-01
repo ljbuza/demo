@@ -9,7 +9,7 @@ import {
   Popup,
   Label
 } from "semantic-ui-react";
-import { observer, action } from "mobx-react";
+import { observer } from "mobx-react";
 import { withRouter } from "react-router";
 
 const DbTable = observer(
@@ -47,7 +47,7 @@ const DbTable = observer(
       let data = this.props.store.filteredData;
       if (this.props.store.sortColumn !== clickedColumn) {
         // this.sortColumn = clickedColumn;
-        const direction = "ascending";
+        // const direction = "ascending";
         // this.data = _.sortBy(this.data, [clickedColumn], ["asc"]);
         return _.sortBy(data, section => section[clickedColumn]);
       } else {
@@ -107,14 +107,7 @@ const DbTable = observer(
     // };
 
     render() {
-      const {
-        data,
-        sortColumn,
-        columns,
-        usedColumns,
-        direction,
-        filteredData
-      } = this.props.store;
+      const { sortColumn, direction, filteredData } = this.props.store;
 
       // this.props.store.filterData();
       // const rowNames = Object.keys(data[0]);
@@ -123,7 +116,7 @@ const DbTable = observer(
       //   this.props.store.filters
       // );
       // const view = 'mac domains';
-      const view = this.props.view;
+      // const view = this.props.view;
 
       const findLevel = (data, view, level) => {
         let newData = [];
@@ -197,34 +190,31 @@ const DbTable = observer(
         this.props.store.filteredData[this.props.view][0]
       );
 
-      if (1 != 1) {
-        return <div>is loading...</div>;
-      } else {
-        return (
-          <div>
-            <Table striped selectable sortable size="small" compact>
-              <Table.Header>
-                <Table.Row>
-                  {headers.map((cellname, i) => (
-                    <Table.HeaderCell
-                      key={i}
-                      sorted={sortColumn === { cellname } ? direction : null}
-                      onClick={this.handleSort(cellname)}
-                    >
-                      {cellname}
-                      {i + 1 === headers.length
-                        ? <Label attached="top right">
-                            <ColumnSelect
-                              rowNames={headers}
-                              usedColumns={headers}
-                              handleColumnChoice={this.handleColumnChoice}
-                            />
-                          </Label>
-                        : ""}
+      return (
+        <div>
+          <Table striped selectable sortable size="small" compact>
+            <Table.Header>
+              <Table.Row>
+                {headers.map((cellname, i) => (
+                  <Table.HeaderCell
+                    key={i}
+                    sorted={sortColumn === { cellname } ? direction : null}
+                    onClick={this.handleSort(cellname)}
+                  >
+                    {cellname}
+                    {i + 1 === headers.length
+                      ? <Label attached="top right">
+                          <ColumnSelect
+                            rowNames={headers}
+                            usedColumns={headers}
+                            handleColumnChoice={this.handleColumnChoice}
+                          />
+                        </Label>
+                      : ""}
 
-                    </Table.HeaderCell>
-                  ))}
-                  {/*{filteredData[this.props.view]
+                  </Table.HeaderCell>
+                ))}
+                {/*{filteredData[this.props.view]
                   ? Object.keys(
                       filteredData[this.props.view][0]
                     ).map((cellname, index) => (
@@ -247,55 +237,54 @@ const DbTable = observer(
                       </Table.HeaderCell>
                     ))
                   : ""}*/}
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
 
-                {/*<Table.Cell>
+              {/*<Table.Cell>
               <Input
                 style={{ width: "60px" }}
                 size="mini"
                 placeholder="filter..."
               />
             </Table.Cell>*/}
-                {this.props.store.filteredData[
-                  this.props.view
-                ].map((rows, index) => (
-                  <Table.Row key={index}>
-                    {Object.values(rows).map((cell, index) => (
-                      <Table.Cell key={index}>{cell}</Table.Cell>
-                    ))}
-                  </Table.Row>
-                ))}
-              </Table.Body>
-              <Table.Footer>
-                <Table.Row>
-                  <Table.HeaderCell colSpan="10">
-                    {/*<Pagination
+              {this.props.store.filteredData[
+                this.props.view
+              ].map((rows, index) => (
+                <Table.Row key={index}>
+                  {Object.values(rows).map((cell, index) => (
+                    <Table.Cell key={index}>{cell}</Table.Cell>
+                  ))}
+                </Table.Row>
+              ))}
+            </Table.Body>
+            <Table.Footer>
+              <Table.Row>
+                <Table.HeaderCell colSpan="10">
+                  {/*<Pagination
               items={filteredData}
               onChangePage={this.handlePageChange}
             />*/}
-                    <Menu size="mini" floated="right" pagination>
-                      <Menu.Item as="a" icon>
-                        <Icon name="left chevron" />
-                      </Menu.Item>
-                      {[...Array(filteredData[this.props.view].length)].map(
-                        (x, i) =>
-                          i > 0 && i % 2 === 0
-                            ? <Menu.Item key={i}>{i}</Menu.Item>
-                            : ""
-                      )}
-                      <Menu.Item as="a" icon>
-                        <Icon name="right chevron" />
-                      </Menu.Item>
-                    </Menu>
-                  </Table.HeaderCell>
-                </Table.Row>
-              </Table.Footer>
-            </Table>
-          </div>
-        );
-      }
+                  <Menu size="mini" floated="right" pagination>
+                    <Menu.Item as="a" icon>
+                      <Icon name="left chevron" />
+                    </Menu.Item>
+                    {[...Array(filteredData[this.props.view].length)].map(
+                      (x, i) =>
+                        i > 0 && i % 2 === 0
+                          ? <Menu.Item key={i}>{i}</Menu.Item>
+                          : ""
+                    )}
+                    <Menu.Item as="a" icon>
+                      <Icon name="right chevron" />
+                    </Menu.Item>
+                  </Menu>
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          </Table>
+        </div>
+      );
     }
   }
 );
