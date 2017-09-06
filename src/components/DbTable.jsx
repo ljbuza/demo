@@ -1,5 +1,5 @@
-import _ from "lodash";
-import React, { Component } from "react";
+import _ from 'lodash';
+import React, { Component } from 'react';
 import {
   Checkbox,
   Table,
@@ -7,10 +7,10 @@ import {
   Menu,
   Icon,
   Popup,
-  Label
-} from "semantic-ui-react";
-import { observer } from "mobx-react";
-import { withRouter } from "react-router";
+  Label,
+} from 'semantic-ui-react';
+import { observer } from 'mobx-react';
+import { withRouter } from 'react-router';
 
 const DbTable = observer(
   class DbTable extends Component {
@@ -27,7 +27,8 @@ const DbTable = observer(
       this.props.store.fetchData(this.props.view);
     }
 
-    handleColumnChoice = evt => {
+    handleColumnChoice() {
+      // handleColumnChoice = evt => {
       //   const { columns, usedColumns } = this.props.store;
       //   const columnChosen = evt.target.innerHTML;
       //   if (usedColumns.indexOf(columnChosen) !== -1) {
@@ -41,37 +42,38 @@ const DbTable = observer(
       //     //     usedColumns: usedColumns
       //     //   });
       //   }
-    };
+    }
 
-    handleSort = clickedColumn => () => {
-      let data = this.props.store.filteredData;
-      if (this.props.store.sortColumn !== clickedColumn) {
-        // this.sortColumn = clickedColumn;
-        // const direction = "ascending";
-        // this.data = _.sortBy(this.data, [clickedColumn], ["asc"]);
-        return _.sortBy(data, section => section[clickedColumn]);
-      } else {
-        // return this.props.store.filteredData.reverse();
-        this.direction = this.direction === "ascending"
-          ? "decending"
-          : "ascending";
-      }
+    // handleSort = clickedColumn => {
+    //   // handleSort = clickedColumn => () => {
+    //   let data = this.props.store.filteredData;
+    //   if (this.props.store.sortColumn !== clickedColumn) {
+    //     // this.sortColumn = clickedColumn;
+    //     // const direction = "ascending";
+    //     // this.data = _.sortBy(this.data, [clickedColumn], ["asc"]);
+    //     return _.sortBy(data, section => section[clickedColumn]);
+    //   } else {
+    //     // return this.props.store.filteredData.reverse();
+    //     this.direction = this.direction === 'ascending'
+    //       ? 'decending'
+    //       : 'ascending';
+    //   }
 
-      // this.props.store.sort(clickedColumn.cellname);
-      // const { data, sortColumn, direction } = this.props.store;
-      // if (sortColumn !== clickedColumn.cellname) {
-      // this.setState({
-      //   sortColumn: clickedColumn.cellname,
-      //   data: _.sortBy(data, [clickedColumn.cellname]),
-      //   direction: "ascending"
-      // });
-      // return;
-      // }
-      // this.setState({
-      //   data: data.reverse(),
-      //   direction: direction === "ascending" ? "decending" : "ascending"
-      // });
-    };
+    //   // this.props.store.sort(clickedColumn.cellname);
+    //   // const { data, sortColumn, direction } = this.props.store;
+    //   // if (sortColumn !== clickedColumn.cellname) {
+    //   // this.setState({
+    //   //   sortColumn: clickedColumn.cellname,
+    //   //   data: _.sortBy(data, [clickedColumn.cellname]),
+    //   //   direction: "ascending"
+    //   // });
+    //   // return;
+    //   // }
+    //   // this.setState({
+    //   //   data: data.reverse(),
+    //   //   direction: direction === "ascending" ? "decending" : "ascending"
+    //   // });
+    // };
 
     // filter() {
     //   this.props.store.view = this.props.view;
@@ -130,7 +132,7 @@ const DbTable = observer(
         if (Array.isArray(data)) {
           data.forEach((obj, i) => {
             for (let key in obj) {
-              if (Array.isArray(obj[key]) && typeof obj[key][0] === "object") {
+              if (Array.isArray(obj[key]) && typeof obj[key][0] === 'object') {
                 level = key;
                 obj[key].forEach((v, i) => {
                   newData.push(v);
@@ -140,7 +142,7 @@ const DbTable = observer(
           });
         } else {
           for (let key in data) {
-            if (Array.isArray(data[key]) && typeof data[key][0] === "object") {
+            if (Array.isArray(data[key]) && typeof data[key][0] === 'object') {
               level = key;
               data[key].forEach((obj, i) => {
                 newData.push(obj);
@@ -187,7 +189,7 @@ const DbTable = observer(
       // console.log('rows:', rows);
 
       const headers = Object.keys(
-        this.props.store.filteredData[this.props.view][0]
+        this.props.store.filteredData[this.props.view][0],
       );
 
       return (
@@ -197,9 +199,10 @@ const DbTable = observer(
               <Table.Row>
                 {headers.map((cellname, i) => (
                   <Table.HeaderCell
+                    name={cellname}
                     key={i}
                     sorted={sortColumn === { cellname } ? direction : null}
-                    onClick={this.handleSort(cellname)}
+                    onClick={() => this.props.store.sort(cellname)}
                   >
                     {cellname}
                     {i + 1 === headers.length
@@ -210,7 +213,7 @@ const DbTable = observer(
                             handleColumnChoice={this.handleColumnChoice}
                           />
                         </Label>
-                      : ""}
+                      : ''}
 
                   </Table.HeaderCell>
                 ))}
@@ -273,7 +276,7 @@ const DbTable = observer(
                       (x, i) =>
                         i > 0 && i % 2 === 0
                           ? <Menu.Item key={i}>{i}</Menu.Item>
-                          : ""
+                          : '',
                     )}
                     <Menu.Item as="a" icon>
                       <Icon name="right chevron" />
@@ -286,7 +289,7 @@ const DbTable = observer(
         </div>
       );
     }
-  }
+  },
 );
 export default withRouter(DbTable);
 

@@ -12,19 +12,17 @@ const SideMenuEquip = observer(
     }
 
     render() {
-      let cmtsLabel, 
-modemLabel, 
-mtaLabel;
+      let cmtsLabel, modemLabel, mtaLabel;
 
       if (Object.keys(this.props.store.filters).length) {
         let cmtsCount = 0;
         let modemCount = 0;
         let mtaCount = 0;
-        Object.keys(this.props.store.filters).map((key) => {
+        Object.keys(this.props.store.filters).map(key => {
           if (key.startsWith('cmts') && this.props.store.filters[key].length) {
             cmtsCount += 1;
           } else if (
-            key.startsWith('modems') &&
+            key.startsWith('modem') &&
             this.props.store.filters[key].length
           ) {
             modemCount += 1;
@@ -169,53 +167,59 @@ mtaLabel;
                         multiple
                         value={this.props.store.filters['modem-mac']}
                         onChange={this.props.store.addFilter}
+                        options={this.props.store.options.modem.mac}
                         placeholder="MAC"
                       />
                       <Form.Select
+                        name="modem-model"
                         label="Model"
                         multiple
-                        options={[
-                          { key: 'md-1', text: 'Surfboard', value: 'md-1' },
-                          { key: 'md-2', text: 'X11', value: 'md-2' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['modem-model']}
+                        options={this.props.store.options.modem.model}
                         placeholder="Model"
                       />
 
                       <Form.Select
+                        name="modem-vendor"
                         label="Vendor"
                         multiple
-                        options={[
-                          { key: 'fiber-1', text: 'Alcatel', value: 'fiber-1' },
-                          { key: 'fiber-2', text: 'Cirrus', value: 'fiber-2' },
-                          { key: 'fiber-3', text: 'Netgear', value: 'fiber-3' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['modem-vendor']}
+                        options={this.props.store.options.modem.vendor}
                         placeholder="Vendor"
                       />
                       <Form.Select
+                        name="modem-software version"
                         label="Software Version"
                         multiple
-                        options={[
-                          { key: '1.0', text: '1.0', value: '1.0' },
-                          { key: '2.0', text: '2.0', value: '2.0' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={
+                          this.props.store.filters['modem-software version']
+                        }
+                        options={
+                          this.props.store.options.modem['software version']
+                        }
                         placeholder="Software Version"
                       />
                       <Form.Select
+                        name="modem-ip address"
                         label="IP Address"
                         multiple
-                        options={[
-                          { key: '1', text: '12.32.54.658', value: 'alcatel' },
-                          { key: '2', text: '123.4r.54.65', value: 'alcatel' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['modem-ip address']}
+                        options={this.props.store.options.modem['ip address']}
                         placeholder="IP Address"
                       />
                       <Form.Select
+                        name="modem-configuration"
                         label="Configuration"
                         multiple
-                        options={[
-                          { key: '1.0', text: 'xyz', value: '1.0' },
-                          { key: '2.0', text: 'abc', value: '2.0' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['modem-configuration']}
+                        options={
+                          this.props.store.options.modem['configuration']
+                        }
                         placeholder="Configuration"
                       />
                     </Form>
@@ -249,42 +253,42 @@ mtaLabel;
                   <Modal.Content>
                     <Form>
                       <Form.Select
-                        label="CMTS Name"
+                        name="mta-name"
+                        label="Name"
                         multiple
-                        options={[
-                          { key: 'cmts-1', text: 'CMTS-1', value: 'cmts-1' },
-                          { key: 'cmts-2', text: 'CMTS-2', value: 'cmts-2' },
-                          { key: 'cmts-3', text: 'CMTS-3', value: 'cmts-3' },
-                          { key: 'cmts-4', text: 'CMTS-4', value: 'cmts-4' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['mta-name']}
+                        options={this.props.store.options.mta['name']}
                         placeholder="CMTS Name"
                       />
                       <Form.Select
+                        name="mta-ip address"
                         label="IP Address"
                         multiple
-                        options={[
-                          { key: '1', text: '12.32.54.658', value: 'alcatel' },
-                          { key: '2', text: '123.4r.54.65', value: 'alcatel' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['mta-ip address']}
+                        options={this.props.store.options.mta['ip address']}
                         placeholder="IP Address"
                       />
                       <Form.Select
+                        name="mta-model"
                         label="Model"
                         multiple
-                        options={[
-                          { key: '1', text: 'Alcatel', value: 'alcatel' },
-                          { key: '2', text: 'Cirrus', value: 'alcatel' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['mta-model']}
+                        options={this.props.store.options.mta['model']}
                         placeholder="Model"
                       />
 
                       <Form.Select
+                        name="mta-software version"
                         label="Software Version"
                         multiple
-                        options={[
-                          { key: '1.0', text: '1.0', value: '1.0' },
-                          { key: '2.0', text: '2.0', value: '2.0' },
-                        ]}
+                        onChange={this.props.store.addFilter}
+                        value={this.props.store.filters['mta-software version']}
+                        options={
+                          this.props.store.options.mta['software version']
+                        }
                         placeholder="Software Version"
                       />
                       <label>CPU</label>
@@ -344,7 +348,7 @@ const FilterLabel = observer(
       const section = this.props.section;
 
       if (filters && Object.keys(filters).length) {
-        Object.keys(filters).map((key) => {
+        Object.keys(filters).map(key => {
           if (key.startsWith(section) && filters[key].length) {
             labelCount += 1;
           }

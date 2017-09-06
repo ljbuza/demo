@@ -15,7 +15,6 @@ import Map from './Map';
 import MapNetwork from './MapNetwork';
 import SecondaryMenu from './SecondaryMenu';
 import SideMenuMap from './SideMenuMap';
-// import tableData from "../data/databrowserData.json";
 import DataBrowserStore from '../stores/DataBrowserStore';
 import AlertBrowserStore from '../stores/AlertBrowserStore';
 import EquipBrowserStore from '../stores/EquipBrowserStore';
@@ -316,6 +315,7 @@ const DataBrowser = observer(
                       <Route
                         exact
                         path="/databrowser/subscribers"
+                        render={props => <DbTable view="mta" />}
                         component={Subscriber}
                       />
                       <Route

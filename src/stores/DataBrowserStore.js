@@ -15,7 +15,7 @@ export class DataBrowserStore {
       filters: {},
       isLoading: true,
 
-      sort: action(function (clickedColumn) {
+      sort: action(function(evt, clickedColumn) {
         if (this.sortColumn !== clickedColumn) {
           this.sortColumn = clickedColumn;
           this.direction = 'ascending';
@@ -29,11 +29,20 @@ export class DataBrowserStore {
         }
       }),
 
-      addFilter: action.bound(function (evt, filter) {
+      addFilter: action.bound(function(evt, filter) {
         this.fetchData();
         // console.log('adding filter', filter.name);
         // const section = filter.name.substring(0, filter.name.indexOf('-'));
         this.filters[filter.name] = filter.value;
+      }),
+
+      handleClearForm: action.bound(function(evt) {
+        const section = evt.currentTarget.form.id.split('-')[0];
+        Object.keys(this.filters).forEach(filter => {
+          if (filter.startsWith(section)) {
+            this.filters[filter] = [];
+          }
+        });
       }),
 
       get usedColumns() {
@@ -45,19 +54,19 @@ export class DataBrowserStore {
       },
 
       get options() {
-        let fieldOptions = {};
+        const fieldOptions = {};
         const sections = Object.keys(this.filteredData);
-        for (let section of sections) {
+        for (const section of sections) {
           fieldOptions[section] = {};
-          let fieldNames = Object.keys(this.filteredData[section][0]);
-          for (let field of fieldNames) {
+          const fieldNames = Object.keys(this.filteredData[section][0]);
+          for (const field of fieldNames) {
             fieldOptions[section][field] = [];
           }
 
-          this.filteredData[section].forEach((row) => {
-            for (let field of Object.keys(row)) {
+          this.filteredData[section].forEach(row => {
+            for (const field of Object.keys(row)) {
               if (field !== 'parents') {
-                let value = String(row[field]);
+                const value = String(row[field]);
                 // let foo = toJS(row);
                 fieldOptions[section][field].push({
                   key: value.toLowerCase(),
@@ -81,17 +90,17 @@ export class DataBrowserStore {
           return fdata;
         }
 
-        sections.forEach((section) => {
-          let pulls = [];
+        sections.forEach(section => {
+          const pulls = [];
           // console.log(section);
           if (fdata[section].length > 0) {
             const usedColumns = Object.keys(fdata[section][0]);
-            usedColumns.forEach((usedCol) => {
+            usedColumns.forEach(usedCol => {
               const colname = usedCol;
               if (this.filters[`${section}-${colname}`]) {
-                let colfilters = this.filters[`${section}-${colname}`];
+                const colfilters = this.filters[`${section}-${colname}`];
                 if (colfilters.length > 0) {
-                  fdata[section].forEach((row) => {
+                  fdata[section].forEach(row => {
                     if (!colfilters.includes(row[colname].toLowerCase())) {
                       if (fdata[section].indexOf(row) > -1) {
                         pulls.push(fdata[section].indexOf(row));
@@ -99,27 +108,30 @@ export class DataBrowserStore {
                     }
                   });
                 }
+              } else {
+                // we need to instantiate the form value if it doesn't exist
+                this.filters[`${section}-${colname}`] = [];
               }
             });
             _.pullAt(fdata[section], pulls);
           }
         });
 
-        sections.forEach((section) => {
-          let pulls = [];
-          fdata[section].forEach((row) => {
+        sections.forEach(section => {
+          const pulls = [];
+          fdata[section].forEach(row => {
             if (row.parents) {
-              row.parents.forEach((parentKey) => {
-                let parentSection = parentKey.substring(
+              row.parents.forEach(parentKey => {
+                const parentSection = parentKey.substring(
                   0,
                   parentKey.indexOf('-'),
                 );
-                let parentValue = parentKey.substring(
+                const parentValue = parentKey.substring(
                   parentKey.indexOf('-') + 1,
                 );
-                let parentNames = [];
+                const parentNames = [];
                 try {
-                  fdata[parentSection].forEach((row) => {
+                  fdata[parentSection].forEach(row => {
                     parentNames.push(row.name);
                   });
                   if (!parentNames.includes(parentValue)) {
@@ -158,7 +170,7 @@ export class DataBrowserStore {
         return fdata;
       },
 
-      fetchData: action(function (view) {
+      fetchData: action(function(view) {
         this.isLoading = true;
         // this.transportLayer.fetchTodos().then(fetchedTodos => {
         //   fetchedTodos.forEach(json => this.updateTodoFromServer(json));

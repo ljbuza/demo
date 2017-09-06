@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import { action } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import equipData from '../data/equipData.json';
-import { extendObservable } from 'mobx';
 
 export class EquipBrowserStore {
   constructor() {
@@ -14,7 +13,8 @@ export class EquipBrowserStore {
       filters: {},
       isLoading: true,
 
-      sort: action(function (clickedColumn) {
+      sort: (action.boundClassMethod = clickedColumn => {
+        // sort: action.bound(function(evt, clickedColumn) {
         if (this.sortColumn !== clickedColumn) {
           this.sortColumn = clickedColumn;
           this.direction = 'ascending';
@@ -28,7 +28,7 @@ export class EquipBrowserStore {
         }
       }),
 
-      addFilter: action.bound(function (evt, filter) {
+      addFilter: action.bound(function(evt, filter) {
         this.fetchData();
         // console.log('adding filter', filter.name);
         // const section = filter.name.substring(0, filter.name.indexOf('-'));
@@ -53,11 +53,10 @@ export class EquipBrowserStore {
             fieldOptions[section][field] = [];
           }
 
-          this.filteredData[section].forEach((row) => {
+          this.filteredData[section].forEach(row => {
             for (let field of Object.keys(row)) {
               if (field !== 'parents') {
                 let value = String(row[field]);
-                // let foo = toJS(row);
                 fieldOptions[section][field].push({
                   key: value.toLowerCase(),
                   text: value,
@@ -80,17 +79,17 @@ export class EquipBrowserStore {
           return fdata;
         }
 
-        sections.forEach((section) => {
+        sections.forEach(section => {
           let pulls = [];
           // console.log(section);
           if (fdata[section].length > 0) {
             const usedColumns = Object.keys(fdata[section][0]);
-            usedColumns.forEach((usedCol) => {
+            usedColumns.forEach(usedCol => {
               const colname = usedCol;
               if (this.filters[`${section}-${colname}`]) {
                 let colfilters = this.filters[`${section}-${colname}`];
                 if (colfilters.length > 0) {
-                  fdata[section].forEach((row) => {
+                  fdata[section].forEach(row => {
                     if (!colfilters.includes(row[colname].toLowerCase())) {
                       if (fdata[section].indexOf(row) > -1) {
                         pulls.push(fdata[section].indexOf(row));
@@ -104,11 +103,11 @@ export class EquipBrowserStore {
           }
         });
 
-        sections.forEach((section) => {
+        sections.forEach(section => {
           let pulls = [];
-          fdata[section].forEach((row) => {
+          fdata[section].forEach(row => {
             if (row.parents) {
-              row.parents.forEach((parentKey) => {
+              row.parents.forEach(parentKey => {
                 let parentSection = parentKey.substring(
                   0,
                   parentKey.indexOf('-'),
@@ -118,7 +117,7 @@ export class EquipBrowserStore {
                 );
                 let parentNames = [];
                 try {
-                  fdata[parentSection].forEach((row) => {
+                  fdata[parentSection].forEach(row => {
                     parentNames.push(row.name);
                   });
                   if (!parentNames.includes(parentValue)) {
@@ -157,7 +156,7 @@ export class EquipBrowserStore {
         return fdata;
       },
 
-      fetchData: action(function (view) {
+      fetchData: action(function fetchData() {
         this.isLoading = true;
         // this.transportLayer.fetchTodos().then(fetchedTodos => {
         //   fetchedTodos.forEach(json => this.updateTodoFromServer(json));
