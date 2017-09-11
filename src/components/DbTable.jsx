@@ -7,29 +7,13 @@ import {
   Menu,
   Icon,
   Popup,
-<<<<<<< Updated upstream
-  Label,
-} from 'semantic-ui-react';
-import { observer } from 'mobx-react';
-import { withRouter } from 'react-router';
-=======
   Label
 } from "semantic-ui-react";
 import { observer } from "mobx-react";
 import { withRouter } from "react-router";
->>>>>>> Stashed changes
 
 const DbTable = observer(
   class DbTable extends Component {
-    // constructor(props) {
-    //   super(props);
-    //   this.handleColumnChoice = this.handleColumnChoice.bind(this);
-    //   this.handleSort = this.handleSort.bind(this);
-    // }
-    // setSection = () => {
-    //   this.props.store.section = this.props.section;
-    // };
-
     componentDidMount() {
       this.props.store.fetchData(this.props.view);
     }
@@ -209,7 +193,7 @@ const DbTable = observer(
                     name={cellname}
                     key={i}
                     sorted={sortColumn === { cellname } ? direction : null}
-                    onClick={() => this.props.store.sort(cellname)}
+                    onClick={() => this.props.store.sort(this.props.view, cellname)}
                   >
                     {cellname}
                     {i + 1 === headers.length

@@ -10,19 +10,18 @@ export class DataBrowserStore {
       direction: null,
       sortColumn: null,
       // @observable section = null;
-      rawdata: [],
       data: tableData,
       filters: {},
       isLoading: true,
 
-      sort: action(function(evt, clickedColumn) {
+      sort: action(function(view, clickedColumn) {
         if (this.sortColumn !== clickedColumn) {
           this.sortColumn = clickedColumn;
           this.direction = 'ascending';
           // this.data = _.sortBy(this.data, [clickedColumn], ["asc"]);
-          this.data = _.sortBy(this.data, [clickedColumn]);
+          this.data[view] = _.sortBy(this.data[view], [clickedColumn]);
         } else {
-          this.data = this.data.reverse();
+          this.data[view] = this.data[view].reverse();
           this.direction = this.direction === 'ascending'
             ? 'decending'
             : 'ascending';
@@ -81,7 +80,6 @@ export class DataBrowserStore {
       },
 
       get filteredData() {
-        // console.log('filtering data...');
         let fdata = { ...this.data };
         fdata = JSON.parse(JSON.stringify(fdata));
         const sections = Object.keys(fdata);

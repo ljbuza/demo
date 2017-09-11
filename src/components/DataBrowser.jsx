@@ -1,26 +1,3 @@
-<<<<<<< Updated upstream
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { observer } from 'mobx-react';
-import { withRouter } from 'react-router';
-import Header from './Header';
-import SideMenu from './SideMenu';
-import SideMenuEquip from './SideMenuEquip';
-import SideMenuSubscr from './SideMenuSubscr';
-import SideMenuOrders from './SideMenuOrders';
-import SideMenuAlerts from './SideMenuAlerts';
-import DbTable from './DbTable';
-import Subscriber from './Subscriber';
-import SubscriberOverview from './SubscriberOverview';
-import Map from './Map';
-import MapNetwork from './MapNetwork';
-import SecondaryMenu from './SecondaryMenu';
-import SideMenuMap from './SideMenuMap';
-import DataBrowserStore from '../stores/DataBrowserStore';
-import AlertBrowserStore from '../stores/AlertBrowserStore';
-import EquipBrowserStore from '../stores/EquipBrowserStore';
-import OrderBrowserStore from '../stores/OrderBrowserStore';
-=======
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { observer } from "mobx-react";
@@ -43,7 +20,6 @@ import DataBrowserStore from "../stores/DataBrowserStore";
 import AlertBrowserStore from "../stores/AlertBrowserStore";
 import EquipBrowserStore from "../stores/EquipBrowserStore";
 import OrderBrowserStore from "../stores/OrderBrowserStore";
->>>>>>> Stashed changes
 
 const routes = [
   {
@@ -170,17 +146,6 @@ const DataBrowser = observer(
   class DataBrowser extends Component {
     // @observer class DataBrowser extends Component {
     // constructor(props) {
-<<<<<<< Updated upstream
-    // super(props);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleClearForm = this.handleClearForm.bind(this);
-    // this.state = {
-    //   match: props.match,
-    //   filters: {},
-    //   data: [],
-    //   usedColumns: []
-    // };
-=======
       // super(props);
       // this.handleChange = this.handleChange.bind(this);
       // this.handleClearForm = this.handleClearForm.bind(this);
@@ -190,7 +155,6 @@ const DataBrowser = observer(
       //   data: [],
       //   usedColumns: []
       // };
->>>>>>> Stashed changes
     // }
 
     // loadData() {

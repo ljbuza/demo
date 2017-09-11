@@ -7,18 +7,12 @@ const SideMenu = observer(
   class SideMenu extends Component {
     constructor(props) {
       super(props);
-      this.rawData = [...this.props.store.data];
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = evt => {
       evt.preventDefault();
       // const { usds, name, modem } = this.state;
-      this.setState({
-        submittedUsds: this.state.miUsds,
-        submittedName: this.state.miName,
-        submittedModem: this.state.miModem
-      });
     };
 
     render() {
@@ -89,10 +83,6 @@ const SideMenu = observer(
                   dimmer="blurring"
                   trigger={
                     <Menu.Item name="cmts">
-                      <FilterLabel
-                        section="networkCmts"
-                        filters={this.props.store.filters}
-                      />
                       {cmtsLabel}
                       CMTS
                     </Menu.Item>
@@ -164,12 +154,8 @@ const SideMenu = observer(
                   dimmer="blurring"
                   trigger={
                     <Menu.Item name="mac domains">
-                      <FilterLabel
-                        section="mac domains"
-                        filters={this.props.store.filters}
-                      />
                       {mdLabel}
-                      MAC Domains{" "}
+                      MAC Domains
                     </Menu.Item>
                   }
                 >
@@ -223,10 +209,6 @@ const SideMenu = observer(
                   dimmer="blurring"
                   trigger={
                     <Menu.Item name="fiber nodes">
-                      <FilterLabel
-                        section="fiber nodes"
-                        filters={this.props.store.filters["fiber nodes"]}
-                      />
                       {fnLabel}
                       Fiber Node
                     </Menu.Item>
@@ -282,10 +264,6 @@ const SideMenu = observer(
                   dimmer="blurring"
                   trigger={
                     <Menu.Item name="md interfaces">
-                      <FilterLabel
-                        section="md interfaces"
-                        filters={this.props.store.filters["md interfaces"]}
-                      />
                       MAC Domain Interfaces
                       {mdiLabel}
                     </Menu.Item>
@@ -330,10 +308,6 @@ const SideMenu = observer(
                   dimmer="blurring"
                   trigger={
                     <Menu.Item name="fn interfaces">
-                      <FilterLabel
-                        section="fn interfaces"
-                        filters={this.props.store.filters["fn interfaces"]}
-                      />
                       Fiber Node Interfaces
                       {fniLabel}
                     </Menu.Item>
@@ -485,7 +459,7 @@ const SideMenu = observer(
 );
 export default SideMenu;
 
-const FilterLabel = observer(
+// const FilterLabel = observer(
   class FilterLabel extends React.Component {
     // const FilterLabel = ({ section, filters }) => {
     render() {
@@ -504,9 +478,9 @@ const FilterLabel = observer(
 
       return (
         <div>
-          {labelCount > 0 ? <Label color="blue">{labelCount}</Label> : ""}
+          {labelCount > 0 ? <Label color="green">{labelCount}</Label> : ""}
         </div>
       );
     }
   }
-);
+// );
