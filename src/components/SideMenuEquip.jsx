@@ -335,7 +335,7 @@ const SideMenuEquip = observer(
         </div>
       );
     }
-  },
+  }
 );
 export default SideMenuEquip;
 

@@ -7,10 +7,17 @@ import {
   Menu,
   Icon,
   Popup,
+<<<<<<< Updated upstream
   Label,
 } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
+=======
+  Label
+} from "semantic-ui-react";
+import { observer } from "mobx-react";
+import { withRouter } from "react-router";
+>>>>>>> Stashed changes
 
 const DbTable = observer(
   class DbTable extends Component {
