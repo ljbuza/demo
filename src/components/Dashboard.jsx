@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   // Segment,
@@ -6,13 +6,14 @@ import {
   Message,
   Grid,
   List,
-  // Link,
-  Icon
-} from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
-import Header from "./Header";
-import tableData from "../data/DashboardData.js";
-import DataTable from "./DataTable";
+  Link,
+  Table,
+  Icon,
+} from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+import Header from './Header';
+import tableData from '../data/DashboardData.js';
+import DataTable from './DataTable';
 
 // will obv need to be fed alerts
 const Alerts = props => (
@@ -36,7 +37,8 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       data: tableData.tableData,
-      item: ""
+      item: '',
+      subscriber: 2,
     };
   }
 
@@ -45,12 +47,12 @@ export default class Dashboard extends Component {
   };
 
   render() {
-    const { data, item } = this.state;
-    if (item === "CTMS-02 Port capacity at 17%") {
+    const { data, item, subscriber } = this.state;
+    if (item === 'CTMS-02 Port capacity at 17%') {
       return <Redirect to="databrowser/network-cmts" push />;
-    } else if (item === "Fiber Node-X is at 92% capacity") {
+    } else if (item === 'Fiber Node-X is at 92% capacity') {
       return <Redirect to="databrowser/network-Fiber" push />;
-    } else if (item === "See all Alerts ") {
+    } else if (item === 'See all Alerts ') {
       return <Redirect to="databrowser/alerts" push />;
     }
 
@@ -58,11 +60,11 @@ export default class Dashboard extends Component {
       <div>
         <Header
           title="Dashboard"
-          subtitle={new Date().toLocaleString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
+          subtitle={new Date().toLocaleString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
           })}
         />
         <Container>
@@ -78,9 +80,37 @@ export default class Dashboard extends Component {
                   <Card.Content>
                     <div className="ui header small">Top Users</div>
                   </Card.Content>
-                  <Card.Content
-                    description={<DataTable data={data.topUsers} />}
-                  />
+                  <Card.Content>
+                    <Table className="ui striped compact" size="small">
+                      <Table.Header>
+                        <Table.Row>
+                          <Table.HeaderCell>Subscriber</Table.HeaderCell>
+                          <Table.HeaderCell>Usage</Table.HeaderCell>
+                        </Table.Row>
+                      </Table.Header>
+                      <Table.Body>
+                        <Table.Row>
+                          <Table.Cell>
+                            Jon Wallace
+                          </Table.Cell>
+                          <Table.Cell>20Gb</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell>
+                            {/* <Link to={`/databrowser/subscribers/${this.state.subcriber}`}> */}
+                            <a href="/databrowser/subscribers/2">
+                              Noal Miles
+                            </a>
+                          </Table.Cell>
+                          <Table.Cell>15Gb</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell>Spike Souza</Table.Cell>
+                          <Table.Cell>10Gb</Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </Card.Content>
                 </Card>
                 <Card fluid>
                   <Card.Content>

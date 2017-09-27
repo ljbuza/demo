@@ -15,6 +15,7 @@ const App = () => (
     <div className="App">
       <TopFixedMenu />
       <div>
+        <Route path="/" exact component={Dashboard} />
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/databrowser" component={DataBrowser} />
         {/* <Route path="/docsismaintenance" component={DocsisMaintenance} /> */}
