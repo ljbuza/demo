@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Form, Modal, Menu, Label, Button } from "semantic-ui-react";
-import Picker from "./Picker";
-import { observer } from "mobx-react";
+import React, { Component } from 'react';
+import { Form, Modal, Menu, Label, Button } from 'semantic-ui-react';
+import Picker from './Picker';
+import { observer } from 'mobx-react';
 
 const SideMenu = observer(
   class SideMenu extends Component {
@@ -17,7 +17,7 @@ const SideMenu = observer(
       this.setState({
         submittedUsds: this.state.miUsds,
         submittedName: this.state.miName,
-        submittedModem: this.state.miModem
+        submittedModem: this.state.miModem,
       });
     };
 
@@ -31,25 +31,25 @@ const SideMenu = observer(
         let fniCount = 0;
         let mdiCount = 0;
         Object.keys(this.props.store.filters).map(key => {
-          if (key.startsWith("cmts") && this.props.store.filters[key].length) {
+          if (key.startsWith('cmts') && this.props.store.filters[key].length) {
             cmtsCount += 1;
           } else if (
-            key.startsWith("fiber nodes") &&
+            key.startsWith('fiber nodes') &&
             this.props.store.filters[key].length
           ) {
             fnCount += 1;
           } else if (
-            key.startsWith("mac domains") &&
+            key.startsWith('mac domains') &&
             this.props.store.filters[key].length
           ) {
             mdCount += 1;
           } else if (
-            key.startsWith("fn interfaces") &&
+            key.startsWith('fn interfaces') &&
             this.props.store.filters[key].length
           ) {
             fniCount += 1;
           } else if (
-            key.startsWith("md interfaces") &&
+            key.startsWith('cmts interfaces') &&
             this.props.store.filters[key].length
           ) {
             mdiCount += 1;
@@ -105,7 +105,7 @@ const SideMenu = observer(
                         name="cmts-name"
                         label="CMTS Name"
                         multiple
-                        value={this.props.store.filters["cmts-name"]}
+                        value={this.props.store.filters['cmts-name']}
                         onChange={this.props.store.addFilter}
                         options={this.props.store.options.cmts.name}
                         placeholder="CMTS Name"
@@ -113,7 +113,7 @@ const SideMenu = observer(
                       <Form.Select
                         name="cmts-model"
                         label="Model"
-                        value={this.props.store.filters["cmts-model"]}
+                        value={this.props.store.filters['cmts-model']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={this.props.store.options.cmts.model}
@@ -124,11 +124,11 @@ const SideMenu = observer(
                         label="Software Version"
                         multiple
                         value={
-                          this.props.store.filters["cmts-software version"]
+                          this.props.store.filters['cmts-software version']
                         }
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options.cmts["software version"]
+                          this.props.store.options.cmts['software version']
                         }
                         placeholder="Software Version"
                       />
@@ -169,7 +169,7 @@ const SideMenu = observer(
                         filters={this.props.store.filters}
                       />
                       {mdLabel}
-                      MAC Domains{" "}
+                      MAC Domains{' '}
                     </Menu.Item>
                   }
                 >
@@ -179,22 +179,22 @@ const SideMenu = observer(
                       <Form.Select
                         name="mac domains-name"
                         label="MAC Domain"
-                        value={this.props.store.filters["mac domains-name"]}
+                        value={this.props.store.filters['mac domains-name']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["mac domains"]["name"]
+                          this.props.store.options['mac domains']['name']
                         }
                         placeholder="MAC Domain"
                       />
                       <Form.Select
                         name="mac domains-alias"
                         label="Alias"
-                        value={this.props.store.filters["mac domains-alias"]}
+                        value={this.props.store.filters['mac domains-alias']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["mac domains"]["alias"]
+                          this.props.store.options['mac domains']['alias']
                         }
                         placeholder="Alias"
                       />
@@ -225,7 +225,7 @@ const SideMenu = observer(
                     <Menu.Item name="fiber nodes">
                       <FilterLabel
                         section="fiber nodes"
-                        filters={this.props.store.filters["fiber nodes"]}
+                        filters={this.props.store.filters['fiber nodes']}
                       />
                       {fnLabel}
                       Fiber Node
@@ -238,22 +238,22 @@ const SideMenu = observer(
                       <Form.Select
                         label="Fiber Node"
                         name="fiber nodes-name"
-                        value={this.props.store.filters["fiber nodes-name"]}
+                        value={this.props.store.filters['fiber nodes-name']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["fiber nodes"]["name"]
+                          this.props.store.options['fiber nodes']['name']
                         }
                         placeholder="Fiber Node"
                       />
                       <Form.Select
                         name="fiber nodes-alias"
                         label="Alias"
-                        value={this.props.store.filters["fiber nodes-alias"]}
+                        value={this.props.store.filters['fiber nodes-alias']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["fiber nodes"]["alias"]
+                          this.props.store.options['fiber nodes']['alias']
                         }
                         placeholder="Alias"
                       />
@@ -281,27 +281,27 @@ const SideMenu = observer(
                 <Modal
                   dimmer="blurring"
                   trigger={
-                    <Menu.Item name="md interfaces">
+                    <Menu.Item name="cmts interfaces">
                       <FilterLabel
-                        section="md interfaces"
-                        filters={this.props.store.filters["md interfaces"]}
+                        section="cmts interfaces"
+                        filters={this.props.store.filters['cmts interfaces']}
                       />
-                      MAC Domain Interfaces
+                      CMTS Interfaces
                       {mdiLabel}
                     </Menu.Item>
                   }
                 >
-                  <Modal.Header>MAC Domain Interfaces Filters</Modal.Header>
+                  <Modal.Header>CMTS Interfaces Filters</Modal.Header>
                   <Modal.Content>
                     <Form onSubmit={this.handleSubmit}>
                       <Form.Select
                         label="MAC Domain Interface"
-                        name="md interfaces-name"
-                        value={this.props.store.filters["md interfaces-name"]}
+                        name="cmts interfaces-name"
+                        value={this.props.store.filters['cmts interfaces-name']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["md interfaces"]["name"]
+                          this.props.store.options['cmts interfaces']['name']
                         }
                         placeholder="MAC Domain Interface"
                       />
@@ -332,7 +332,7 @@ const SideMenu = observer(
                     <Menu.Item name="fn interfaces">
                       <FilterLabel
                         section="fn interfaces"
-                        filters={this.props.store.filters["fn interfaces"]}
+                        filters={this.props.store.filters['fn interfaces']}
                       />
                       Fiber Node Interfaces
                       {fniLabel}
@@ -345,11 +345,11 @@ const SideMenu = observer(
                       <Form.Select
                         label="Fiber Node Interface"
                         name="fn interfaces-name"
-                        value={this.props.store.filters["fn interfaces-name"]}
+                        value={this.props.store.filters['fn interfaces-name']}
                         multiple
                         onChange={this.props.store.addFilter}
                         options={
-                          this.props.store.options["fn interfaces"]["name"]
+                          this.props.store.options['fn interfaces']['name']
                         }
                         placeholder="Fiber Node Interface"
                       />
@@ -480,7 +480,7 @@ const SideMenu = observer(
         </div>
       );
     }
-  }
+  },
   // }
 );
 export default SideMenu;
@@ -504,9 +504,9 @@ const FilterLabel = observer(
 
       return (
         <div>
-          {labelCount > 0 ? <Label color="blue">{labelCount}</Label> : ""}
+          {labelCount > 0 ? <Label color="blue">{labelCount}</Label> : ''}
         </div>
       );
     }
-  }
+  },
 );

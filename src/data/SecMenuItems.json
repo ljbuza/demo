@@ -23,7 +23,7 @@
       "to": "/databrowser/network-fiber"
     },
     {
-      "name": "MAC Domain interfaces",
+      "name": "CMTS interfaces",
       "to": "/databrowser/network-mdface"
     },
     {

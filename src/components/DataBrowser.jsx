@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { Grid, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
 import Header from './Header';
@@ -187,7 +188,6 @@ const DataBrowser = observer(
     // };
 
     render() {
-      // const { data, filters } = this.state;
       return (
         <div>
           <div>
@@ -204,31 +204,9 @@ const DataBrowser = observer(
                 path="/databrowser/subscribers/:userid"
                 component={SubscriberOverview}
               />
-              {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.secondarymenu}
-                />
-              ))}
               <div className="ui two column grid">
-                <div className="stretched row">
+                <div className="row">
                   <div className="three wide column">
-                    {/* <Route
-                      exact
-                      path="/databrowser/subscribers/:id"
-                      render={props => <div />}
-                    />
-                    <Route
-                      path="/databrowser/network-*"
-                      render={props => <SideMenu store={DataBrowserStore} />}
-                    />
-                    <Route
-                      exact
-                      path="/databrowser/alerts"
-                      render={props => <SideMenuAlerts />}
-                    /> */}
                     {routes.map((route, index) => (
                       <Route
                         key={index}
@@ -239,7 +217,22 @@ const DataBrowser = observer(
                     ))}
                   </div>
                   <div className="thirteen wide column">
-                    <div className="ui vertical basic segment">
+                    {/* <Segment basic vertical> */}
+                    <Grid.Row>
+                      {routes.map((route, index) => (
+                        <Route
+                          key={index}
+                          path={route.path}
+                          exact={route.exact}
+                          component={route.secondarymenu}
+                        />
+                      ))}
+                      {/* </Segment> */}
+                      {/* <Segment basic vertical> */}
+                    </Grid.Row>
+                    <br />
+                    <Grid.Row>
+
                       <Route
                         exact
                         path="/databrowser/network-cmts"
@@ -277,7 +270,7 @@ const DataBrowser = observer(
                         render={props => (
                           <DbTable
                             store={DataBrowserStore}
-                            view="md interfaces"
+                            view="cmts interfaces"
                           />
                         )}
                       />
@@ -338,7 +331,8 @@ const DataBrowser = observer(
                         path="/databrowser/map-network"
                         component={MapNetwork}
                       />
-                    </div>
+                      {/* </Segment> */}
+                    </Grid.Row>
                   </div>
                 </div>
               </div>
